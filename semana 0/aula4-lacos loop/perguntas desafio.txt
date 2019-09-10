@@ -1,0 +1,43 @@
+## Exercícios para tarde:
+
+### Exercício 1:
+
+Uma brincadeira comum e simples entre duas pessoas é uma delas pensar em um número e a outra fazer chutes até acertar o número imaginado. Como dica, a primeira pessoa fala se o número chutado está acima ou abaixo do imaginado. 
+
+Escreva um programa em JS que simule o que a primeira pessoa faria. Ou seja:
+
+- Guardar um número inteiro qualquer entre 1 e 20
+- Enquanto o usuário do programa não acertar, receber novos chutes e mostrar se o usuário acertou. Se errou, mostrar se o chute foi acima ou abaixo.
+- Ao final, mostrar quantas tentativas foram necessárias
+
+Uma possível saída do seu programa poderia ser
+
+    Vamos jogar!
+    O número chutado foi: 3
+    Abaixo
+    O número chutado foi: 18
+    Acima
+    O número chutado foi: 15
+    Acima
+    O número chutado foi: 11
+    Acertou!!! 
+    O número de tentativas foi: 4 
+    
+
+Lembrando que, para receber os chutes do usuário, você precisará do comando `prompt( )` . Ele faz com que o programa espere o usuário digitar algo para continuar rodando. A sintaxe de utilização é:
+
+    let chute = Number(prompt("Chute um número: "));
+
+Lembrando que o `Number()` serve para converter algo em número. Ele é necessário pois o que o usuário insere o computador entende como uma string.
+
+### Exercício 2:
+
+No mesmo jogo do exercício anterior, faça com que o computador sorteie um número entre 1 e 100, para que você possa jogar contra ele.
+
+Aqui está um material sobre como sortear um número em JavaScript:
+
+[JavaScript random() Method](https://www.w3schools.com/jsref/jsref_random.asp)
+
+### Exercício 3:
+
+Ainda no mesmo jogo, faça com que o computador jogue contra ele mesmo.
