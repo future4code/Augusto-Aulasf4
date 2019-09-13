@@ -1,0 +1,136 @@
+## Exercícios para tarde:
+
+- Dicas úteis:
+
+        console.log // é uma função que imprime no console do JS pra que possamos ver os valores das variáveis ou só mostrar mensagens.
+        
+        console.log('Sua mensagem')
+        // Sua mensagem
+        
+        const nome = "Joana"
+        const sobrenome = "da Silva"
+        
+        console.log(nome + " " + sobrenome)
+        // Joana da Silva
+        
+        _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+        
+        prompt // é uma função que permite que você peça para o usuário final o valor da variável
+        
+        const nome = prompt("Informe seu nome") // Uma janela aparecerá para o usuário com a frase "Informe seu nome" e uma caixa de texto pra que ele preencha
+        
+        console.log(nome)
+        // Valor informado pelo usuário
+        
+        _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+        
+        confirm // é uma função que permite que você faça perguntas de sim ou não para o usuário, que são armazenadas como valores booleanos, true ou false
+        
+        const estaDeCasaco = confirm("Você está usando casaco?"); // Uma janela aparecerá para o usuário com a frase "Você está usando casaco?", com as opções OK ou CANCELAR
+        
+        console.log(estaDeCasaco)
+        // se o usuário clicou em OK o valor será `true` caso tenha clicado em CANCELAR o valor será `false`
+
+## Instruções:
+
+Acesse o link [aqui](https://repl.it/@soter19/Exercicios-Algebra-Booleana) e clique em "fork", isso criará uma cópia só sua, para que você possa trabalhar nos exercícios, acesse o arquivo `exercicios.js` na barra lateral à esquerda.
+
+1) Uso de variáveis declaradas anteriormente para fazer cálculos e imprimir o resultado no console
+
+- Exemplo (IMC):
+
+        const peso = 70; // Quilos
+        const altura = 180; // Centímetros
+        
+        const IMC = peso / altura * altura
+        
+        console.log("Seu IMC é: " + IMC)
+
+Agora é sua vez!
+
+**a)** Crie um programa que liste produtos e seus preços, e imprima o valor somado de todos os produtos com `R$` na frente.
+
+`R$42,00`
+
+**b)** Crie um programa que transforma um valor de temperatura em `Fahrenheit` para `Celsius` e `Kelvin` e imprime na tela os dois valores calculados com a unidade na frente.
+
+`Celsius: 35 graus`
+
+`Kelvin: 308,15`
+
+Para converter de Fahrenheit para Kelvin, use a seguinte fórmula: "(GRAUS_FAHRENHEIT − 32) * 5/9 + 273,15"
+
+Para converter de Fahrenheit para Celsius, use a seguinte fórmula: "(GRAUS_FAHRENHEIT − 32) * 5/9"
+
+2) Uso de variáveis informadas pelo usuário para fazer operações e imprimir o resultado no console.
+
+- Exemplo (IMC):
+
+a**)** Crie um programa que transforma um valor de temperatura em `Fahrenheit` para `Celsius` e `Kelvin` e imprime na tela os dois valores calculados com a unidade na frente.
+
+`Celsius: 35 graus`
+
+`Kelvin: 308,15`
+
+Para converter de Fahrenheit para Kelvin, use a seguinte fórmula: "(GRAUS_FAHRENHEIT − 32) * 5/9 + 273,15"
+
+Para converter de Fahrenheit para Celsius, use a seguinte fórmula: "(GRAUS_FAHRENHEIT − 32) * 5/9"
+
+b**)** Crie um programa que peça para que o usuário informe seu primeiro e último nome e imprime o nome completo.
+
+c**)** Crie um programa que peça para que o usuário informe separadamente: Rua, Número, Complemento, Bairro e Cidade e imprime o endereço completo no seguinte formato: `RUA, NUMERO - COMPLEMENTO - BAIRRO, CIDADE`
+
+3) Perguntas de sim ou não para o usuário e chega em respostas finais usando operações booleanas
+
+Referências:
+
+Como fazemos para extrair proposições de dados que temos?
+
+- Igualdade `=`
+- Inequidade `≠`
+- Maior que (ou igual) `> >=`
+- Menor que (ou igual) `< <=`
+
+Exemplo:
+
+> Dada as seguintes variáveis booleanas, calcule as suas combinações:
+
+    const estaSol = false;
+    const estaNublado = true;
+    const estaChovendo = true;
+    const estouDeCasaco = false;
+    const estouComGuardaChuva = true;
+    const estouDeOculosEscuros = true;
+    
+    
+    // A calcular:
+    
+    const vouMeMolhar = (!estaSol && estaChovendo) && (!estouDeCasaco && !estouComGuardaChuva)
+    // Qual valor de vouMeMolhar?
+    
+    const vouPassarFrio = (estaNublado || estaChovendo) && !estouDeCasaco
+    // Qual valor de vouPassarFrio?
+    
+    const vouEnchergar = (estaSol && estouDeOculosEscuros) || !estaSol
+    // Qual valor de vouEnchergar?
+    
+    
+
+**a)** Crie um programa que pergunta para o usuário:
+
+- A Casa está destrancada?
+- Você tem a chave da casa?
+    - Imprima a resposta da pergunta "O usuário consegue entrar na casa?"
+
+**b)** Crie um programa que pergunta para o usuário:
+
+- Está chovendo?
+- Tem guarda-chuva?
+    - Imprima a resposta da pergunta "O usuário vai se molhar?"
+
+4) Sabe-se que o quilowatt de energia custa um quinto do salário mínimo. Faça um programa que receba
+o valor do salário mínimo e a quantidade de quilowatts consumida por uma residência, calcule e mostre:
+
+- O valor de cada quilowatt;
+- O valor a ser pago por essa residência;
+- O valor a ser pago com desconto de 15%;

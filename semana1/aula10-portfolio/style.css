@@ -1,0 +1,78 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: rgb(35, 41, 49);
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+nav{
+    padding: 1%;
+    font-size: 20px;
+    direction: rtl;
+    background-color: black;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1000;
+    margin-bottom: 20px;
+    height: 50px;
+    display: block;
+    color: white;
+    display: inline;
+}
+
+.textoImg{
+position: absolute;
+top: 30vh;
+left: 10vw;
+color: white;
+}
+
+.contato{
+    font-size: 150%;
+    padding: 5% 7%;
+}
+
+ul{
+    margin-right: 10vw;
+    margin-top: 2vh;
+}
+li{
+    margin-right: 2vw;
+    display: inline;
+    color: White;
+    padding: 0.5%;
+}
+
+li:hover{
+    background-color: rgb(35, 41, 49);
+    border-radius: 10px;
+}
+
+.imgTop{
+    width: 100vw;
+    height: 100vh;
+margin-top: 2%;
+}
+
+a{
+    color: White;
+}
+a:link {
+    text-decoration:none;
+    }
+a:visited {
+    text-decoration:none;
+}
+a:hover {
+    color:#2f89fc;
+    text-decoration:underline;
+}
+
+.container{
+position: relative;
+}

@@ -1,0 +1,199 @@
+* {
+    padding:0;
+    margin:0;
+
+}
+
+body{
+    background-color: lightgray;
+}
+
+a:link{
+text-decoration:none;
+}
+
+
+.header a{
+    margin-left: 2%;
+    font-size: 30px;
+    
+    color: black;
+}
+.header a:hover{
+    color: forestgreen;
+}
+.header{
+    text-align: center;
+    padding: 1.5%;
+    
+    background-color: white;
+
+}
+ ul, li{
+
+    display: inline;
+}
+#SelectedPage{
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.StartWindow{
+    position: relative;
+    box-shadow:0 4px 4px #666;
+    margin: 0 auto;
+    width: 90vw;
+    height: 80vh;
+
+}
+button{
+
+    margin-top: 10px;
+    color: white;
+    background-color: forestgreen;
+    font-size: 20px;
+    padding: 1%;
+    border-radius: 5%;
+    text-align: center;
+}
+
+
+#Models:active, button:active{
+    background-color: darkgreen;
+}
+#Models:hover, button:hover{
+    padding: 1em;
+}
+
+#Models{
+    color: white;
+    background-color: forestgreen;
+    margin-left: 23%;
+    font-size: 20px;
+    padding: 1%;
+    border-radius: 5%;
+}
+.ContentImage{
+    
+    color: #323437;
+    margin-left: 5%;
+    margin-top: -13%;
+    margin-bottom: 3%;
+}
+
+
+.StartImage{
+    margin-top: -1%;
+
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+#footer{
+    margin-top: -1%;
+    padding: 5vh;
+    background-color: #323437;
+    text-align: right;
+    color: white;
+}
+
+.Creator{
+    margin-right: 10vw;
+    color: white;
+    font-style: oblique;
+
+}
+
+table{
+    margin-top: 10px;
+    margin: 0 auto;
+    width: 50vw;
+
+
+    
+}
+
+.Employees{
+    box-shadow:0 4px 4px #666;
+    margin: 0 auto;
+    padding-bottom: 3%;
+    padding-top: 3%;
+    position: relative;
+    margin-top: -1%;
+    border-radius: 10px;
+    width: 90vw;
+    background-color: rgb(233, 248, 214);
+}
+tr{
+
+}
+
+
+td, th{
+    border-bottom: 2px solid #000000;
+    
+    height: 35px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+}
+#StartPage{
+    margin-bottom: 2%;
+}
+
+input{
+width: 30%;
+height: 5%;
+padding: 1% 0 0 1%
+}
+.ContainerProduct{
+    margin: 0 auto;
+    padding: 2% 1%;
+    width: 100%;
+    margin-bottom: 30px;
+    text-align: center;
+
+    width: 300px;
+    height: 400px;
+    background-color: white;
+    border-radius: 20px;
+    vertical-align: middle;
+
+
+}
+.imgProduct{
+    margin-bottom: 2%;
+}
+
+.productName{
+    font-weight: 700;
+    color: #3C4858;
+}
+.description{
+    margin-top: 10px;
+    color: gray;
+}
+
+.price{
+    display: inline;
+    margin-top: 20px;
+    float: left;
+}
+.amount{
+    display: inline;
+    margin-top: 20px;
+    float: right;
+}
+
+.InLine{
+margin-top: 10px;
+
+}
+.ContainerProduct:hover{
+    box-shadow:0 4px 4px #666
+    }
+.list{
+    display: flex;
+
+}
