@@ -7,6 +7,9 @@ body{
     background-color: rgb(35, 41, 49);
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 }
+h2{
+    color: white;
+}
 
 nav{
     padding: 1%;
@@ -25,6 +28,15 @@ nav{
     display: inline;
 }
 
+.lingua{
+    width: 10%;
+}
+
+.APc{
+    border-radius: 50%;
+    width: 20%;
+    border: white 5px solid;
+}
 .textoImg{
 position: absolute;
 top: 30vh;
@@ -75,4 +87,48 @@ a:hover {
 
 .container{
 position: relative;
+}
+
+footer{
+    padding: 1%;
+    font-size: 20px;
+    direction: rtl;
+
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+    z-index: 1000;
+    height: 50px;
+    display: block;
+    color: white;
+    display: inline;
+}
+
+.logo{
+    z-index: 1001;
+    width: 30px;
+}
+
+.up{
+    position: fixed;
+    right: 2%;
+    bottom: 7%;
+    font-size: 50px;
+}
+.conteudo{
+width: 90vw;
+background-color: white;
+border-radius: 3%;
+}
+.contatoEmail{
+    border: #2f89fc 2px solid;
+    width: 30%;
+    background-color: #2f89fc;
+    border-radius: 3%;
+}
+input{
+    display: block;
+}
+button{
+    display: block;
 }
