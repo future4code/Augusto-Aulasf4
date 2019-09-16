@@ -7,15 +7,166 @@ body{
     background-color: rgb(35, 41, 49);
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 }
-h2{
-    color: white;
+
+html{
+    scroll-behavior: smooth;
 }
 
-nav{
+h2{
+    color: #3C4858;
+}
+
+.titulo{
+    font-size: 230%;
+    position: relative;
+    right: 0;
+    left: 0;
+    top: 6%;
+    margin-bottom: 2%;
+    text-decoration:underline;    
+}
+
+.lingua{
+    position: absolute;
+    width: 5%;
+}
+
+.habilidade{
+    width: 100%;
+    height: 95vh;
+}
+
+.APc{
+    position: absolute;
+    top: 35vh;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+    width: 20%;
+}
+
+.react{
+    top: 20vh;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+}
+
+.js{
+    top: 77vh;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+}
+
+.html{
+    top: 60vh;
+    left: 30%;
+    margin: 0 auto;
+}
+
+.node{
+    top: 32vh;
+    left: 30%;
+    margin: 0 auto;
+}
+
+.php{
+    top: 32vh;
+    right: 30%;
+    margin: 0 auto;
+}
+
+.css{
+    top: 60vh;
+    right: 30%;
+    margin: 0 auto;
+}
+
+[data-tooltip]:after {
+    display: none;
+    content: attr(data-tooltip);
+    background-color: #2f89fc;
+    color: White;
+    border-radius: 10px;
+    padding: 1%;
+}
+
+.phpaviso:after{
+    background-color: #6c7eb7;
+    position: absolute;
+    width: 20%;
+    top: 43vh;
+    left: 75%;
+    font-weight: bold;
+}
+
+.cssaviso:after{
+    background-color: #0170ba;
+    position: absolute;
+    width: 20%;
+    top: 43vh;
+    left: 75%;
+    font-weight: bold;
+}
+
+.nodeaviso:after{
+    background-color: rgb(140,200,75);
+    position: absolute;
+    width: 20%;
+    top: 43vh;
+    right: 75%;
+    font-weight: bold;
+}
+
+.htmlaviso:after{
+    background-color: rgb(228,77,38);
+    position: absolute;
+    width: 20%;
+    top: 43vh;
+    right: 75%;
+    font-weight: bold;
+}
+
+.reactaviso:after{
+    background-color: rgb(0, 216, 255);
+    position: absolute;
+    width: 30%;
+    top: 17vh;
+    left: 55%;
+    font-weight: bold;
+}
+
+.jsaviso:after{
+    background-color: rgb(239, 199, 37);
+    position: absolute;
+    width: 30%;
+    top: 75vh;
+    right: 55%;
+    font-weight: bold;
+}
+    
+[data-tooltip]:hover:after {
+    display: block;
+}
+
+.navtop{
+    margin-right: 50%;
+    margin-top: 2vh;
+}
+
+.navbar{
+    margin-right: 2vw;
+    display: inline;
+    color: White;
+    padding: 2%
+}
+
+.menu {
     padding: 1%;
     font-size: 20px;
     direction: rtl;
-    background-color: black;
+    background-color: transparent;
     position: fixed;
     top: 0;
     right: 0;
@@ -28,58 +179,106 @@ nav{
     display: inline;
 }
 
-.lingua{
-    width: 10%;
+.menu2 {
+    padding: 1%;
+    font-size: 20px;
+    direction: rtl;
+    background-color: rgba(0, 0, 0, 0.733);
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1000;
+    margin-bottom: 20px;
+    height: 50px;
+    display: block;
+    color: white;
+    display: inline;
 }
 
-.APc{
-    border-radius: 50%;
-    width: 20%;
-    border: white 5px solid;
+.menu-diferente {
+    background: rgba(0, 0, 0, 0.733);
+    text-align: right;
 }
+
+.down2{
+    font-size: 30px;
+}
+
+.down{
+    position: absolute;
+    top: 60vh;
+    left: 40vw;
+    font-size:30px;
+}
+
+.Nome1{
+    font-size: 5vw;
+    text-align: center;
+}
+
+.Nome2{
+    font-size: 3vw;
+    text-align: center;
+}
+
+.Nome3{
+    margin-top: 3vw;
+    text-align: center;
+}
+
 .textoImg{
-position: absolute;
-top: 30vh;
-left: 10vw;
-color: white;
+    position: absolute;
+    top: 30%;
+    left: 10%;
+    color: white;
+    display: block;
+}
+
+.contato:hover{
+    cursor: pointer;
+    touch-action: manipulation;
+    box-shadow: 5px 2px 5px rgba(0, 0, 0, .7);
 }
 
 .contato{
+    border-radius: 20px;
+    border: #2f89fc;
+    color: aliceblue;
+    background-color: #2f89fc;
+    margin: 7% auto;
     font-size: 150%;
+    display: block;
     padding: 5% 7%;
 }
 
-ul{
-    margin-right: 10vw;
-    margin-top: 2vh;
-}
-li{
-    margin-right: 2vw;
-    display: inline;
-    color: White;
-    padding: 0.5%;
-}
-
-li:hover{
+.navbar:hover{
     background-color: rgb(35, 41, 49);
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 .imgTop{
-    width: 100vw;
-    height: 100vh;
-margin-top: 2%;
+    position: relative;
+
+bottom: 0;
+left: 60%;
+direction: rtl;
+height: 100vh;
+width: 40%;
 }
 
 a{
     color: White;
 }
+
 a:link {
     text-decoration:none;
-    }
+}
+
 a:visited {
     text-decoration:none;
 }
+
 a:hover {
     color:#2f89fc;
     text-decoration:underline;
@@ -87,48 +286,345 @@ a:hover {
 
 .container{
 position: relative;
+height: 10vh;
+background-color: #4f5863;
+z-index: 2;
 }
 
-footer{
-    padding: 1%;
-    font-size: 20px;
-    direction: rtl;
+input:focus, textarea:focus{
+    color: black;
+    background-color: white;
+}
 
-    position: sticky;
-    bottom: 0;
-    width: 100%;
-    z-index: 1000;
-    height: 50px;
+.formTitle{
+    width: 50%;
+    font-size: 18px;
     display: block;
+    background-color: white;
+    border: #2f89fc solid 5px;
+    position: relative;
+    top:-30px;
+    padding: 5%;
+    border-radius: 5px;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    box-shadow: 5px 2px 5px rgba(0, 0, 0, .5);
+}
+
+textarea, input{
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#9c27b0), to(#9c27b0)), -webkit-gradient(linear, left top, left bottom, from(#d2d2d2), to(#d2d2d2));
+    background-image: -webkit-linear-gradient(#9c27b0, #9c27b0), -webkit-linear-gradient(#d2d2d2, #d2d2d2);
+    background-image: linear-gradient(#9c27b0, #9c27b0), linear-gradient(#d2d2d2, #d2d2d2);
+    border: 0;
+    border-radius: 0;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center bottom, center -webkit-calc(100% - 1px);
+    background-position: center bottom, center calc(100% - 1px);
+    background-size: 0 2px, 100% 1px;
+    font-weight: 400;
     color: white;
-    display: inline;
+    -webkit-transition: background 0s ease-out;
+    width: 70%;
+    margin-top: 4%;
+    resize: none;
+    overflow: auto;
 }
 
-.logo{
-    z-index: 1001;
-    width: 30px;
-}
 
-.up{
-    position: fixed;
-    right: 2%;
-    bottom: 7%;
-    font-size: 50px;
-}
-.conteudo{
-width: 90vw;
-background-color: white;
-border-radius: 3%;
+#contact{
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    background-color: #2f89fc;
+    width: 90vw;
 }
 .contatoEmail{
     border: #2f89fc 2px solid;
     width: 30%;
     background-color: #2f89fc;
     border-radius: 3%;
+    position:relative;
+    top: 10vh;
+    border: 3px white solid;
+    display: inline-block;
+    margin-right: 10%;
+    margin-bottom: 10%;
 }
-input{
+
+.logo:hover{
+    background-color: #2f89fc;
+    border: #2f89fc 2px solid;
+}
+
+.logo{
+    z-index: 1001;
+    width: 30px;
+    background-color: white;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+.up{
+    position: fixed;
+    right: 0.3%;
+    bottom: 7%;
+    font-size: 50px; 
+}
+
+.upped{
+    display: none;
+}
+
+.conteudo{
+    border:5px solid #4f5863;
+    box-shadow: 5px 2px 5px rgba(0, 0, 0, .5);
+    position: relative;
+    top: -5vh;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+    background-color: white;
+    width: 90vw;
+    border-radius: 30px 30px 0 0;
+}
+
+.conteudo2{
+    border:5px solid #4f5863;
+    box-shadow: 5px 2px 5px rgba(0, 0, 0, .7);
+    position: relative;
+    top: 10vh;
+    right: 0;
+    left: 0;
+    bottom: 10vh;
+    margin: 0 auto;
+    background-color: white;
+    width: 90vw;
+    color: #3C4858;
+    border-radius: 30px;
+}
+
+.enviar{
+    box-shadow: 5px 2px 5px rgba(0, 0, 0, .5);
+    display: block;
+    color: #2f89fc;
+    background-color: white;
+    border: #2f89fc 2px solid;
+    font-size: 120%;
+    padding: 2%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+::-webkit-input-placeholder {
+    color: white;
+    font-size: 120%;
+ }
+ 
+ :-moz-placeholder { /* Firefox 18- */
+    color: white;  
+ }
+ 
+ ::-moz-placeholder {  /* Firefox 19+ */
+    color: white;  
+ }
+ 
+ :-ms-input-placeholder {  
+    color: white;  
+ }
+
+ .formacaoImg{
+    box-shadow: 5px 2px 5px rgba(0, 0, 0, .5);
+    width: 9%;
+    border-radius: 50%;
+    border: 3px white solid;
+    display: inline;
+    position: relative;
+    right: 25%;
+    margin: 1%;
+}
+
+.formadoTitle{
+    color: white;
+    padding: 4%;
+    font-weight: bold;
+    font-size: 120%;
+}
+
+.formado{
+    color: white;
+    font-weight: bold;
+    display: inline;
+    position:absolute;
+    right: 20%;
+    left: 30%;
+    padding: 5%;
+}
+
+.formacoes{
+    direction: ltr;
+    vertical-align: middle;
+
+}
+
+#about{
+    display: inline-block;
+    width: 59%;
+    height: 50vh;
+    position: relative;
+    margin-left: 0;
+    top: 8vh;
+    background-color: #2f89fc;
+}
+
+.sobre{
+    color: white;
+    padding-top: 3%;
+}
+
+.espacoabout{
+    width: 60%;
+}
+
+.lifoot{
+    padding-top: 2%;
+    display: inline-block;
+    position: relative;
+    right: 30%;
+    margin-right: 3%;
+}
+
+.criador{
+    position: relative;
+    top: -3.5vh;
+    left: 25%;
+    display: inline;
+    color: White;
+    font-size: 110%;
+    padding: 15px 0;
+}
+
+.redeCriador{
+    width: 100%;
     display: block;
 }
-button{
+
+.project{
+    background-color: rgb(230, 230, 230);
+    height: 80vh;
+}
+
+.projetos{
+   padding: 3%;
+}
+
+.cardproject:hover{
+    box-shadow: 5px 2px 5px rgba(0, 0, 0, .5);
+}
+
+.cardproject{
+    position: relative;
+    margin: 10vh 3vw;
+    padding: 2% 1%;
+    clear: both;
+    text-align: center;
+    display: inline-block;
+    width: 15%;
+    height: 30vh;
+    background-color: white;
+    border-radius: 20px;
+    vertical-align: middle;
+    border: #4f5863 3px solid;
+}
+
+#projects{
+    position: relative;
+}
+
+.mao{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.imgcard{
+    position: absolute;
+    top: -25%;
+    right: 0;
+    left: 0;
+    margin-bottom: 2%;
+    margin-top:;
+    width: 50%;
     display: block;
+    margin: 0 auto;
+    border: #4f5863 3px solid;
+    border-radius: 50%;
+}
+
+.interiorcard{
+    position: relative;
+    top: 5vh;
+    color: #3C4858;
+}
+
+.aproject{
+    color: #2f89fc;
+}
+
+.pproject{
+    padding: 3vh;
+}
+
+.Titulos{
+    text-align: center;
+    margin: 3%;
+}
+
+.linguaProjeto{
+    width: 50px;
+}
+
+.projetoconteudo{
+    width: 90%;
+    height: 70vh;
+    margin: 0 auto;
+}
+.pagina{
+    width: 50%;
+    margin: 0 auto;
+}
+
+.paginaconteudo{
+    position: absolute;
+    margin: 0 10%;
+    width: 30%;
+    display: inline-block;
+}
+
+dl{
+    padding: 5%;
+    font-size: 20px;
+    margin: 0 auto;
+}
+
+dt{
+    margin: 8% auto;
+}
+
+dd{
+    display: inline;
+    margin: 3% 3%;
+    padding: 5%;
+}
+
+#luhsf{
+    background-color: whitesmoke;
+}
+
+#aboa{
+    background-color: whitesmoke;
+    border-radius:0 0 10% 10%;
+    height: 90vh;
 }
