@@ -163,8 +163,11 @@ nav{
     border: purple 2px solid;
 }
 .login p{
-    
-    justify-self: center;
+    background-color: blue;
+    color: white;
+    text-align: center;
+    align-self: stretch;
+    justify-self: stretch;
 }
 
 
@@ -185,6 +188,29 @@ nav{
     width: 100%;
 }
 
-.corpo h1{
+.esquerda{
+    border: gray 1px solid;
+    width: 10%;
+    height: 30vh;
+    display: flex;
+    flex-direction: column;
+}
 
+.centro{
+    border:1px solid gray;
+    width: 50%;
+}
+
+.direita{
+    border:2px solid gray;
+    width: 30%;
+    height: 100px;
+    display: grid;
+}
+
+#corpo-post{
+    margin-top: 5%;
+    display: flex;
+    justify-content: space-around;
+    align-content: space-between;
 }
