@@ -1,0 +1,71 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+
+.container {
+    min-height: 100vh;
+}
+
+.item {
+    color: white;
+}
+
+.header {
+    background-color: #2ECC40;
+    height: 50px;
+    width: 25%;
+    display: inline-block;
+
+}
+
+.menu {
+    background-color: #FFDC00;
+    height: 50px;
+    width: 75%;
+    margin: 0 auto;
+    display: inline-block;
+    position: absolute;
+}
+
+.content1 {
+    background-color: #F012BE;
+    position: relative; 
+    bottom: 0;
+    height: 67.3vh;
+    width: 100vw;
+}
+
+.content2 {
+    background-color: #0074D9;
+    width: 50vw;
+    height: 200px;
+    display: inline-block;
+    position: absolute;
+}
+
+.image {
+    background-color: #FF4136; 
+    height: 100px;  
+    width: 25vw;
+}
+
+.extra {
+    background-color: #01FF70;
+    width: 25vw;
+    height: 100px;
+}
+
+.footer {
+    background-color: #B10DC9;
+    height: 50px;
+}
+
+.up{
+    display: inline-block;
+    position: relative;
+    left: 75%;
+    margin: 0;
+    clear: both;
+
+}
