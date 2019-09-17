@@ -89,3 +89,18 @@ body {
 .up{
 
 }
+
+@media(max-width:500px){
+    .content1{
+        display:none;
+    }
+    .footer{
+        position: fixed;
+        bottom: 0;
+        
+    }
+    .content2{
+        height: 1800px;
+    }
+}
+
