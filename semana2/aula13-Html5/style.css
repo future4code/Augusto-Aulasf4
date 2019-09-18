@@ -21,12 +21,11 @@ nav{
 }
 
 .conteudo-video{
-    margin: 20px;
+    margin: 20px auto;
     width: 90vw;
-    margin: 10px auto;
 }
 
-.conteudo{
+section{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -45,7 +44,7 @@ video{
 
 footer{
     background: rgb(40, 40, 40);
-    width: 100vw;
+    width: calc(100vw - 20px);
     padding: 10px;
     position: relative;
     bottom:0;
