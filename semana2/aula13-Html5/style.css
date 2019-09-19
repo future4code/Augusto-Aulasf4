@@ -1,0 +1,61 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+nav input{
+    border: none;
+    margin-right: 10px;
+
+}
+
+nav h1{
+    margin-left: 10px;
+}
+
+nav{
+    padding: 5px;
+    background: orange;
+    display: flex;
+    justify-content: space-between;
+}
+
+.conteudo-video{
+    margin: 20px auto;
+    width: 90vw;
+}
+
+section{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card{
+    border: green 1px solid;
+    width: 10%;
+    min-width: 300px;
+    margin: 10px;
+}
+
+video{
+    width: 100%;
+}
+
+footer{
+    background: rgb(40, 40, 40);
+    width: calc(100vw - 20px);
+    padding: 10px;
+    position: relative;
+    bottom:0;
+    color: white;
+    font-weight: bold;
+}
+
+img{
+    width:100%;
+}
+
+section h2{
+    margin: 1% 0;
+}
