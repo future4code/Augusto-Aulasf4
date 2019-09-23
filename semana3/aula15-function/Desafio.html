@@ -51,6 +51,7 @@
     ul{
         border: 1px solid black;
         height: 100%;
+        background: white;
     }
 
     .botoesAdd{
@@ -59,6 +60,28 @@
 
     li{
         margin:5px 25%;
+    }
+
+    .botaoLimpa{ 
+    background:red;
+    color:white; 
+    padding:10px;
+    }
+
+    @media(max-width: 500px){
+        #semana{
+            flex-wrap: wrap;
+        }
+
+        .botaoLimpa{
+            position: fixed;
+            bottom: 5%;
+        }
+
+        .botoesAdd{
+            position: fixed;
+            bottom: 10%;
+        }
     }
     </style>
 </head>
@@ -109,7 +132,7 @@
             </div>
 
         </div>
-        <button onclick="LimpaTudo()" style="background:red; color:white; padding:10px;">Limpar Tudo</button>
+        <button onclick="LimpaTudo()" class="botaoLimpa">Limpar Tudo</button>
     </div>
 
     <script>
