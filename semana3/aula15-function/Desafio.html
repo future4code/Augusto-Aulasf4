@@ -19,11 +19,11 @@
     #container{
         margin: 5vh auto;
         width: 90vw;
-        height: 90vh;
         background: white;
         display: flex;
         flex-direction: column;
         align-items: center;
+        border: 5px solid black;
     }
 
     #semana{
@@ -59,7 +59,10 @@
     }
 
     li{
-        margin:5px 25%;
+        padding:5px 10%;
+        list-style-type: none;
+        border-bottom: 1px black solid;
+        width: 80%;
     }
 
     .botaoLimpa{ 
@@ -67,7 +70,11 @@
     color:white; 
     padding:10px;
     }
-
+    @media(min-width: 1000px){
+        #container{
+            height: 90vh;
+        }
+    }
     @media(max-width: 500px){
         #semana{
             flex-wrap: wrap;
@@ -82,6 +89,10 @@
             position: fixed;
             bottom: 10%;
         }
+
+        input{
+            width: 120px;
+        }
     }
     </style>
 </head>
@@ -90,7 +101,7 @@
         <h1>Minha Semana</h1>
         <div class="botoesAdd">
             <input type="text">
-            <select name="diaSemanal">
+            <select name="diaSemanal" id="diaSemanal">
                 <option value="SegundaList">Segunda</option>
                 <option value="TercaList">Terca</option>
                 <option value="QuartaList">Quarta</option>
@@ -99,36 +110,117 @@
                 <option value="SabadoList">Sabado</option>
                 <option value="DomingoList">Domingo</option>
             </select>
+            <select name="horarioSemanal" id="horarioSemanal">
+                <option value="hora-8" class="hora">08:00</option>
+                <option value="hora-9" class="hora">09:00</option>
+                <option value="hora-10" class="hora">10:00</option>
+                <option value="hora-11" class="hora">11:00</option>
+                <option value="hora-13" class="hora">13:00</option>
+                <option value="hora-14" class="hora">14:00</option>
+                <option value="hora-15" class="hora">15:00</option>
+                <option value="hora-16" class="hora">16:00</option>
+                <option value="hora-17" class="hora">17:00</option>
+            </select>
             <button onclick="incluirTarefa()">Incluir</button>
         </div>
         <div id="semana">
             <div class="ListaDia segunda">
                 <p class="dia">Segunda</p>
-                <ul class="List SegundaList"></ul>
+                <ul class="List SegundaList">
+                    <li class="hora-8">08:00 - </li>
+                    <li class="hora-9">09:00 - </li>
+                    <li class="hora-10">10:00 - </li>
+                    <li class="hora-11">11:00 - </li>
+                    <li class="hora-13">13:00 - </li>
+                    <li class="hora-14">14:00 - </li>
+                    <li class="hora-15">15:00 - </li>
+                    <li class="hora-16">16:00 - </li>
+                    <li class="hora-17">17:00 - </li>
+                </ul>
             </div>
             <div class="ListaDia Terca">
                 <p class="dia">Terca</p>
-                <ul class="List TercaList"></ul>
+                <ul class="List TercaList">
+                    <li class="hora-8">08:00 - </li>
+                    <li class="hora-9">09:00 - </li>
+                    <li class="hora-10">10:00 - </li>
+                    <li class="hora-11">11:00 - </li>
+                    <li class="hora-13">13:00 - </li>
+                    <li class="hora-14">14:00 - </li>
+                    <li class="hora-15">15:00 - </li>
+                    <li class="hora-16">16:00 - </li>
+                    <li class="hora-17">17:00 - </li>
+                </ul>
             </div>
             <div class="ListaDia Quarta">
                 <p class="dia">Quarta</p>
-                <ul class="List QuartaList"></ul>
+                <ul class="List QuartaList">
+                    <li class="hora-8">08:00 - </li>
+                    <li class="hora-9">09:00 - </li>
+                    <li class="hora-10">10:00 - </li>
+                    <li class="hora-11">11:00 - </li>
+                    <li class="hora-13">13:00 - </li>
+                    <li class="hora-14">14:00 - </li>
+                    <li class="hora-15">15:00 - </li>
+                    <li class="hora-16">16:00 - </li>
+                    <li class="hora-17">17:00 - </li>
+                </ul>
             </div>
             <div class="ListaDia Quinta">
                 <p class="dia">Quinta</p>
-                <ul class="List QuintaList"></ul>
+                <ul class="List QuintaList">
+                    <li class="hora-8">08:00 - </li>
+                    <li class="hora-9">09:00 - </li>
+                    <li class="hora-10">10:00 - </li>
+                    <li class="hora-11">11:00 - </li>
+                    <li class="hora-13">13:00 - </li>
+                    <li class="hora-14">14:00 - </li>
+                    <li class="hora-15">15:00 - </li>
+                    <li class="hora-16">16:00 - </li>
+                    <li class="hora-17">17:00 - </li>
+                </ul>
             </div>
             <div class="ListaDia Sexta">
                 <p class="dia">Sexta</p>
-                <ul class="List SextaList"></ul>
+                <ul class="List SextaList">
+                    <li class="hora-8">08:00 - </li>
+                    <li class="hora-9">09:00 - </li>
+                    <li class="hora-10">10:00 - </li>
+                    <li class="hora-11">11:00 - </li>
+                    <li class="hora-13">13:00 - </li>
+                    <li class="hora-14">14:00 - </li>
+                    <li class="hora-15">15:00 - </li>
+                    <li class="hora-16">16:00 - </li>
+                    <li class="hora-17">17:00 - </li>
+                </ul>
             </div>
             <div class="ListaDia Sabado">
                 <p class="dia">Sabado</p>
-                <ul class="List SabadoList"></ul>
+                <ul class="List SabadoList">
+                    <li class="hora-8">08:00 - </li>
+                    <li class="hora-9">09:00 - </li>
+                    <li class="hora-10">10:00 - </li>
+                    <li class="hora-11">11:00 - </li>
+                    <li class="hora-13">13:00 - </li>
+                    <li class="hora-14">14:00 - </li>
+                    <li class="hora-15">15:00 - </li>
+                    <li class="hora-16">16:00 - </li>
+                    <li class="hora-17">17:00 - </li>
+                </ul>
             </div>
             <div class="ListaDia Domingo">
                 <p class="dia">Domingo</p>
-                <ul class="List DomingoList"></ul>
+                <ul class="List DomingoList">
+                    <li class="hora-8">08:00 - </li>
+                    <li class="hora-9">09:00 - </li>
+                    <li class="hora-10">10:00 - </li>
+                    <li class="hora-11">11:00 - </li>
+                    <li class="hora-13">13:00 - </li>
+                    <li class="hora-14">14:00 - </li>
+                    <li class="hora-15">15:00 - </li>
+                    <li class="hora-16">16:00 - </li>
+                    <li class="hora-17">17:00 - </li>
+                </ul>
             </div>
 
         </div>
@@ -139,14 +231,15 @@
         function incluirTarefa() {
             
             const TextoInput = document.querySelector("input").value;
-            const diaSelected = document.querySelector("select").value;
+            const diaSelected = document.querySelector("#diaSemanal").value;
+            const horaSelected = document.querySelector("#horarioSemanal").value;
             const diaDeveIncluir = document.querySelector('.' + diaSelected);
-            if (TextoInput!=""){
-            let incluiTexto = document.createElement("li");
-            incluiTexto.innerHTML = TextoInput;
-            incluiTexto.onclick = missaoCumprida;
-            diaDeveIncluir.appendChild(incluiTexto);
-            document.querySelector('input').value = '';
+            const horarioDeveIncluir = document.querySelector("."+ diaSelected + " ." + horaSelected)
+            console.log(horarioDeveIncluir)
+            if (TextoInput!==""){
+                horarioDeveIncluir.innerHTML += TextoInput;
+                horarioDeveIncluir.onclick = missaoCumprida;
+                document.querySelector('input').value = '';
             }else{
                 alert("Voce esqueceu de informar a tarefa!");
             }
@@ -160,10 +253,11 @@
 
         function LimpaTudo(){
             if(confirm("Se clicar em ok ira excluir todas as tarefas, isto que deseja?")){
-            let removerLi = document.querySelectorAll("li");
-            for (li=0;li<removerLi.length;li++){
-            removerLi[li].parentNode.removeChild(removerLi[li]);
-            }}
+                let removerLi = document.querySelectorAll("li");
+                for (li=0;li<removerLi.length;li++){
+                    removerLi[li].parentNode.removeChild(removerLi[li]);
+                }document.location.reload(true);
+            }
         }
     </script>
 </body>
