@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+    *{
+        padding: 0;
+        margin: 0;
+    }
+
+    body{
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+    }
+
+    header, footer{
+        color: whitesmoke;
+        background: lightblue;
+        padding: 25px;
+        
+    }
+
+    div{
+        display: flex;
+        flex-grow: 1;
+    }
+
+    menu{
+        color: whitesmoke;
+        background: lightcoral;
+        flex-grow: 1;
+    }
+
+    section{
+        color: whitesmoke;
+        background: rgb(224, 224, 63);
+        flex: 3;
+    }
+    </style>
+</head>
+<body>
+    <header>HEADER</header>
+    <div>
+        <menu>MENU</menu>
+        <section>CONTENT</section>
+    </div>
+    <footer>FOOTER</footer>
+</body>
+</html>

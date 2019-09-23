@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Planejamento Semanal</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+
+    body{
+        height: 90vh;
+        background: url(https://scontent.fstu3-1.fna.fbcdn.net/v/t1.0-9/67307281_389201531724986_1895869753537331200_n.png?_nc_cat=107&_nc_oc=AQkZ-EMH4_FKs7p-8bvqiuqr-6BZUhD6hCrPAF6b3gcKoc6Mkv9Bo6qGFZ0GMwuv_4w&_nc_ht=scontent.fstu3-1.fna&oh=6eb012dccf15d58523313f0d611f4221&oe=5E001F77);
+    }
+
+    #container{
+        margin: 5vh auto;
+        width: 90vw;
+        height: 90vh;
+        background: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #semana{
+        display: flex;
+        justify-content: space-evenly;
+        width: 100%;
+        height: 100%;
+    }
+
+    .dia{
+        border: 1px solid black;
+        text-align: center;
+        color: aliceblue;
+        background: gray;
+        font-weight: bold;
+    }
+    
+    .ListaDia{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+    }
+
+    ul{
+        border: 1px solid black;
+        height: 100%;
+    }
+
+    .botoesAdd{
+        margin: 10px;
+    }
+
+    li{
+        margin:5px 25%;
+    }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Minha Semana</h1>
+        <div class="botoesAdd">
+            <input type="text">
+            <select name="diaSemanal">
+                <option value="SegundaList">Segunda</option>
+                <option value="TercaList">Terca</option>
+                <option value="QuartaList">Quarta</option>
+                <option value="QuintaList">Quinta</option>
+                <option value="SextaList">Sexta</option>
+                <option value="SabadoList">Sabado</option>
+                <option value="DomingoList">Domingo</option>
+            </select>
+            <button onclick="incluirTarefa()">Incluir</button>
+        </div>
+        <div id="semana">
+            <div class="ListaDia segunda">
+                <p class="dia">Segunda</p>
+                <ul class="SegundaList"></ul>
+            </div>
+            <div class="ListaDia Terca">
+                <p class="dia">Terca</p>
+                <ul class="TercaList"></ul>
+            </div>
+            <div class="ListaDia Quarta">
+                <p class="dia">Quarta</p>
+                <ul class="QuartaList"></ul>
+            </div>
+            <div class="ListaDia Quinta">
+                <p class="dia">Quinta</p>
+                <ul class="QuintaList"></ul>
+            </div>
+            <div class="ListaDia Sexta">
+                <p class="dia">Sexta</p>
+                <ul class="SextaList"></ul>
+            </div>
+            <div class="ListaDia Sabado">
+                <p class="dia">Sabado</p>
+                <ul class="SabadoList"></ul>
+            </div>
+            <div class="ListaDia Domingo">
+                <p class="dia">Domingo</p>
+                <ul class="DomingoList"></ul>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function incluirTarefa() {
+            const TextoInput = document.querySelector("input").value;
+            const diaSelected = document.querySelector("select").value;
+            const diaDeveIncluir = document.querySelector('.' + diaSelected);
+            console.log(diaDeveIncluir)
+            let incluiTexto = document.createElement("li");
+            incluiTexto.innerHTML = TextoInput;
+            diaDeveIncluir.appendChild(incluiTexto);
+            document.querySelector('input').value = '';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Minha Lista de Compras</h1>
+    <input onkeydown="checkEnter(event)" type="text">
+    <button onclick="criarItem()">Incluir</button>
+    <hr>
+    <ul>
+
+    </ul>
+    <script>
+        function criarItem(){
+            let valorInput = document.querySelector("input").value;
+
+            let listaCompras = document.querySelector("ul");
+
+            listaCompras.innerHTML += "<li>" + valorInput + "</li>";
+
+            document.querySelector("input").value = "";
+        }
+
+        function checkEnter(event){
+            if (event.key === "Enter"){
+                criarItem();
+            }
+        
+        function RemoveItem(event){
+            const target = event.target;
+            const valor = target.innerHTML;
+
+            target.parentNode.removeChild(target);
+        }
+        }
+    </script>
+</body>
+</html>
