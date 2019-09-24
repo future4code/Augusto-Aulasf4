@@ -67,12 +67,13 @@
 <body>
         <button onclick="LimpaStorage()">Limpar Inscritos</button>
         <button onclick="AlteraOrdem()">Decrescer</button>
+        <button onclick="AlteraOrdemIdade()">Por Idade</button>
     <article>
 
     </article>
 
     <script>
-       const inscritos = buscaItem('aluno');
+       let inscritos = buscaItem('aluno');
        function buscaItem(chave) {
           const valor = window.localStorage.getItem(chave);
           if (valor) {
@@ -110,6 +111,14 @@
             campo.innerHTML = ""
             for (i=(inscritos.length-1); i>=0; i=i-1){
             campo.innerHTML += '<fieldset><legend> Inscrito n : ' + Number(i+1) + '</legend><h3>Nome: '+inscritos[i].nome + '</h3>'+'<h3>Idade: '+inscritos[i].idade + '</h3>'+'<h3>Email: '+inscritos[i].email + '</h3>'+'<h3>Profissao: '+inscritos[i].profissao + '</h3>'+'<h3>Disponibilidade: '+inscritos[i].disponivel + '</h3><button onclick="deletaInscrito('+i+')">Deletar</button>'+'</fieldset>'
+            }
+        }
+
+        function AlteraOrdemIdade(){
+            inscritos = inscritos.sort(function(a, b){return a.idade - b.idade});
+            campo.innerHTML = ""
+            for (i=0; i<inscritos.length; i++){
+            campo.innerHTML += '<fieldset><legend> Inscrito n : ' + Number(i+1) + '</legend><h3>Nome: '+inscritos[i].nome + '</h3>'+'<h3>Idade: '+inscritos[i].idade + '</h3>'+'<h3>Email: '+inscritos[i].email + '</h3>'+'<h3>Profissao: '+inscritos[i].profissao + '</h3>'+'<h3>Disponibilidade: '+inscritos[i].disponivel + '</h3>'+'</fieldset>'
             }
         }
     </script>
