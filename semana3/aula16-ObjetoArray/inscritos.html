@@ -52,7 +52,8 @@
 
         button{
             position: relative;
-            left: 35%;
+            left: 10%;
+            right: 10%;
             border: 2px solid white;
             padding: 1%;
             font-size: 110%;
@@ -65,8 +66,11 @@
         </style>
 </head>
 <body>
+
+        <a href="desafio.html"><button>Home</button></a>
         <button onclick="LimpaStorage()">Limpar Inscritos</button>
         <button onclick="AlteraOrdem()">Decrescer</button>
+        <button onclick="AlteraOrdemAlfa()">Alfabeticar</button>
         <button onclick="AlteraOrdemIdade()">Por Idade</button>
     <article>
 
@@ -74,6 +78,7 @@
 
     <script>
        let inscritos = buscaItem('aluno');
+
        function buscaItem(chave) {
           const valor = window.localStorage.getItem(chave);
           if (valor) {
@@ -81,9 +86,10 @@
           }
           return [];
         }
+
         const campo = document.querySelector('article');
         for (i=0; i<inscritos.length; i++){
-            campo.innerHTML += '<fieldset><legend> Inscrito n : ' + Number(i+1) + '</legend><h3>Nome: '+inscritos[i].nome + '</h3>'+'<h3>Idade: '+inscritos[i].idade + '</h3>'+'<h3>Email: '+inscritos[i].email + '</h3>'+'<h3>Profissao: '+inscritos[i].profissao + '</h3>'+'<h3>Disponibilidade: '+inscritos[i].disponivel + '</h3><button onclick="deletaInscrito('+i+')">Deletar</button>'+'</fieldset>'
+            campo.innerHTML += '<fieldset><legend> Inscrito n : ' + Number(i+1) + '</legend><h3>Nome: '+inscritos[i].nome + '</h3>'+'<h3>Idade: '+inscritos[i].idade + '</h3>'+'<h3>Email: '+inscritos[i].email + '</h3>'+'<h3>Profissao: '+inscritos[i].profissao + '</h3>'+'<h3>Disponibilidade: '+inscritos[i].disponivel + '</h3><button onclick="deletaInscrito(' + i + ')">Deletar</button></fieldset>'
         }
 
         function LimpaStorage(){
@@ -114,6 +120,13 @@
             }
         }
 
+        function AlteraOrdemAlfa(){
+            inscritos = inscritos.sort(function(itemA, itemB){if(itemA.nome > itemB.nome) {return 1} else {return -1}})
+            campo.innerHTML = ""
+            for (i=0; i<inscritos.length; i++){
+            campo.innerHTML += '<fieldset><legend> Inscrito n : ' + Number(i+1) + '</legend><h3>Nome: '+inscritos[i].nome + '</h3>'+'<h3>Idade: '+inscritos[i].idade + '</h3>'+'<h3>Email: '+inscritos[i].email + '</h3>'+'<h3>Profissao: '+inscritos[i].profissao + '</h3>'+'<h3>Disponibilidade: '+inscritos[i].disponivel + '</h3>'+'</fieldset>'
+            }
+        }
         function AlteraOrdemIdade(){
             inscritos = inscritos.sort(function(a, b){return a.idade - b.idade});
             campo.innerHTML = ""
