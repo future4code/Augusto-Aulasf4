@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="listaDeMusicas">
+
+    </ul>
+</body>
+<script>
+    class Musica{
+        constructor(titulo, autor, album, duracaoEmSegundos, urlDaCapaDoAlbum){
+            this.titulo = titulo;
+            this.autor = autor;
+            this.album = album;
+            this.duracaoEmSegundos = duracaoEmSegundos;
+            this.urlDaCapaDoAlbum = urlDaCapaDoAlbum;
+        }
+
+        buscaTituloFormatado(){
+            const tituloFormatado = this.titulo + ' - ' + this.autor + ' , ' + this.album;
+            return tituloFormatado;
+        }
+    }
+
+    const musica1 = new Musica('Musica A', 'Autor A', 'Album A', 120, 'https://picsum.photos/200/200?v=1');
+    const musica2 = new Musica('Musica B', 'Autor B', 'Album B', 120, 'https://picsum.photos/200/200?v=2');
+    const musica3 = new Musica('Musica C', 'Autor C', 'Album C', 120, 'https://picsum.photos/200/200?v=3');
+    const musica4 = new Musica('Musica D', 'Autor D', 'Album D', 120, 'https://picsum.photos/200/200?v=4');
+    const musica5 = new Musica('Musica E', 'Autor E', 'Album E', 120, 'https://picsum.photos/200/200?v=5');
+    const musica6 = new Musica('Musica F', 'Autor F', 'Album F', 120, 'https://picsum.photos/200/200?v=6');
+
+    const playlist = [musica1, musica2, musica3, musica4, musica5, musica6];
+
+    const listaDeMusicas = document.getElementById('listaDeMusicas');
+
+    for (let musica of playlist){
+        listaDeMusicas.innerHTML += "<li>" + musica.buscaTituloFormatado() + "</li>"
+        listaDeMusicas.innerHTML += "<img src=" + musica.urlDaCapaDoAlbum + " >"
+    }
+</script>
+</html>

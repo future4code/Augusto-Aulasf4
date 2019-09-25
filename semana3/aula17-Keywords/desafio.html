@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+
+        article{
+            background: lightgrey;
+            border-right: 1px solid black;
+            width: 80%;
+        }
+
+        #container-principal{
+            display: flex;
+            height: 100vh;
+        }
+
+        form{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: darkgray;
+            color: white;
+            width: 20%;
+        }
+
+        .dados{
+            display: block;
+            margin-top:3%;
+            border: 2px solid darkred;
+            border-top: none;
+            padding: 2%;
+        }
+
+        form h2{
+            margin: 10%;
+        }
+
+        header{
+            background: darkred;
+            color: white;
+            padding: 2%;
+        }
+
+        form button{
+            padding: 4%;
+            font-size: 120%;
+            margin-top: 2%;
+            color: white;
+            background: darkred;
+            box-shadow: 2px 2px 2px white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Blogao da Future4</h1>
+    </header>
+    <div id="container-principal">
+
+        <article>
+
+        </article>
+        <form action="">
+            <h2>Deixe seu comentario:</h2>
+            <input type="text" placeholder="Nome.." size="30" class="dados">
+            <input type="email" placeholder="Email.." size="30" class="dados">
+            <textarea class="dados" cols="30" rows="10" placeholder="Comentario.."></textarea>
+            <button>Comentar</button>
+        </form>
+    </div>
+</body>
+</html>
