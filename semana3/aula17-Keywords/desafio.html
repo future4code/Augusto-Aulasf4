@@ -57,6 +57,11 @@
             padding: 2%;
         }
 
+        img{
+            width: 200px;
+            height: 200px;
+        }
+
         form button{
             padding: 4%;
             font-size: 120%;
@@ -80,6 +85,7 @@
             <h2>Deixe seu comentario:</h2>
             <input type="text" placeholder="Nome.." size="30" class="dados nome">
             <input type="email" placeholder="Email.." size="30" class="dados email">
+            <input type="text" placeholder="Url da Imagem.." size="30" class="dados imagem">
             <textarea class="dados comentario" cols="30" rows="10" placeholder="Comentario.."></textarea>
             <button onclick="CriaPost()">Comentar</button>
         </form>
@@ -87,38 +93,45 @@
 </body>
 <script>
     class Post{
-        constructor(nome, email, comentario){
+        constructor(nome, email, comentario, imagem){
             this.nome = nome;
             this.email = email;
             this.comentario = comentario;
+            this.imagem = imagem;
         }
 
         MostraPost(){
-            const posts = '<div class="container-post"><strong><h3>' + this.nome + '</h3></strong><br><p>' + this.comentario + '</p></div>';
+            const posts = '<div class="container-post"><strong><h3>' + this.nome + '</h3></strong><br><p>' + this.comentario + '</p><img src ='+ this.imagem +'></div>';
             return posts;
         }
     }
 
-    const Postados = []
-    let idPost = (Postados.length-1)
+  
+
     function CriaPost(){
         let nomePassado = document.querySelector('.nome').value;
         let emailPassado = document.querySelector('.email').value;
+        let imagemPassado = document.querySelector('.imagem').value;
         let comentarioPassado = document.querySelector('.comentario').value;
         
 
-        const postando = new Post(nomePassado, emailPassado, comentarioPassado);
-        
+        const postando = new Post(nomePassado, emailPassado, comentarioPassado, imagemPassado);
+        const Postados = []
         Postados.push(postando)
+
+        document.querySelector('.nome').value = ""
+        document.querySelector('.email').value = ""
+        document.querySelector('.comentario').value = ""
+        document.querySelector('.imagem').value = ""
+
         const areaDePost = document.querySelector('#areaDePost')
     
         for (let coment of Postados){
             areaDePost.innerHTML += coment.MostraPost();
         }
-        document.querySelector('.nome').value = ""
-        document.querySelector('.email').value = ""
-        document.querySelector('.comentario').value = ""
     }
+
+     
 
 
             
