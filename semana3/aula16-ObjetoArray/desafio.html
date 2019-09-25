@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Formulario de Inscricao</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+
+        body{
+            background: orange;
+            color: white;
+        }
+
+        input{
+            background: orange;
+            color: white;
+            border: none;
+            border-bottom: 2px solid white;
+            display: block;
+            margin: 15px auto;
+            width: 30%;
+        }
+
+        fieldset{
+            margin: 3% auto;
+            border-color: white;
+            width: 50vw;
+        }
+
+        legend{
+            font-weight: bold;
+            font-size: 200%;
+        }
+
+        ::-webkit-input-placeholder{
+            color: WHITE;
+            font-weight: bold;
+            font-size: 110%;
+        }
+        
+        label{
+            color: WHITE;
+            font-weight: bold;
+            font-size: 110%;
+            margin: 0 auto;
+        }
+
+        button{
+            position: relative;
+            left: 35%;
+            border: 2px solid white;
+            padding: 1%;
+            font-size: 110%;
+            font-weight: bold;
+            box-shadow: 3px 2px 1px white;
+            background: orange;
+            color: white;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <article>
+        <fieldset>
+            <legend>Inscrição Future4</legend>
+            <h3 id="alerta"></h3>
+            <input id="nome" type="text" name="nome" placeholder="Nome..." required>
+            <input id="idade" type="text" name="idade" placeholder="Idade..." required>
+            <input id="email" type="email" name="email" placeholder="Email..." required>
+            <input id="profissao" type="text" name="profissao" placeholder="Profissao...">
+            <input id="disponivel" type="text" name="disponibilidade" placeholder="Horario Disponivel...">
+
+            <button onclick="cadastraAluno()">Cadastrar</button>
+            <a href="inscritos.html"><button>Inscritos</button></a>
+        </fieldset>
+
+    </article>
+
+    <script>
+        inscritos = buscaItem('aluno');
+
+        function buscaItem(chave) {
+          const valor = window.localStorage.getItem(chave);
+          if (valor) {
+            return JSON.parse(valor);
+          }
+          return [];
+        }
+
+        function salvaItem(chave, item) {
+          if(item && chave) {
+            window.localStorage.setItem(chave, JSON.stringify(item));
+          }
+        }
+
+        function cadastraAluno(){
+            if(document.querySelector("#nome").value !== "" && document.querySelector("#email").value !== ""){
+                let nome = document.querySelector("#nome").value;
+                let idade = document.querySelector("#idade").value;
+                let email = document.querySelector("#email").value;
+                let profissao = document.querySelector("#profissao").value;
+                let disponivel = document.querySelector("#disponivel").value;
+                const aluno={};
+                aluno.nome = nome;
+                aluno.idade = idade;
+                aluno.email = email;
+                aluno.profissao = profissao;
+                aluno.disponivel = disponivel;
+
+                inscritos.push(aluno);
+                salvaItem('aluno', inscritos);
+
+                document.querySelector("#nome").value = ""
+                document.querySelector("#idade").value = ""
+                document.querySelector("#email").value = ""
+                document.querySelector("#profissao").value = ""
+                document.querySelector("#disponivel").value = ""
+
+                alert('Inscrito com Sucesso!');
+            }else{
+                const alerta = document.querySelector("#alerta")
+                alerta.innerHTML = "Tenha Certeza Que voce preencheu seu nome e email."
+                alerta.style.color = 'red'
+                alerta.style.background = 'salmon'
+            }
+    }   
+            
+        
+    </script>
+</body>
+</html>
