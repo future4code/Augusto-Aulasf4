@@ -65,16 +65,47 @@
     </header>
     <div id="container-principal">
 
-        <article>
+        <article id="areaDePost">
 
         </article>
         <form action="">
             <h2>Deixe seu comentario:</h2>
-            <input type="text" placeholder="Nome.." size="30" class="dados">
-            <input type="email" placeholder="Email.." size="30" class="dados">
-            <textarea class="dados" cols="30" rows="10" placeholder="Comentario.."></textarea>
+            <input type="text" placeholder="Nome.." size="30" class="dados nome">
+            <input type="email" placeholder="Email.." size="30" class="dados email">
+            <textarea class="dados comentario" cols="30" rows="10" placeholder="Comentario.."></textarea>
             <button>Comentar</button>
         </form>
     </div>
 </body>
+<script>
+    class Post{
+        constructor(nome, email, comentario){
+            this.nome = nome;
+            this.email = email;
+            this.comentario = comentario;
+        }
+
+        MostraPost(){
+            const posts = '<strong><h3>' + this.nome + '</h3></strong><br><p>' + this.comentario + '</p>';
+            return posts;
+        }
+    }
+
+    let nomePassado = document.querySelector('.nome').value;
+    let emailPassado = document.querySelector('.email').value;
+    let comentarioPassadp = document.querySelector('.comentario').value;
+    
+    const postando1 = new Post(document.querySelector('.nome').value, emailPassado);
+
+    const Postados = [postando1]
+
+    const areaDePost = document.querySelector('#areaDePost')
+
+    for (let coment of Postados){
+        areaDePost.innerHTML += coment.MostraPost();
+    }
+
+
+ 
+</script>
 </html>
