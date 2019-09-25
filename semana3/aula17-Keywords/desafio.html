@@ -92,6 +92,21 @@
     </div>
 </body>
 <script>
+
+    function buscaItem(chave) {
+      const valor = window.localStorage.getItem(chave);
+      if (valor) {
+        return JSON.parse(valor);
+      }
+      return [];
+    }
+
+    function salvaItem(chave, item) {
+      if(item && chave) {
+        window.localStorage.setItem(chave, JSON.stringify(item));
+      }
+    }
+
     class Post{
         constructor(nome, email, comentario, imagem){
             this.nome = nome;
@@ -107,7 +122,7 @@
     }
 
   
-
+    const Postados = buscaItem('postAnterior');
     function CriaPost(){
         let nomePassado = document.querySelector('.nome').value;
         let emailPassado = document.querySelector('.email').value;
@@ -116,22 +131,33 @@
         
 
         const postando = new Post(nomePassado, emailPassado, comentarioPassado, imagemPassado);
-        const Postados = []
-        Postados.push(postando)
+        
+        Postados.push(postando);
+        salvaItem('postAnterior', Postados);
 
         document.querySelector('.nome').value = ""
         document.querySelector('.email').value = ""
         document.querySelector('.comentario').value = ""
         document.querySelector('.imagem').value = ""
 
-        const areaDePost = document.querySelector('#areaDePost')
-    
-        for (let coment of Postados){
-            areaDePost.innerHTML += coment.MostraPost();
-        }
+        window.location.reload();
     }
 
-     
+    const areaDePost = document.querySelector('#areaDePost')
+
+const Postados2=[]
+
+for (i=0;i<Postados.length;i++){
+    const Postando2 =  new Post(Postados[i].nome,Postados[i].email, Postados[i].comentario, Postados[i].imagem)
+
+    Postados2.push(Postando2)
+
+}
+
+for (let coment of Postados2){
+    areaDePost.innerHTML += coment.MostraPost();
+}
+
 
 
             
