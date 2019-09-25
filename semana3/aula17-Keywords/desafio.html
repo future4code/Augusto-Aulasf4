@@ -19,7 +19,7 @@
 
         #container-principal{
             display: flex;
-            height: 100vh;
+            min-height: 100vh;
         }
 
         form{
@@ -29,6 +29,14 @@
             background: darkgray;
             color: white;
             width: 20%;
+        }
+
+        .container-post{
+            width: 80%;
+            border: 2px solid darkred;
+            background: whitesmoke;
+            margin: 3% auto;
+            padding: 2%;
         }
 
         .dados{
@@ -68,12 +76,12 @@
         <article id="areaDePost">
 
         </article>
-        <form action="">
+        <form action="#">
             <h2>Deixe seu comentario:</h2>
             <input type="text" placeholder="Nome.." size="30" class="dados nome">
             <input type="email" placeholder="Email.." size="30" class="dados email">
             <textarea class="dados comentario" cols="30" rows="10" placeholder="Comentario.."></textarea>
-            <button>Comentar</button>
+            <button onclick="CriaPost()">Comentar</button>
         </form>
     </div>
 </body>
@@ -86,24 +94,36 @@
         }
 
         MostraPost(){
-            const posts = '<strong><h3>' + this.nome + '</h3></strong><br><p>' + this.comentario + '</p>';
+            const posts = '<div class="container-post"><strong><h3>' + this.nome + '</h3></strong><br><p>' + this.comentario + '</p></div>';
             return posts;
         }
     }
 
-    let nomePassado = document.querySelector('.nome').value;
-    let emailPassado = document.querySelector('.email').value;
-    let comentarioPassadp = document.querySelector('.comentario').value;
+    const Postados = []
+    let idPost = (Postados.length-1)
+    function CriaPost(){
+        let nomePassado = document.querySelector('.nome').value;
+        let emailPassado = document.querySelector('.email').value;
+        let comentarioPassado = document.querySelector('.comentario').value;
+        
+
+        const postando = new Post(nomePassado, emailPassado, comentarioPassado);
+        
+        Postados.push(postando)
+        const areaDePost = document.querySelector('#areaDePost')
     
-    const postando1 = new Post(document.querySelector('.nome').value, emailPassado);
-
-    const Postados = [postando1]
-
-    const areaDePost = document.querySelector('#areaDePost')
-
-    for (let coment of Postados){
-        areaDePost.innerHTML += coment.MostraPost();
+        for (let coment of Postados){
+            areaDePost.innerHTML += coment.MostraPost();
+        }
+        document.querySelector('.nome').value = ""
+        document.querySelector('.email').value = ""
+        document.querySelector('.comentario').value = ""
     }
+
+
+            
+
+        
 
 
  
