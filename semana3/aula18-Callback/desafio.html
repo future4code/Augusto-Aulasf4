@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Desafio</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+
+        section{
+            background: black;
+            min-height: 100vh;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+        }
+
+        h1{
+            color: green;
+            background: black;
+            text-align: center;
+        }
+
+        #addGasto{
+            border-radius: 10px;
+            width: 30%;
+            background: whitesmoke;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 50%;
+        }
+
+        h2{
+            margin: 5%;
+        }
+
+        #filtraGasto{
+            border-radius: 10px;
+            width: 30%;
+            background: whitesmoke;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 50%;
+        }
+
+        #Extrato{
+            border-radius: 10px;
+            width: 30%;
+            background: whitesmoke;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 50%;
+        }
+
+        .campo{
+            width: 70%;
+            margin: 2%;
+        }
+
+        button{
+            padding: 2%;
+            width: 120px;
+            color: white;
+            background: green;
+        }
+
+        #botoes{
+            display: flex;
+            width: 100%;
+            justify-content: space-evenly ;
+            margin: 5% 0;
+        }
+
+        #filtrado{
+            display: grid;
+            background:darkgray;
+            grid-template-columns: repeat(3,1fr);
+            width: 90%;
+            color: white;
+            justify-items: stretch;
+        }
+
+        #filtrado p {
+            border: 1px green solid;
+            text-align: center;
+        }
+
+        #FiltroGrid{
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            background:black;
+            color: white;
+            justify-items: stretch;
+            width: 90%;
+            font-weight: bold;
+        }
+
+        #FiltroGrid p{
+            border: 1px green solid;
+            text-align: center;
+        }
+
+        #ListaExtrato p{
+            border: 1px green solid;
+            text-align: center;
+        }
+
+        #extratoTitulo p {
+            border: 1px green solid;
+            text-align: center;
+        }
+
+        #extratoTitulo{
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            background:black;
+            color: white;
+            justify-items: stretch;
+            width: 90%;
+            font-weight: bold;
+        }
+
+        h3{
+            margin: 3% 0;
+        }
+
+        h1{
+            padding: 5%;
+        }
+
+        #ListaExtrato{
+            display: grid;
+            background:darkgray;
+            grid-template-columns: repeat(2,1fr);
+            width: 90%;
+            color: white;
+            justify-items: stretch;
+        }
+    </style>
+</head>
+<body>
+    <h1>Fluxo Future4</h1>
+    <section>
+
+        <div id="addGasto">
+            <h2>Adicionar Gasto</h2>
+            <label for="valor">Valor : </label>
+            <input name="valor" type="number" class="campo valor">
+            <label for="descricao">Descricao :</label>
+            <input name="descricao" type="text" class="campo descricao">
+            <Label>Tipo :</Label>
+            <Select class="campo tipo">
+                <option value="casa">Casa</option>
+                <option value="rua">Rua</option>
+                <option value="viagem">Viagem</option>
+                <option value="outros">Outros</option>
+            </Select>
+            <button onclick="AddGasto()">Adicionar</button>
+        </div>
+
+        <div id="filtraGasto">
+            <h2>Filtrar Gasto</h2>
+            <label for="valorMax">Valor Maximo: </label>
+            <input name="valorMax" type="number" class="campo valorMax">
+            <label for="valorMin">Valor Min :</label>
+            <input name="valorMin" type="number" class="campo valorMin">
+            <Label>Tipo :</Label>
+            <Select class="campo tipoFiltro">
+                <option value="casa">Casa</option>
+                <option value="rua">Rua</option>
+                <option value="viagem">Viagem</option>
+                <option value="outros">Outros</option>
+            </Select>
+            <div id="botoes">
+                <button onclick="FiltraGasto()">Filtrar</button>
+                <button onclick="">Limpar Filtros</button>
+            </div>
+            <div id="FiltroGrid">
+                <p class="tituloGrid">Valor</p>
+                <p class="tituloGrid">Descricao</p>
+                <p class="tituloGrid">Tipo</p>
+            </div>
+            <div id="filtrado">
+
+            </div>
+            
+        </div>
+        <div id="Extrato">
+            <h2>Extrato dos Gastos</h2>
+            <h3 id="TotalGasto">Valor Gasto: </h3>
+            <div id="extratoTitulo">
+                <p>Valor</p>
+                <p>Descricao</p>
+            </div>
+            <div id="ListaExtrato"></div>
+        </div>
+    </section>
+</body>
+<script>
+    class Despesa {
+        constructor(valor,descricao,tipo){
+            this.valor = valor;
+            this.descricao = descricao;
+            this.tipo = tipo;
+        }
+    }
+    
+    // let gastos = [Despesa {valor: "50", descricao: "fogao", tipo: "casa"},Despesa {valor: "100", descricao: "bulgaria", tipo: "outros"}]
+    let gastos = []
+    function MostraGastos(){
+        const campoGrid = document.querySelector('#filtrado');
+
+        campoGrid.innerHTML = ""
+        for (let gasto of gastos){
+            campoGrid.innerHTML += '<p>'+gasto.valor+'</p><p>'+gasto.descricao+'</p><p>'+gasto.tipo+'</p>'
+        }
+    }
+
+    function AddGasto(){
+        
+        const valor = document.querySelector('.valor').value
+        const descricao = document.querySelector('.descricao').value
+        const tipo = document.querySelector('.tipo').value
+
+        if(valor === "" || descricao ==="" || tipo === ""){
+            alert('Verifique se deixou em branco o valor, descricao ou tipo.')
+        }else{
+        const gasto = new Despesa(valor,descricao,tipo)
+        gastos.push(gasto)
+
+        document.querySelector('.valor').value=""
+        document.querySelector('.descricao').value=""
+        document.querySelector('.tipo').value=""
+
+        MostraGastos()
+        ExtratoGastos()
+        }
+    }
+
+    function FiltraGasto(){
+        let valorMax   = document.querySelector('.valorMax').value;
+        let valorMin   = document.querySelector('.valorMin').value;
+        let tipoFiltro = document.querySelector('.tipoFiltro').value;  
+
+        const campoGrid = document.querySelector('#filtrado');
+
+        const listaFiltrada = gastos.filter((element)=>{
+            
+                return element.valor < valorMax
+                console.log(listaFiltrada)
+                debugger
+            
+            
+        })
+        campoGrid.innerHTML = ""
+        for (let filtrado of listaFiltrada){
+            campoGrid.innerHTML += '<p>'+filtrado.valor+'</p><p>'+filtrado.descricao+'</p><p>'+filtrado.tipo+'</p>'
+        }
+    }
+
+    function ExtratoGastos(){
+        const campoSomatorio = document.querySelector('#TotalGasto');
+        const campoExtrato = document.querySelector('#ListaExtrato');
+
+        campoExtrato.innerHTML = ""
+        let gastoTotal = 0
+        for (let gasto of gastos){
+            gastoTotal=Number(gasto.valor)+Number(gastoTotal)
+            campoSomatorio.innerHTML = `<h3 id="TotalGasto">Valor Gasto: ` + gastoTotal + `</h3>`
+            campoExtrato.innerHTML += '<p>'+gasto.valor+'</p><p>'+gasto.descricao+'</p>'
+        }
+    }
+
+</script>
+</html>

@@ -1,0 +1,45 @@
+<script>
+function verificaImpar(numero,function2){
+    if(numero%2 !==0){
+        function2
+    }
+}
+
+function resposta(){
+    console.log('Sim, e impar')
+}
+
+verificaImpar(21,resposta())
+verificaImpar(20,resposta)
+
+let pokemons = [
+    {nome: 'Bulba', tipo: 'grama', vidamax:100},
+    { nome: 'pikachu', tipo: 'raio', vidamax:100}
+]   
+pokemons.forEach((element,i,arr)=>{
+    element.vidamax=2000;
+})
+
+
+const lista = [1,2,3,4,5,6]
+
+const novalista= lista.map((element,index)=>{
+    return "O elemento "+ index +" e "+ element
+})
+
+const Maior3 = lista.filter((element)=>{
+    if(element > 3){
+        return true
+    }
+    return false
+})
+
+const Pares = lista.filter((element)=>{
+    if(element % 2===0){
+        return true
+    }
+    return false
+})
+
+
+</script>
