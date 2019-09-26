@@ -180,7 +180,7 @@
             </Select>
             <div id="botoes">
                 <button onclick="FiltraGasto()">Filtrar</button>
-                <button onclick="">Limpar Filtros</button>
+                <button onclick="LimpaFiltros()">Limpar Filtros</button>
             </div>
             <div id="FiltroGrid">
                 <p class="tituloGrid">Valor</p>
@@ -252,13 +252,31 @@
         const campoGrid = document.querySelector('#filtrado');
 
         const listaFiltrada = gastos.filter((element)=>{
+        if(Number(valorMax)!==0){
+           if(Number(element.valor) < valorMax){
+            console.log("estou imprimindo true pelo valor max")
+                return true 
+                }
+                console.log("estou imprimindo false pelo valormax")
+            return false }
             
-                return element.valor < valorMax
-                console.log(listaFiltrada)
-                debugger
-            
+            if(Number(valorMin)!==0){
+            if(Number(element.valor) > valorMin ){
+                console.log("estou imprimindo true pelo valormin")
+                return true
+            }
+            console.log("estou imprimindo false pelo valormin")
+            return false}
+
+            if(element.tipo ===tipoFiltro){
+                console.log("estou imprimindo true pelo tipo")
+                return true
+            }
+            console.log("estou imprimindo false pelo tipo")
+            return false
             
         })
+        console.log(listaFiltrada)
         campoGrid.innerHTML = ""
         for (let filtrado of listaFiltrada){
             campoGrid.innerHTML += '<p>'+filtrado.valor+'</p><p>'+filtrado.descricao+'</p><p>'+filtrado.tipo+'</p>'
@@ -276,6 +294,15 @@
             campoSomatorio.innerHTML = `<h3 id="TotalGasto">Valor Gasto: ` + gastoTotal + `</h3>`
             campoExtrato.innerHTML += '<p>'+gasto.valor+'</p><p>'+gasto.descricao+'</p>'
         }
+    }
+
+    function LimpaFiltros(){
+        document.querySelector('.valorMax').value=""
+        document.querySelector('.valorMin').value=""
+        document.querySelector('.tipoFiltro').value=""  
+
+        MostraGastos()
+
     }
 
 </script>
