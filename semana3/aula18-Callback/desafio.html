@@ -252,6 +252,36 @@
         const campoGrid = document.querySelector('#filtrado');
 
         const listaFiltrada = gastos.filter((element)=>{
+        if (Number(valorMax)!==0 && Number(valorMin)!==0 && tipoFiltro!== ""){
+            if(Number(element.valor) < valorMax && Number(element.valor) > valorMin && element.tipo ===tipoFiltro){
+                console.log("estou imprimindo true para todos")
+                return true 
+                }
+                console.log("estou imprimindo false para todos")
+            return false }
+
+            if (Number(valorMax)!==0 && Number(valorMin)!==0){
+                if(Number(element.valor) < valorMax && Number(element.valor) > valorMin){
+                console.log("estou imprimindo true para max e min")
+                return true 
+                }
+                console.log("estou imprimindo false para max e min")
+            return false }
+
+            if(tipoFiltro!== "" && Number(valorMin)!==0){
+                if(Number(element.valor) > valorMin && element.tipo ===tipoFiltro){
+                    console.log("estou imprimindo true para min e filtro")
+                    return true
+                }console.log("estou imprimindo false para min e filtro")
+                return false
+            }
+            if (Number(valorMax)!==0 && tipoFiltro!== ""){
+                if(Number(element.valor) < valorMax && element.tipo ===tipoFiltro ){
+                    console.log("estou imprimindo true para tipo e max")
+                    return true 
+                }console.log("estou imprimindo false para tipo e max")
+                return false
+            }
         if(Number(valorMax)!==0){
            if(Number(element.valor) < valorMax){
             console.log("estou imprimindo true pelo valor max")
