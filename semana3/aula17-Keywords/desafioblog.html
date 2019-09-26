@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+
+        article{
+            background: lightgrey;
+            border-right: 1px solid black;
+            width: 100%;
+        }
+
+        #container-principal{
+            display: flex;
+            min-height: 100vh;
+        }
+
+        a{
+            text-decoration: none;
+            color: white;
+        }
+
+        form{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: darkgray;
+            color: white;
+            width: 20%;
+        }
+
+        .container-post{
+            width: 80%;
+            border: 2px solid darkred;
+            background: whitesmoke;
+            margin: 3% auto;
+            padding: 2%;
+        }
+
+        .dados{
+            display: block;
+            margin-top:3%;
+            border: 2px solid darkred;
+            border-top: none;
+            padding: 2%;
+        }
+
+        form h2{
+            margin: 10%;
+        }
+
+        header{
+            background: darkred;
+            color: white;
+            padding: 2%;
+        }
+
+        img{
+            width: 200px;
+            height: 200px;
+        }
+
+        form button{
+            padding: 4%;
+            font-size: 120%;
+            margin-top: 2%;
+            color: white;
+            background: darkred;
+            box-shadow: 2px 2px 2px white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Blogao da Future4</h1>
+        <a href="desafioform.html"><p>Formulario</p></a>
+    </header>
+    <div id="container-principal">
+
+        <article id="areaDePost">
+
+        </article>
+
+    </div>
+</body>
+<script>
+
+    function buscaItem(chave) {
+      const valor = window.localStorage.getItem(chave);
+      if (valor) {
+        return JSON.parse(valor);
+      }
+      return [];
+    }
+
+    function salvaItem(chave, item) {
+      if(item && chave) {
+        window.localStorage.setItem(chave, JSON.stringify(item));
+      }
+    }
+
+    class Post{
+        constructor(nome, email, comentario, imagem){
+            this.nome = nome;
+            this.email = email;
+            this.comentario = comentario;
+            this.imagem = imagem;
+        }
+
+        MostraPost(){
+            const posts = '<div class="container-post"><strong><h3>' + this.nome + '</h3></strong><br><p>' + this.comentario + '</p><img src ='+ this.imagem +'></div>';
+            return posts;
+        }
+    }
+
+  
+    const Postados = buscaItem('postAnterior');
+    function CriaPost(){
+        let nomePassado = document.querySelector('.nome').value;
+        let emailPassado = document.querySelector('.email').value;
+        let imagemPassado = document.querySelector('.imagem').value;
+        let comentarioPassado = document.querySelector('.comentario').value;
+        
+
+        const postando = new Post(nomePassado, emailPassado, comentarioPassado, imagemPassado);
+        
+        Postados.push(postando);
+        salvaItem('postAnterior', Postados);
+
+        document.querySelector('.nome').value = ""
+        document.querySelector('.email').value = ""
+        document.querySelector('.comentario').value = ""
+        document.querySelector('.imagem').value = ""
+
+        window.location.reload();
+    }
+
+    const areaDePost = document.querySelector('#areaDePost')
+
+const Postados2=[]
+
+for (i=0;i<Postados.length;i++){
+    const Postando2 =  new Post(Postados[i].nome,Postados[i].email, Postados[i].comentario, Postados[i].imagem)
+
+    Postados2.push(Postando2)
+
+}
+
+for (let coment of Postados2){
+    areaDePost.innerHTML += coment.MostraPost();
+}
+
+
+
+            
+
+        
+
+
+ 
+</script>
+</html>
