@@ -1,0 +1,54 @@
+<script>
+function exercicio1(){
+
+    const array = [9,1,5,3,6,7,10,8,13]
+    let SegundoMaiorNumero = array[0]
+    let SegundoMenorNumero = array[0]
+    let maiorNumero = array[0]
+    let menorNumero = array[0]
+
+    for (let numero of array){
+        if(numero>maiorNumero){
+            maiorNumero = numero
+
+        }
+    }
+    for (let numero of array){
+
+        if(numero>SegundoMaiorNumero && numero<maiorNumero){
+            SegundoMaiorNumero = numero
+
+        }
+    }
+
+    for (let numero of array){
+        if(numero<=menorNumero){
+            menorNumero = numero
+        }
+    }
+
+    for (let numero of array){
+
+        if(numero<SegundoMenorNumero && numero>menorNumero){
+            SegundoMenorNumero = numero
+
+        }
+    }
+
+    console.log('o maior e ', maiorNumero)
+    console.log('o menor e ', menorNumero)
+    console.log('O segundo maior e',SegundoMaiorNumero)
+    console.log('O segundo menor e',SegundoMenorNumero)
+}
+
+function exercicio2(){
+
+    let alerta = () => {
+        alert('Hello Future4')
+    }
+    
+    alerta()
+}
+
+exercicio1()
+</script>
