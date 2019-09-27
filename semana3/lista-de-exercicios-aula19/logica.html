@@ -1,0 +1,96 @@
+<script>
+    function exercicio1(){
+        // 1- podemos percorrer com o for, for of e while. vou dar um exemplo de cada:
+
+        const lista = [3,5,8,4,12]
+
+        // Ira pegar de 0 ao tamanho da lista e imprimir a cada loop o valor pertencente a posicao que o "i" se encontra.
+        for (i=0 ; i < lista.length ; i++){
+            console.log("for", lista[i])
+        }
+
+        // Ira percorrer toda lista e colocar cada valor dela na variavel listando e imprimir
+        for (let listando of lista){
+            console.log('for of',listando)
+        }
+
+        // Enquanto o tamanho da lista for maior que 0 ira percorrer o loop e chamar o valor que no indexof "b"
+        let b=0 ; 
+        while (b<lista.length){
+          
+        console.log('while', lista[b])
+        b++
+        }
+    }
+  
+
+//   2-booleano1  = true
+    // booleano2  = false
+    // booleano3  = true
+    // booleano4  = false
+// 
+    // a) t && f && t = false
+    // b) (t && f) || f = false
+    // c) ( f || t ) && (f||t ) = true
+    // d) !(f && t) || !(t && t) = true
+    // e) !t && !t || (!f && t && t) = true
+
+
+    // 3-Devemos completar a const dizendo ate qual numero e para analisar, colocar o i para aumentar 1 a cada loop e tirar o <= ja que so queremos os <
+    function exercicio3(){
+        const quantidadeDeNumerosPares = 3
+        let i = 0
+        while(i < quantidadeDeNumerosPares) {
+          console.log(i*2)
+        i++
+        }
+    }
+
+
+function exercicio4(){
+    const a = prompt('informe a medida do primeiro lado')
+    const b = prompt('informe a medida do segundo lado')
+    const c = prompt('informe a medida do terceiro lado')
+
+    if(a===b && a===c && b===c){
+        console.log('Equilatero')
+    }else if(a===b||a===c||b===c){
+        console.log('Isosceles')
+    }else{
+        console.log('Escaleno')
+    }
+}
+
+
+function exercicio5(){
+    const a = Number(prompt('informe o primeiro numero'))
+    const b = Number(prompt('informe o segundo numero'))
+
+    if (a>b){
+        console.log('a maior que b')
+    }else if(b>a){
+        console.log('b maior que a')
+    }else{
+        console.log('a e b sao iguais')
+    }
+
+    if(a%b===0){
+        console.log('a divisivel por b')
+    }else if(b%a===0){
+        console.log('b divisivel por a')
+    }else{
+        console.log('nao sao divisiveis')
+    }
+
+    if(a>b){
+        let diferenca = a-b
+        console.log(diferenca)
+    }else if(b>a){
+        let diferenca = b-a
+        console.log(diferenca)
+    }else{
+        console.log('diferenca igual a 0')
+    }
+}
+
+</script>
