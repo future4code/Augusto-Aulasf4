@@ -1,0 +1,71 @@
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.App{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  background-color: orange;
+  display: flex;
+  justify-content: space-between;
+}
+
+header h1, header input {
+  margin: 2%;
+}
+
+menu{
+  border-right: 1px solid black;
+  width: 15%;
+  margin: 0;
+}
+
+.li-menu{
+  list-style-type: none;
+  padding: 3%;
+}
+
+.li-borda{
+  border-bottom: 1px solid black;
+}
+
+footer{
+  color: white;
+  background: gray;
+}
+
+footer h2{
+  margin: 1%;
+}
+
+section{
+  width: 85%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.video-card{
+  border: 1px green solid;
+  width: 20%;
+  margin: 2%;
+  display: flex;
+  flex-direction: column;
+}
+
+.video-card img{
+  width: 100%;
+}
+
+#conteudo-pagina{
+  display: flex;
+  flex-wrap: wrap;
+  flex-grow: 1;
+}
