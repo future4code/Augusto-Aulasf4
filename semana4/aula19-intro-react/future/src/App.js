@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
@@ -22,35 +21,35 @@ function App() {
       </menu>
       <section>
         <div className="video-card">
-          <img src="assets/video1.png" alt="foto do video 1"/>
+          <img src={require ("./assets/video1.png")} alt="foto do video 1"/>
           <h3>Titulo do Video</h3>
         </div>
         <div className="video-card">
-          <img src="assets/video2.png" alt="foto do video 1"/>
+          <img src={require ("./assets/video2.png")} alt="foto do video 1"/>
           <h3>Titulo do Video</h3>
         </div>
         <div className="video-card">
-          <img src="assets/video1.png" alt="foto do video 1"/>
+          <img src={require ("./assets/video3.png")} alt="foto do video 1"/>
           <h3>Titulo do Video</h3>
         </div>
         <div className="video-card">
-          <img src="assets/video1.png" alt="foto do video 1"/>
+          <img src={require ("./assets/video4.png")} alt="foto do video 1"/>
           <h3>Titulo do Video</h3>
         </div>
         <div className="video-card">
-          <img src="assets/video1.png" alt="foto do video 1"/>
+          <img src={require ("./assets/video4.png")} alt="foto do video 1"/>
           <h3>Titulo do Video</h3>
         </div>
         <div className="video-card">
-          <img src="assets/video1.png" alt="foto do video 1"/>
+          <img src={require ("./assets/video3.png")} alt="foto do video 1"/>
           <h3>Titulo do Video</h3>
         </div>
         <div className="video-card">
-          <img src="assets/video1.png" alt="foto do video 1"/>
+          <img src={require ("./assets/video2.png")} alt="foto do video 1"/>
           <h3>Titulo do Video</h3>
         </div>
         <div className="video-card">
-          <img src="assets/video1.png" alt="foto do video 1"/>
+          <img src={require ("./assets/video1.png")} alt="foto do video 1"/>
           <h3>Titulo do Video</h3>
         </div>
       </section>
