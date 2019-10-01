@@ -55,7 +55,7 @@ section{
 .video-card{
   border: 1px green solid;
   width: 20%;
-  margin: 2%;
+  margin: 1%;
   display: flex;
   flex-direction: column;
 }
@@ -64,8 +64,35 @@ section{
   width: 100%;
 }
 
+.video-card h3{
+  margin: 5%;
+}
+
 #conteudo-pagina{
   display: flex;
   flex-wrap: wrap;
   flex-grow: 1;
+}
+@media(min-width:1000px){
+  .video-card{
+    height: 30%;
+  }
+}
+@media(max-width:500px){
+  menu{
+    display: none;
+  }
+
+  header{
+    display: flex;
+    flex-direction: column;
+  }
+
+  header input , h1{
+    width: 50%;
+  }
+
+  .video-card{
+    min-width: 250px;
+  }
 }
