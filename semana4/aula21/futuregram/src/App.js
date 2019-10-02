@@ -10,13 +10,11 @@ class App extends React.Component {
             numeroCurtida:0,
             numeroComentario:0,
             mostraComment:false,
-            imagemSeCurtiu: false,
-            
+            imagemSeCurtiu: false,           
             numeroCurtida2:0,
             numeroComentario2:0,
             mostraComment2:false,
             imagemSeCurtiu2: false,
-            
             numeroCurtida3:0,
             numeroComentario3:0,
             mostraComment3:false,
@@ -85,7 +83,7 @@ class App extends React.Component {
 
 
 
-      aumentaComment2 = () =>{
+    aumentaComment2 = () =>{
         const mostraQntCommentAtual = this.state.numeroComentario2
         const novoComment={
             numeroComentario2: (mostraQntCommentAtual + 1)
@@ -101,8 +99,6 @@ class App extends React.Component {
         }
         
         this.setState(abreCaixa)
-
-
     }
 
     alterarQntCurtir2 = () =>{
@@ -207,12 +203,12 @@ class App extends React.Component {
 
         let titulo2
         if(this.state.mostraComment2 === true){
-            titulo = (<div id="textoComentario"><input type="text" placeholder="Escreva seu comentário"/><button onClick={this.aumentaComment2}>Comentar</button></div>)
+            titulo2 = (<div id="textoComentario"><input type="text" placeholder="Escreva seu comentário"/><button onClick={this.aumentaComment2}>Comentar</button></div>)
         }
 
         let titulo3;
         if(this.state.mostraComment3 === true){
-            titulo = (<div id="textoComentario"><input type="text" placeholder="Escreva seu comentário"/><button onClick={this.aumentaComment3}>Comentar</button></div>)
+            titulo3 = (<div id="textoComentario"><input type="text" placeholder="Escreva seu comentário"/><button onClick={this.aumentaComment3}>Comentar</button></div>)
         }
 
         let linkDaImagem = require('./icones/favorite.svg');
@@ -263,9 +259,9 @@ class App extends React.Component {
             nomePessoa: 'Soter',
             imgFeed: 'https://picsum.photos/200/200?e=6',
             imgCurtida: linkDaImagem3,
-            numeroCurtida: this.state.numeroCurtida,
+            numeroCurtida: this.state.numeroCurtida3,
             imgComentario: require('./icones/comment_icon.svg'),
-            numeroComentario: this.state.numeroComentario
+            numeroComentario: this.state.numeroComentario3
         }
 
         return (
