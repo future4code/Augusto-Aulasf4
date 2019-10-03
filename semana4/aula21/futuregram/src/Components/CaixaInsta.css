@@ -54,6 +54,12 @@ main footer .comentario img{
     margin:10px;
 }
 
+main section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 #textoComentario input{
     width: 60%;
 }

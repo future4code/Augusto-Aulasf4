@@ -287,8 +287,9 @@ class App extends React.Component {
                     imgComentario = {post1.imgComentario}
                     numeroComentario = {post1.numeroComentario}
                     caixadecomentario={titulo}
+                    comentar={this.state.comentarios.map(comentar => <p>{comentar}</p>)}
                 />
-                <div>{this.state.comentarios.map(comentar => <p>{comentar}</p>)}</div>
+                
                 <CaixaInsta 
                     apareceCaixaComment = {this.onClickButtonComment2}
                     curtir = {this.alterarIMGCurtir2}

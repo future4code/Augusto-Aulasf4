@@ -23,12 +23,14 @@ export function CaixaInsta(props){
             <article>
                 {props.addcomentario}
             </article>
+            <section>{props.comentar}</section>
             {props.caixadecomentario}
         </main>
     )
 }
 
 CaixaInsta.propTypes = {
+    comentar: PropTypes.object,
     apareceCaixaComment: PropTypes.func.isRequired,
     curtir: PropTypes.func.isRequired,
     imgPessoa: PropTypes.string.isRequired,
