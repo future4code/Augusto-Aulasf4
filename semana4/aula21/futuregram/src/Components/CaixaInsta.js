@@ -20,6 +20,9 @@ export function CaixaInsta(props){
                     <img onClick={props.apareceCaixaComment} src={props.imgComentario} alt="comentarios"/>
                 </div>
             </footer>
+            <article>
+                {props.addcomentario}
+            </article>
             {props.caixadecomentario}
         </main>
     )
@@ -30,6 +33,7 @@ CaixaInsta.propTypes = {
     curtir: PropTypes.func.isRequired,
     imgPessoa: PropTypes.string.isRequired,
     caixadecomentario: PropTypes.object,
+    addcomentario: PropTypes.object,
     nomePessoa: PropTypes.string.isRequired,
     imgFeed: PropTypes.string.isRequired,
     imgCurtida: PropTypes.string.isRequired,

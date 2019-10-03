@@ -10,15 +10,19 @@ class App extends React.Component {
             numeroCurtida:0,
             numeroComentario:0,
             mostraComment:false,
-            imagemSeCurtiu: false,           
+            imagemSeCurtiu: false, 
+            novoComentario:"",
+            comentarios: [],         
             numeroCurtida2:0,
             numeroComentario2:0,
             mostraComment2:false,
             imagemSeCurtiu2: false,
+            comentarios2: [],  
             numeroCurtida3:0,
             numeroComentario3:0,
             mostraComment3:false,
             imagemSeCurtiu3: false,
+            comentarios3: [],  
         }
     }
 
@@ -39,8 +43,25 @@ class App extends React.Component {
         
         this.setState(abreCaixa)
 
-
     }
+
+    onChangeValue = (event) => {
+        if(event.key==='Enter'){
+            
+            const valorEscrito = event.target.value;
+            this.state.comentarios.push(valorEscrito)
+            this.mostraComentarios()
+        }
+    }
+    mostraComentarios = () =>{
+        for (let comentario of this.state.comentarios){
+            const novoComentario = {
+                novoComentario: comentario,
+            }
+            this.setState(novoComentario)
+        }
+    }
+
 
     alterarQntCurtir = () =>{
 
@@ -74,13 +95,6 @@ class App extends React.Component {
         this.alterarQntCurtir()
         
       }
-
-
-
-
-
-
-
 
 
     aumentaComment2 = () =>{
@@ -198,7 +212,7 @@ class App extends React.Component {
     render(){
         let titulo;
         if(this.state.mostraComment === true){
-            titulo = (<div id="textoComentario"><input type="text" placeholder="Escreva seu comentário"/><button onClick={this.aumentaComment}>Comentar</button></div>)
+            titulo = (<div id="textoComentario"><input onKeyPress={this.onChangeValue} type="text"  placeholder="Escreva seu comentário"/><button onClick={this.aumentaComment}>Comentar</button></div>)
         }
 
         let titulo2
@@ -267,6 +281,7 @@ class App extends React.Component {
         return (
             <div className="App">
                 <CaixaInsta 
+                    addcomentario={this.comentario}
                     apareceCaixaComment = {this.onClickButtonComment}
                     curtir = {this.alterarIMGCurtir}
                     imgPessoa = {post1.imgPessoa}
@@ -278,6 +293,7 @@ class App extends React.Component {
                     numeroComentario = {post1.numeroComentario}
                     caixadecomentario={titulo}
                 />
+                <div>{this.novoComentario}</div>
                 <CaixaInsta 
                     apareceCaixaComment = {this.onClickButtonComment2}
                     curtir = {this.alterarIMGCurtir2}
