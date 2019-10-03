@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 export function CaixaInsta(props){
     return(
-        <main>
+        <main onDoubleClick={props.curtiduplo}>
             <header>
                 <img src={props.imgPessoa} alt="imagem da pessoa"/>
                 <h4>{props.nomePessoa}</h4>
@@ -30,6 +30,7 @@ export function CaixaInsta(props){
 }
 
 CaixaInsta.propTypes = {
+    curtiduplo:PropTypes.func,
     comentar: PropTypes.object,
     apareceCaixaComment: PropTypes.func.isRequired,
     curtir: PropTypes.func.isRequired,

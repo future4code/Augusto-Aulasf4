@@ -279,6 +279,7 @@ class App extends React.Component {
                     addcomentario={this.comentario}
                     apareceCaixaComment = {this.onClickButtonComment}
                     curtir = {this.alterarIMGCurtir}
+                    curtiduplo = {this.alterarIMGCurtir}
                     imgPessoa = {post1.imgPessoa}
                     nomePessoa = {post1.nomePessoa}
                     imgFeed = {post1.imgFeed}
