@@ -49,19 +49,14 @@ class App extends React.Component {
         if(event.key==='Enter'){
             
             const valorEscrito = event.target.value;
-            this.state.comentarios.push(valorEscrito)
-            this.mostraComentarios()
-        }
-    }
-    mostraComentarios = () =>{
-        for (let comentario of this.state.comentarios){
-            const novoComentario = {
-                novoComentario: comentario,
+            const colocaValor = {
+                novoComentario: valorEscrito
             }
-            this.setState(novoComentario)
+            this.state.comentarios.push(valorEscrito)
+            this.setState(colocaValor)
         }
+        
     }
-
 
     alterarQntCurtir = () =>{
 
@@ -293,7 +288,7 @@ class App extends React.Component {
                     numeroComentario = {post1.numeroComentario}
                     caixadecomentario={titulo}
                 />
-                <div>{this.novoComentario}</div>
+                <div>{this.state.comentarios.map(comentar => <p>{comentar}</p>)}</div>
                 <CaixaInsta 
                     apareceCaixaComment = {this.onClickButtonComment2}
                     curtir = {this.alterarIMGCurtir2}
