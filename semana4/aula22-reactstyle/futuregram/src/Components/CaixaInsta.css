@@ -61,5 +61,9 @@ main section{
 }
 
 #textoComentario input{
-    width: 60%;
+    width: 40%;
+}
+
+#textoComentario button{
+    width: 40%;
 }
