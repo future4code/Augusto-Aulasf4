@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import {ComponentInput} from './components/ComponentInput'
 import {ComponentMsg} from './components/ComponentMsg'
+import {ComponentMsgEu} from './components/ComponentMsgEu'
 import styled from 'styled-components'
 
 const TeladeMsgs = styled.div`
@@ -35,16 +36,22 @@ export class App extends React.Component {
   }
 
   ApagaEstaMsg = (Index) =>{
-
     console.log(Index)
-    const MsgApagadas = {ListaMsg: this.state.ListaMsg.splice(Index,1)}
+    const novaLista = [...this.state.ListaMsg]
+    novaLista.splice(Index, 1)
+    const MsgApagadas = {ListaMsg: novaLista}
 
     this.setState(MsgApagadas)
 }
 
   render(){
     const ApareceMsgs = this.state.ListaMsg.map((postMsg,Index) => {
-      return <ComponentMsg onDoubleClick={() => this.ApagaEstaMsg(Index)} key={Index} nomeUsuarioDaMsg={postMsg.nome} mensagemUsuarioDaMsg={postMsg.mensagem} />
+      if(postMsg.nome!=='eu' && postMsg.nome!=='Eu'){
+        return <ComponentMsg funcaoApaga={() => this.ApagaEstaMsg(Index)} key={Index} nomeUsuarioDaMsg={postMsg.nome} mensagemUsuarioDaMsg={postMsg.mensagem} />
+      }else{
+        return <ComponentMsgEu onDoubleClick={() => this.ApagaEstaMsg(Index)} key={Index} mensagemUsuarioDaMsg={postMsg.mensagem} />
+
+      }
     })
 
     return (

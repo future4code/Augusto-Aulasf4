@@ -9,18 +9,19 @@ const ContainerMsg = styled.div`
     flex-wrap:wrap;
     padding: 5px;
     color: #6FA8E8;
-    
+    align-self:flex-end;
     line-height: 1px;
     margin:20px 30px;
-    border-radius: 0 20px 20px 20px;
+    border-radius: 20px 0 20px 20px;
     border: #4A6FB0 2px solid;
 `
 
-export function ComponentMsg(props) {
+
+
+export function ComponentMsgEu(props) {
 
     return(
-        <ContainerMsg onDoubleClick={props.funcaoApaga}>
-            <h3>{props.nomeUsuarioDaMsg}</h3>
+        <ContainerMsg>
             <p>{props.mensagemUsuarioDaMsg}</p>
         </ContainerMsg>
     )

@@ -15,6 +15,7 @@ const InputMsg = styled.input`
     border-bottom: 1px solid white;
     width:50%;
     color: white;
+
     ::placeholder{
         color:white;
     }
