@@ -1,0 +1,69 @@
+main{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    width: 20%;
+    margin: 10px;
+}
+
+main header {
+    display: flex;
+    align-items: center;
+}
+
+main header img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin: 5px;
+}
+
+.img-post{
+    width: 100%;
+    height: 100%;
+}
+
+main footer{
+    display: flex;
+    justify-content: space-between;
+}
+
+main footer .curtida img{
+ width: 20px;
+ height: 20px;
+ margin:0 10px;
+}
+
+main footer .comentario img{
+    width: 20px;
+    height: 20px;
+    margin:0 10px;
+}
+
+
+.comentario , .curtida{
+    display: flex;
+    align-items: center;
+    margin:5px 10px;
+}
+
+#textoComentario{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin:10px;
+}
+
+main section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#textoComentario input{
+    width: 40%;
+}
+
+#textoComentario button{
+    width: 40%;
+}
