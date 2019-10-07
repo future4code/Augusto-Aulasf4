@@ -3,8 +3,10 @@ import styled from 'styled-components'
 
 const AppContainer = styled.div`
   display: flex;
+  min-height:100vh;
   flex-direction:column;
   align-items:center;
+  background: linear-gradient(rgb(221, 133, 8), rgb(111, 66, 4));
 `
 
 const NewButton = styled.button`
@@ -120,6 +122,64 @@ class App extends React.Component{
     listDone: [],})
   }
 
+  Descending=()=>{
+    const ordem = this.state.listToDo.sort(function (b, a) {
+
+      if (a > b) {
+        return 1;
+      }
+      if (a < b) {
+        return -1;
+      }
+      return 0;
+    });
+
+    this.setState({listToDo: ordem})
+
+
+    const ordem2 = this.state.listDone.sort(function (b, a) {
+
+      if (a > b) {
+        return 1;
+      }
+      if (a < b) {
+        return -1;
+      }
+      return 0;
+    });
+
+    this.setState({listDone: ordem2})
+  }
+
+  Alphabetical =()=>{
+    const ordem = this.state.listToDo.sort(function (a, b) {
+
+      if (a > b) {
+        return 1;
+      }
+      if (a < b) {
+        return -1;
+      }
+      return 0;
+    });
+
+    this.setState({listToDo: ordem})
+
+
+    const ordem2 = this.state.listDone.sort(function (a, b) {
+
+      if (a > b) {
+        return 1;
+      }
+      if (a < b) {
+        return -1;
+      }
+      return 0;
+    });
+
+    this.setState({listDone: ordem2})
+  }
+
   componentDidMount() {
     const storedState = JSON.parse(window.localStorage.getItem("Saved State"));
     this.setState(storedState);
@@ -129,18 +189,6 @@ class App extends React.Component{
     const stateAsString = JSON.stringify(this.state);
     window.localStorage.setItem("Saved State", stateAsString);
   }
-  // ListTransferToDone = () =>{
-  //   ApagaEstaMsg = (Index) =>{
-
-  //     console.log(Index)
-  //     const MsgApagadas = {ListaMsg: this.state.ListaMsg.splice(Index,1)}
-  //     const novaLista = [...this.state.ListaMsg]
-  //     novaLista.splice(Index, 1)
-  //     const MsgApagadas = {ListaMsg: novaLista}
-  
-  //     this.setState(MsgApagadas)
-  //   }
-  // }
 
   render(){
 
@@ -175,11 +223,13 @@ class App extends React.Component{
           <NewButton onClick={this.AddListToDo}>Adicionar</NewButton>
         </ContainerdivRow>
         <ContainerdivColumn>
-          
 
           <h2>Lista de Tarefas</h2>
           <input onChange={this.InputFilterChanged} placeholder="Procurar Tarefa" value={this.state.inputFilter} type="text"/>
           {FilterListToDo}
+          <ContainerdivRow>
+          <NewButton onClick={this.Alphabetical}>Ordem Alfabética</NewButton><NewButton onClick={this.Descending}>Ordem Alfabética Decrescente</NewButton>
+          </ContainerdivRow>
           <hr/>
           {NewListToDo}
         </ContainerdivColumn>
