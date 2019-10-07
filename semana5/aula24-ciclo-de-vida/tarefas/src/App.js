@@ -196,8 +196,25 @@ class App extends React.Component{
       return toDoItem === this.state.inputFilter
     })
 
+    const NewListToDoFilter = FilterListToDo.map((toDoItems,Index) => {
+      return  <ContainerdivRow key={Index}> 
+      <input onChange={(event)=>this.EditItem(Index, event)} value={toDoItems} />
+    <EditImg onClick={() => this.CheckedItemToDo(toDoItems, Index)} src="https://image.flaticon.com/icons/svg/907/907830.svg" alt="editar"/> 
+    <EditImg onClick={() => this.DeleteItemToDo(Index)} src="https://image.flaticon.com/icons/svg/149/149343.svg" alt="editar"/> 
+  </ContainerdivRow>
+})
+
+
     let FilterListDone = this.state.listDone.filter((DoneItem) => {
       return DoneItem === this.state.inputFilterDone
+    })
+
+    const NewFilterListDone = FilterListDone.map((DoneItems,Index) => {
+      return  <ContainerdivRow key={Index}>
+                  <input onChange={(event)=>this.EditItemDone(Index, event)} value={DoneItems} />
+                  <EditImg onClick={() => this.UnCheckedItem(DoneItems, Index)} src="https://image.flaticon.com/icons/svg/907/907881.svg" alt="editar"/> 
+                  <EditImg onClick={() => this.DeleteItemDone(Index)} src="https://image.flaticon.com/icons/svg/149/149343.svg" alt="editar"/> 
+              </ContainerdivRow>
     })
 
     const NewListToDo = this.state.listToDo.map((toDoItems,Index) => {
@@ -226,7 +243,7 @@ class App extends React.Component{
 
           <h2>Lista de Tarefas</h2>
           <input onChange={this.InputFilterChanged} placeholder="Procurar Tarefa" value={this.state.inputFilter} type="text"/>
-          {FilterListToDo}
+          {NewListToDoFilter}
           <ContainerdivRow>
           <NewButton onClick={this.Alphabetical}>Ordem Alfabética</NewButton><NewButton onClick={this.Descending}>Ordem Alfabética Decrescente</NewButton>
           </ContainerdivRow>
@@ -236,7 +253,7 @@ class App extends React.Component{
         <ContainerdivColumn>
           <h2>Lista de Concluidas</h2>
           <input onChange={this.InputFilterChangedDone} placeholder="Procurar Tarefa" value={this.state.inputFilterDone} type="text"/>
-          {FilterListDone}
+          {NewFilterListDone}
           <hr/>
           {NewDoneList}
         </ContainerdivColumn>
