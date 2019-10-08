@@ -18,6 +18,11 @@ const SelectStyle = styled.select`
     margin: 5px;
 `
 
+const MsgAlert = styled.p`
+    color:red;
+    display:${props=>props.display};
+`
+
 export class HomeForm extends React.Component {
     constructor(props){
         super(props);
@@ -26,6 +31,9 @@ export class HomeForm extends React.Component {
             idadeValue: "",
             emailValue: "",
             ensinoValue: "mincompleto",
+            displayNome:"none",
+            displayIdade:"none",
+            displayEmail:"none",
                     }
     }
         
@@ -46,14 +54,34 @@ export class HomeForm extends React.Component {
     }
 
     ContinuarForm = () =>{
-        const Respostas1 = {
-            nomeValue: this.state.nomeValue,
-            idadeValue: this.state.idadeValue,
-            emailValue: this.state.emailValue,
-            ensinoValue: this.state.ensinoValue,
-        }
+        if(this.state.nomeValue === "" || this.state.idadeValue === "" || this.state.emailValue === "" || this.state.ensinoValue === ""){
+            alert('Preencha todos os campos para continuar!')
+            if(this.state.nomeValue === ""){
+                this.setState({displayNome:"flex"})
+            }else{
+                this.setState({displayNome:"none"})
+            }
+            if(this.state.idadeValue === ""){
+                this.setState({displayIdade:"flex"})
+            }else{
+                this.setState({displayIdade:"none"})
+            }
+            if(this.state.emailValue === ""){
+                this.setState({displayEmail:"flex"})
+            }else{
+                this.setState({displayEmail:"none"})
+            }
+        }else{
 
-        this.props.RecebeR1(Respostas1)
+            const Respostas1 = {
+                nomeValue: this.state.nomeValue,
+                idadeValue: this.state.idadeValue,
+                emailValue: this.state.emailValue,
+                ensinoValue: this.state.ensinoValue,
+            }
+
+            this.props.RecebeR1(Respostas1)
+        }
     }
 
 
@@ -64,14 +92,17 @@ export class HomeForm extends React.Component {
                 <div>
                     <label>Qual seu nome: </label>
                     <InputStyle onChange={this.TrocaNome} value={this.state.nomeValue} type="text"/>
+                    <MsgAlert display={this.state.displayNome}>Preencha seu nome.</MsgAlert>
                 </div>
                 <div>
                     <label>Qual sua idade: </label>
                     <InputStyle onChange={this.TrocaIdade} value={this.state.idadeValue} type="number"/>
+                    <MsgAlert display={this.state.displayIdade}>Preencha sua idade.</MsgAlert>
                 </div>
                 <div>
                     <label>Qual seu email: </label>
                     <InputStyle onChange={this.TrocaEmail} value={this.state.emailValue} type="email"/>
+                    <MsgAlert display={this.state.displayEmail}>Preencha seu email.</MsgAlert>
                 </div>
                 <div>
                     <label>Qual sua escolaridade: </label>

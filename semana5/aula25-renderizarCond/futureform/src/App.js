@@ -23,17 +23,47 @@ class App extends React.Component {
           idadeValue: "",
           emailValue: "",
           ensinoValue: "",
+          cursoValue:"",
+          unValue:"",
+          etapa: 1,
         }
     }
 
+    Renderiza = () =>{
+      if(this.state.etapa===1){
+        return (<HomeForm RecebeR1={this.RecebeR1}/>) 
+      }else if(this.state.etapa===2){
+        
+        return <Superior RecebeR={this.RecebeR}/>
+        
+      }else if(this.state.etapa===3){
+        return <Medio RecebeR={this.RecebeR}/> 
+      }else{
+        return <Fim/> 
+      }
+    }
+
+    RecebeR = (Respostas)=>{
+      this.setState({
+        cursoValue: Respostas.cursoValue,
+        unValue: Respostas.unValue,
+        etapa:4
+      })
+    }
+
     RecebeR1=(Respostas1)=>{
-      if(Respostas1.ensinoValue===''){
-        return <HomeForm RecebeR1={this.RecebeR1}/> 
-      }else if(Respostas1.ensinoValue==='mincompleto' || Respostas1.ensinoValue==='mcompleto') {
-        console.log('ensino medio')
-        return <Medio/>
+      this.setState({
+        nomeValue: Respostas1.nomeValue,
+          idadeValue:Respostas1.idadeValue ,
+          emailValue:Respostas1.emailValue ,
+          ensinoValue:Respostas1.ensinoValue ,
+      })
+
+      if(Respostas1.ensinoValue==='mincompleto' || Respostas1.ensinoValue==='mcompleto') {
+        this.setState({etapa: 3})
       } else{
-        return <Superior/>
+        console.log('ensino superior')
+        this.setState({etapa: 2})
       }
     }
     // <Completo/>
@@ -42,10 +72,10 @@ class App extends React.Component {
 
     
     render(){
-
+console.log(this.state)
         return(
           <AppDiv>
-            {this.RecebeR1}
+            {this.Renderiza()}
           </AppDiv>
         )
     }
