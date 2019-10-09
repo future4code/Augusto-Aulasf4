@@ -62,7 +62,7 @@ export class Register extends React.Component{
     }
 
     ChangeMoneyValue = (event) =>{
-        const ChangedValue = {moneyValue: event.target.value}
+        const ChangedValue = {moneyValue: Number(event.target.value)}
         this.props.ReceiveData(ChangedValue)
     }
 
@@ -74,6 +74,11 @@ export class Register extends React.Component{
     ChangeDescription = (event) =>{
         const ChangedDescription =({description: event.target.value})
         this.props.ReceiveData(ChangedDescription)
+    }
+
+    ButtonList =()=>{
+        const ChangeWindow =({window: 2})
+        this.props.ReceiveData(ChangeWindow)
     }
 
     SendForm = () =>{
@@ -92,6 +97,7 @@ export class Register extends React.Component{
             </SelectStyles> 
             <InputStyles onChange={this.ChangeDescription} value={this.props.ValueState.description} placeholder="...Descrição"/>
             <ButtonStyles onClick={this.SendForm}>Cadastrar</ButtonStyles>
+            <ButtonStyles onClick={this.ButtonList}>Despesas</ButtonStyles>
             </RegisterContainer>
         )
     }

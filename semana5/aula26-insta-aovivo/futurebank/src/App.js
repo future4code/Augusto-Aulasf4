@@ -19,9 +19,10 @@ export class App extends React.Component{
       super(props)
       this.state = {
           moneyValue: "",
-          expense:"bobeira",
+          expense:"Bobeira",
           description: "",
           payments:[],
+          window:2,
       }
   }
 
@@ -30,25 +31,31 @@ export class App extends React.Component{
   }
 
   SavePayments = () =>{
-    const newPayments = [...this.state.payments, this.state.moneyValue, this.state.expense, this.state.description]
+    const newPayments = [...this.state.payments, {value: this.state.moneyValue, type: this.state.expense, desc: this.state.description}]
     const newPaymentList = {
       moneyValue: "",
       expense:"bobeira",
       description: "",
       payments:newPayments}
     this.setState(newPaymentList)
-    
   }
 
-  SendPayments = () =>{
+  RenderWindow = () =>{
+    if(this.state.window===1){
+      return <Register ValueState={this.state} ReceiveData={this.ReceiveData} ButtonAdvanced={this.SavePayments}/>
+    }else{
+      return <Expense ButtonBack={this.ButtonBack} Payments={this.state.payments}/>
+    }
+  }
 
+  ButtonBack=()=>{
+    this.setState({window:1})
   }
 
   render(){
     return (
       <AppContainer>
-        <Register ValueState={this.state} ReceiveData={this.ReceiveData} ButtonAdvanced={this.SavePayments}/>
-        <Expense Payments={this.state.payments}/>
+        {this.RenderWindow()}
       </AppContainer>
     );
   }
