@@ -12,7 +12,7 @@ const ExpenseContainer = styled.div`
 
 const Griddiv = styled.div`
     display:grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr) 50px;
 `
 
 const FlexDiv = styled.div`
@@ -78,6 +78,12 @@ const InputStyles = styled.input`
     }
 `
 
+const ImgStyle = styled.img`
+    margin:2px;
+    width:30px;
+    height:30px;
+`
+
 export class Expense extends React.Component{
     constructor(props){
         super(props)
@@ -119,6 +125,18 @@ export class Expense extends React.Component{
         }
     }
 
+    DeleteItem=(Payment)=>{
+        const PaymentsList = [...this.props.Payments]
+        const id = PaymentsList.indexOf(Payment)
+        PaymentsList.splice(id, 1)
+        const UpdatedList = {payments: PaymentsList}
+        this.props.ReceiveData(UpdatedList)
+    }
+
+    EditItem = () =>{
+        this.props.ReceiveData({window:3})
+    }
+
     render(){
 
         const Filtered = this.props.Payments.filter((Payment)=>{
@@ -135,7 +153,7 @@ export class Expense extends React.Component{
         })
 
         const RenderPayments = Filtered.map((Payment,Index)=>{
-           return <Griddiv key={Index}><Items >{Payment.value}</Items><Items>{Payment.type}</Items><Items>{Payment.desc}</Items></Griddiv>
+           return <Griddiv key={Index}><Items onClick={this.EditItem} >{Payment.value}</Items><Items onClick={this.EditItem}>{Payment.type}</Items><Items onClick={this.EditItem}>{Payment.desc}</Items><Items><ImgStyle onClick={({})=>this.DeleteItem(Payment)} src="https://image.flaticon.com/icons/svg/1632/1632602.svg" alt=""/></Items></Griddiv>
         })
 
         const sumExpenses = this.props.Payments.reduce( function (prev, Payment){
@@ -153,11 +171,12 @@ export class Expense extends React.Component{
                 </SelectStyles>
                 {this.RenderFilter()}
                 </FlexDiv>
-                <Title>Total de Despesas: {sumExpenses}</Title>
+                <Title>Total de Despesas: R$ {sumExpenses}</Title>
                 <Griddiv>
-                    <Title>Valor</Title>
+                    <Title>Valor (R$)</Title>
                     <Title>Tipo de Gasto</Title>
                     <Title>Descrição</Title>
+                    <Title></Title>
                 </Griddiv>
                 {RenderPayments}
                 <Griddiv>

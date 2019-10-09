@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components'
 import { Expense } from './Components/Expense';
 import { Register } from './Components/Register';
+import { Detail } from './Components/Detail';
 
 const AppContainer = styled.div`
 background-color: #282c34;
@@ -22,7 +23,7 @@ export class App extends React.Component{
           expense:"Bobeira",
           description: "",
           payments:[],
-          window:2,
+          window:1,
       }
   }
 
@@ -31,7 +32,7 @@ export class App extends React.Component{
   }
 
   SavePayments = () =>{
-    const newPayments = [...this.state.payments, {value: this.state.moneyValue, type: this.state.expense, desc: this.state.description}]
+    const newPayments = [...this.state.payments, {id:Date.now(), value: this.state.moneyValue, type: this.state.expense, desc: this.state.description}]
     const newPaymentList = {
       moneyValue: "",
       expense:"bobeira",
@@ -43,8 +44,10 @@ export class App extends React.Component{
   RenderWindow = () =>{
     if(this.state.window===1){
       return <Register ValueState={this.state} ReceiveData={this.ReceiveData} ButtonAdvanced={this.SavePayments}/>
+    }else if(this.state.window===2){
+      return <Expense ButtonBack={this.ButtonBack} ReceiveData={this.ReceiveData} Payments={this.state.payments}/>
     }else{
-      return <Expense ButtonBack={this.ButtonBack} Payments={this.state.payments}/>
+      return <Detail/>
     }
   }
 
