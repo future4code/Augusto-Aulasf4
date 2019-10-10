@@ -110,7 +110,7 @@ export class Expense extends React.Component{
     }
 
     BackForm = () =>{
-        this.props.ButtonBack()
+        this.props.ReceiveData({window:1})
     }
 
     RenderFilter = () =>{
@@ -133,8 +133,8 @@ export class Expense extends React.Component{
         this.props.ReceiveData(UpdatedList)
     }
 
-    EditItem = () =>{
-        this.props.ReceiveData({window:3})
+    EditItemList = (Payment) =>{
+        this.props.ReceiveData({objectTarget:Payment, window:3})
     }
 
     render(){
@@ -153,7 +153,7 @@ export class Expense extends React.Component{
         })
 
         const RenderPayments = Filtered.map((Payment,Index)=>{
-           return <Griddiv key={Index}><Items onClick={this.EditItem} >{Payment.value}</Items><Items onClick={this.EditItem}>{Payment.type}</Items><Items onClick={this.EditItem}>{Payment.desc}</Items><Items><ImgStyle onClick={({})=>this.DeleteItem(Payment)} src="https://image.flaticon.com/icons/svg/1632/1632602.svg" alt=""/></Items></Griddiv>
+           return <Griddiv key={Index}><Items onDoubleClick={()=>this.EditItemList(Payment)} >{Payment.value}</Items><Items onDoubleClick={()=>this.EditItemList(Payment)}>{Payment.type}</Items><Items onDoubleClick={()=>this.EditItemList(Payment)}>{Payment.desc}</Items><Items><ImgStyle onClick={()=>this.DeleteItem(Payment)} src="https://image.flaticon.com/icons/svg/1632/1632602.svg" alt=""/></Items></Griddiv>
         })
 
         const sumExpenses = this.props.Payments.reduce( function (prev, Payment){

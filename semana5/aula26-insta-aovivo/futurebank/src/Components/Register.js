@@ -44,7 +44,7 @@ const ButtonStyles = styled.button`
     background:#4C3999;
     padding:10px;
     border:none;
-    margin-top:10px;
+    margin:10px;
     border-radius:20px;
     color:#9DADCC;
     box-shadow: 1px 2px 3px #626C80;
@@ -96,8 +96,10 @@ export class Register extends React.Component{
                 <option value="Outra">Outra Despesa</option>    
             </SelectStyles> 
             <InputStyles onChange={this.ChangeDescription} value={this.props.ValueState.description} placeholder="...Descrição"/>
-            <ButtonStyles onClick={this.SendForm}>Cadastrar</ButtonStyles>
-            <ButtonStyles onClick={this.ButtonList}>Despesas</ButtonStyles>
+            <div>
+                <ButtonStyles onClick={this.SendForm}>Cadastrar</ButtonStyles>
+                <ButtonStyles onClick={this.ButtonList}>Despesas</ButtonStyles>
+            </div>
             </RegisterContainer>
         )
     }

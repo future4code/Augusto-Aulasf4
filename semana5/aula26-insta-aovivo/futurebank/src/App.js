@@ -24,6 +24,7 @@ export class App extends React.Component{
           description: "",
           payments:[],
           window:1,
+          objectTarget: ""
       }
   }
 
@@ -35,7 +36,7 @@ export class App extends React.Component{
     const newPayments = [...this.state.payments, {id:Date.now(), value: this.state.moneyValue, type: this.state.expense, desc: this.state.description}]
     const newPaymentList = {
       moneyValue: "",
-      expense:"bobeira",
+      expense:"Bobeira",
       description: "",
       payments:newPayments}
     this.setState(newPaymentList)
@@ -45,14 +46,10 @@ export class App extends React.Component{
     if(this.state.window===1){
       return <Register ValueState={this.state} ReceiveData={this.ReceiveData} ButtonAdvanced={this.SavePayments}/>
     }else if(this.state.window===2){
-      return <Expense ButtonBack={this.ButtonBack} ReceiveData={this.ReceiveData} Payments={this.state.payments}/>
+      return <Expense ReceiveData={this.ReceiveData} Payments={this.state.payments}/>
     }else{
-      return <Detail/>
+      return <Detail ReceiveData={this.ReceiveData} Payments={this.state.payments} PaymentObject={this.state.objectTarget}/>
     }
-  }
-
-  ButtonBack=()=>{
-    this.setState({window:1})
   }
 
   render(){
