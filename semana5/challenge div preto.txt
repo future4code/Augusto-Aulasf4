@@ -1,0 +1,61 @@
+
+----------------------------------
+
+1. Instalar React
+npm install -g create-react-app
+2. Instalar Surge
+npm install -g surge
+
+import React, { Component } from "react";
+import { render } from "react-dom";
+import styled from "styled-components";
+import Hello from "./Hello";
+import "./style.css";
+
+const Wrapper = styled.div`
+  display: flex;
+  width: 100vw;
+  flex-wrap: wrap;
+`;
+
+const BlackBox = styled.div`
+  background: black;
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+`;
+
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      blockCount: 4
+    };
+  }
+
+  handleBlockCountChange = event => {
+    this.setState({ blockCount: event.target.value });
+  };
+
+  render() {
+    let list = [];
+
+    for (let i = 0; i < this.state.blockCount; i++) {
+      list.push(<BlackBox key />);
+    }
+
+    return (
+      <div>
+        <input
+          type="number"
+          value={this.state.blockCount}
+          onChange={this.handleBlockCountChange}
+        />
+        <hr />
+        <Wrapper>{list}</Wrapper>
+      </div>
+    );
+  }
+}
+
+render(<App />, document.getElementById("root"));
