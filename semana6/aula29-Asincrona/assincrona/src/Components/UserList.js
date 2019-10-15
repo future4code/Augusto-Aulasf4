@@ -42,6 +42,18 @@ const ButtonForm = styled.button`
         color:#282c34;
     }
 `
+const InputForm = styled.input`
+    background:transparent;
+    border:none;
+    margin:5px;
+    border-bottom:2px solid white;
+    color:white;
+
+    :focus{
+        outline:none;
+        border-bottom:2px solid yellow;
+    }
+`
 
 const PList = styled.p`
     margin:0 5px;
@@ -52,8 +64,7 @@ export class UserList extends React.Component{
   constructor(props){
     super(props)
     this.state={
-      name:"",
-      email:""
+        inputValue:"",
     }
   }
 
@@ -61,21 +72,39 @@ export class UserList extends React.Component{
     this.props.ListAllUsers()
   }
 
+  ChangeInputValue=(event)=>{
+    this.setState({inputValue: event.target.value})
+  }
+
   BackWindow=()=>{
       this.props.Save({window:1})
   }
 
-  DeleteUser=(UserId)=>{
-    this.props.DeleteUser(UserId)
+  DetailThisUser=(UserId)=>{
+    this.props.GetUserId(UserId)
+    this.props.Save({window:3})
   }
+
+  SearchUser=()=>{
+    this.props.SearchUsers(this.state.inputValue, this.state.inputValue)
+  }
+
+  DeleteUser=(UserId)=>{
+      
+      if(window.confirm('Tem certeza que deseja deletar?')){
+    this.props.DeleteUser(UserId)
+      }
+}
 
   render(){
     const ListUsers = this.props.ReceiveAllUsers.map((User)=>{
-        return <ListContainer><PList key={User.id}>{User.name}</PList><ImgDel onClick={()=>this.DeleteUser(User.id)} src="https://image.flaticon.com/icons/svg/458/458594.svg" alt="icon delete"/></ListContainer>
+        return <ListContainer key={User.id}><PList onClick={()=>this.DetailThisUser(User.id)} >{User.name}</PList><ImgDel onClick={()=>this.DeleteUser(User.id)} src="https://image.flaticon.com/icons/svg/458/458594.svg" alt="icon delete"/></ListContainer>
     })
 
     return(
       <UserListContainer>
+          <InputForm onChange={this.ChangeInputValue} value={this.state.inputValue} placeholder="Buscar pelo usuário..." type="text"/>
+          <ButtonForm onClick={this.SearchUser}>Filtrar</ButtonForm>
         <ButtonForm onClick={this.BackWindow}>Registrar Usuário</ButtonForm>
         {ListUsers}
       </UserListContainer>
