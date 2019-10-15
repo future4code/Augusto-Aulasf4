@@ -111,10 +111,17 @@ class App extends React.Component{
     })
   }
 
-  searchUsers =(email, name) =>{
-    
+  searchUsers =(inputValue) =>{
+    let fieldName
+
+    if(inputValue.indexOf('@') === -1 && inputValue.indexOf('.') === -1){
+      fieldName = 'name'
+    }else{
+      fieldName= 'email'
+    }
+
     const request = axios.get(
-      `https://us-central1-future4-users.cloudfunctions.net/api/users/searchUsers?email=${email}&name=${name}`,
+      `https://us-central1-future4-users.cloudfunctions.net/api/users/searchUsers?${fieldName}=${inputValue}`,
       {
         headers:{
           "api-token": "4a8d7ba3173a0beb026be31b82b0f2f4"
@@ -123,8 +130,7 @@ class App extends React.Component{
     )
 
     request.then(response =>{
-      console.log(response)
-      this.setState({userSearch: response.data.result})
+      this.setState({userSearch: response.data.result[0]})
     }).catch(error=>{
       window.alert(`Algum erro ocorreu: ${error}`)
     })
@@ -132,9 +138,11 @@ class App extends React.Component{
 
   editUser =() =>{
     const data ={
-      id: this.state.userAtual.id,
-      name: this.state.userAtual.name,
-      email: this.state.userAtual.email
+      user:{
+        id: this.state.userAtual.id,
+        name: this.state.userAtual.name,
+        email: this.state.userAtual.email
+      }
     }
 
     const request = axios.put(
@@ -161,7 +169,7 @@ class App extends React.Component{
     if (this.state.window === 1){
       RenderWindow = <UserRegister ButtonRegister={this.createUser} NameValue={this.state.name} EmailValue={this.state.email} Save={this.SaveToState}/>
     }else if(this.state.window === 2){
-      RenderWindow = <UserList SearchUsers={this.searchUsers} GetUserId={this.getUser} DeleteUser={this.deleteUser} ReceiveAllUsers={this.state.usersList} ListAllUsers={this.getAllUsers} Save={this.SaveToState}/>
+      RenderWindow = <UserList userSearched={this.state.userSearch} SearchUsers={this.searchUsers} GetUserId={this.getUser} DeleteUser={this.deleteUser} ReceiveAllUsers={this.state.usersList} ListAllUsers={this.getAllUsers} Save={this.SaveToState}/>
     }else if(this.state.window === 3){
       RenderWindow = <UserDetail EditUser={this.editUser} DeleteUser={this.deleteUser} UserDetails={this.state.userAtual} Save={this.SaveToState}/>
     }

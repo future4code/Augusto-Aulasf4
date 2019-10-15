@@ -86,7 +86,8 @@ export class UserList extends React.Component{
   }
 
   SearchUser=()=>{
-    this.props.SearchUsers(this.state.inputValue, this.state.inputValue)
+      const inputValue= this.state.inputValue
+    this.props.SearchUsers(inputValue)
   }
 
   DeleteUser=(UserId)=>{
@@ -104,6 +105,8 @@ export class UserList extends React.Component{
     return(
       <UserListContainer>
           <InputForm onChange={this.ChangeInputValue} value={this.state.inputValue} placeholder="Buscar pelo usuário..." type="text"/>
+          <PList>Nome: {this.props.userSearched.name}</PList>
+          <PList>Id: {this.props.userSearched.id}</PList>
           <ButtonForm onClick={this.SearchUser}>Filtrar</ButtonForm>
         <ButtonForm onClick={this.BackWindow}>Registrar Usuário</ButtonForm>
         {ListUsers}
