@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
 import { Trader } from './Components/Trader';
+import now from 'performance-now';
 
 const AppContainer = styled.div`
   min-height: 100vh;
@@ -60,7 +61,7 @@ const SelectForm = styled.select`
   }
 `
 
-const NothingDiv= styled.div`
+const NothingDiv = styled.div`
   flex-grow:1;
 `
 
@@ -69,39 +70,43 @@ const OptionForm = styled.option`
 `
 
 class App extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props)
-    this.state={
-      finalDate:"",
+    this.state = {
+      finalDate: "",
       inicialDate: "",
       selectedCoin: "BTC",
-      searchElements:{},
-      chart:false
+      selectedType: "buy",
+      chart: false
     }
   }
 
-  ChangeSelectedCoin =(event)=>{
-    this.setState({selectedCoin: event.target.value,chart: false})
+  ChangeSelectedCoin = (event) => {
+    this.setState({ selectedCoin: event.target.value, chart: false })
   }
 
-  ChangeInicialDate =(event)=>{
-    this.setState({inicialDate: event.target.value,chart: false})
+  ChangeSelectedType = (event) => {
+    this.setState({ selectedType: event.target.value, chart: false })
   }
 
-  ChangeFinalDate =(event)=>{
-    this.setState({finalDate: event.target.value,chart: false})
+  ChangeInicialDate = (event) => {
+    this.setState({ inicialDate: event.target.value, chart: false })
   }
 
-  SearchResults=()=>{
-    this.setState({chart: true})
+  ChangeFinalDate = (event) => {
+    this.setState({ finalDate: event.target.value, chart: false })
   }
 
-  render(){
+  SearchResults = () => {
+    this.setState({ chart: true })
+  }
+
+  render() {
     let renderChart
-    if(this.state.chart){
-      renderChart = <Trader InicialDate={this.state.inicialDate} FinalDate={this.state.finalDate} SelectedCoin={this.state.selectedCoin} />
-    }else{
-      renderChart = <NothingDiv/>
+    if (this.state.chart) {
+      renderChart = <Trader SelectedType={this.state.selectedType} InicialDate={this.state.inicialDate} FinalDate={this.state.finalDate} SelectedCoin={this.state.selectedCoin} />
+    } else {
+      renderChart = <NothingDiv />
     }
     return (
       <AppContainer>
@@ -114,8 +119,12 @@ class App extends React.Component {
             <OptionForm value="XRP">XRP (Ripple)</OptionForm>
             <OptionForm value="ETH">Ethereum</OptionForm>
           </SelectForm>
-          <InputForm onChange={this.ChangeInicialDate} value={this.state.inicialDate} placeholder="Data inicial" type="date"/>
-          <InputForm onChange={this.ChangeFinalDate} value={this.state.finalDate} placeholder="Data final" type="date"/>
+          <SelectForm onChange={this.ChangeSelectedType} value={this.state.selectedType}>
+            <OptionForm value="buy">Compra</OptionForm>
+            <OptionForm value="sell">Venda</OptionForm>
+          </SelectForm>
+          <InputForm onChange={this.ChangeInicialDate} value={this.state.inicialDate} placeholder="Data inicial" type="date" />
+          <InputForm onChange={this.ChangeFinalDate} value={this.state.finalDate} placeholder="Data final" type="date" />
           <ButtonForm onClick={this.SearchResults}>Buscar</ButtonForm>
         </FormContainer>
       </AppContainer>
