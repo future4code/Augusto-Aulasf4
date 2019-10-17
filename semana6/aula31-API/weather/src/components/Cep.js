@@ -36,9 +36,9 @@ export class Cep extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            currentCity: "",
+            cep: "",
             cityWoeid: "",
-            cityWeather: []
+            cepChecked: []
         }
     }
 
@@ -46,54 +46,37 @@ export class Cep extends React.Component {
         this.setState({ [event.target.name]: event.target.value })
     }
 
-    SearchWoeid = async () => {
-        const res = await axios.get(`https://www.metaweather.com/api/location/search/?query=${this.state.currentCity}`)
-        this.setState({ cityWoeid: res.data[0].woeid })
+    SearchCep = async () => {
+        const res = await axios.get(`https://viacep.com.br/ws/${this.state.cep}/json/`)
+        console.log(res.data)
+        this.setState({ cepChecked: res.data })
 
     }
 
-    searchWeather = async () => {
-        const res = await axios.get(`https://www.metaweather.com/api/location/${this.state.cityWoeid}`)
-        this.setState({ cityWeather: res.data.consolidated_weather })
-    }
-
-    componentDidUpdate(inutil, prevState) {
-        if (prevState !== this.state.cityWoeid) {
-            this.searchWeather()
-        }
-    }
 
 
     render() {
 
-        const listWeather = this.state.cityWeather.map(elem => {
-            const url = `https://www.metaweather.com/static/img/weather/${elem.weather_state_abbr}.svg`
-            return <div>
-                <p>Dia: {elem.created}</p>
-                <p>Clima: {elem.weather_state_name} <img src={url} alt="" /></p>
-                <p>Minima: {elem.min_temp}</p>
-                <p>Máxima: {elem.max_temp}</p>
-                <p>Temperatura no Momento: {elem.the_temp}</p>
-            </div>
-        })
         return (
             <WeatherContainer>
-                <label htmlFor="currentCity">Tempo no estado:</label>
-                <SelectForm
+                <label htmlFor="currentCity">Buscar pelo cep:</label>
+                <InputForm
                     type="text"
-                    value={this.state.currentCity}
+                    value={this.state.cep}
                     onChange={this.onChangeInput}
-                    name="currentCity"
-                    placeholder="estado..."
-                >
-                    <option value="rio de janeiro">Rio de Janeiro</option>
-                    <option value="são paulo">São Paulo</option>
-                    <option value="salvador">Salvador</option>
-                    <option value="brasília">Brasília</option>
-                </SelectForm>
-                <ButtonForm onClick={this.SearchWoeid}>Buscar</ButtonForm>
+                    name="cep"
+                    placeholder="cep..."
+                />
+                <ButtonForm onClick={this.SearchCep}>Buscar</ButtonForm>
 
-                {listWeather}
+                <div>
+                    <p>Cep: {this.state.cepChecked.cep}</p>
+                    <p>Rua: {this.state.cepChecked.logradouro}</p>
+                    <p>Bairro: {this.state.cepChecked.bairro}</p>
+                    <p>Cidade: {this.state.cepChecked.localidade}</p>
+                    <p>Estado: {this.state.cepChecked.uf}</p>
+                    <p>Ibge: {this.state.cepChecked.ibge}</p>
+                </div>
             </WeatherContainer>
         )
     }
