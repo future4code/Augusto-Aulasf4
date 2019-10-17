@@ -14,6 +14,7 @@ const TalkDiv = styled.div`
     border-radius: 10px 10px 0 10px;
     padding:10px;
     margin-right: 10px;
+    background:whitesmoke;
 `
 const FlexDiv = styled.div`
     display:flex;

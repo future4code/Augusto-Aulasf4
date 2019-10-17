@@ -18,14 +18,6 @@ const InputForm = styled.input`
     margin-bottom:10px;
 `
 
-const SelectForm = styled.select`
-    width:100%;
-    padding:0;
-    margin:10px;
-    height:30px;
-    background: lightsteelblue;
-`
-
 const ButtonForm = styled.button`
     background: lightsteelblue;
     border: 2px black solid;

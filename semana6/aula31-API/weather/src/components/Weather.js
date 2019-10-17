@@ -13,14 +13,6 @@ const Weatherdiv = styled.div`
 border-bottom: 2px solid black;
 `
 
-const InputForm = styled.input`
-    width:100%;
-    padding:0;
-    margin:0;
-    height:30px;
-    margin-bottom:10px;
-`
-
 const SelectForm = styled.select`
     width:100%;
     padding:0;
