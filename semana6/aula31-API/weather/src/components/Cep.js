@@ -37,7 +37,6 @@ export class Cep extends React.Component {
         super(props)
         this.state = {
             cep: "",
-            cityWoeid: "",
             cepChecked: []
         }
     }
@@ -53,8 +52,6 @@ export class Cep extends React.Component {
 
     }
 
-
-
     render() {
 
         return (
@@ -68,7 +65,6 @@ export class Cep extends React.Component {
                     placeholder="cep..."
                 />
                 <ButtonForm onClick={this.SearchCep}>Buscar</ButtonForm>
-
                 <div>
                     <p>Cep: {this.state.cepChecked.cep}</p>
                     <p>Rua: {this.state.cepChecked.logradouro}</p>
