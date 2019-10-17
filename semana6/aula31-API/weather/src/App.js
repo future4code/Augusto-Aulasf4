@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Weather } from './components/Weather';
+import { Cep } from './components/Cep';
 
 const AppContainer = styled.div`
   background: lightgoldenrodyellow;
@@ -21,7 +22,7 @@ class App extends React.Component {
   render() {
     return (
       <AppContainer>
-        <Weather />
+        <Weather/>
       </AppContainer>
     )
   }

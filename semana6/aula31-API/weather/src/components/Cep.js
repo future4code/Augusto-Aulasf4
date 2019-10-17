@@ -9,9 +9,6 @@ const WeatherContainer = styled.div`
     align-items: center;
     justify-content: start;
 `
-const Weatherdiv = styled.div`
-border-bottom: 2px solid black;
-`
 
 const InputForm = styled.input`
     width:100%;
@@ -35,7 +32,7 @@ const ButtonForm = styled.button`
     box-shadow:2px 2px 2px black;
 `
 
-export class Weather extends React.Component {
+export class Cep extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -71,13 +68,13 @@ export class Weather extends React.Component {
 
         const listWeather = this.state.cityWeather.map(elem => {
             const url = `https://www.metaweather.com/static/img/weather/${elem.weather_state_abbr}.svg`
-            return <Weatherdiv>
+            return <div>
                 <p>Dia: {elem.created}</p>
                 <p>Clima: {elem.weather_state_name} <img src={url} alt="" /></p>
                 <p>Minima: {elem.min_temp}</p>
                 <p>Máxima: {elem.max_temp}</p>
                 <p>Temperatura no Momento: {elem.the_temp}</p>
-            </Weatherdiv>
+            </div>
         })
         return (
             <WeatherContainer>
@@ -89,7 +86,6 @@ export class Weather extends React.Component {
                     name="currentCity"
                     placeholder="estado..."
                 >
-                    <option value="">Selecione...</option>
                     <option value="rio de janeiro">Rio de Janeiro</option>
                     <option value="são paulo">São Paulo</option>
                     <option value="salvador">Salvador</option>
