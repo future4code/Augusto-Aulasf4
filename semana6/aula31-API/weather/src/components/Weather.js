@@ -21,15 +21,15 @@ const InputForm = styled.input`
 const SelectForm = styled.select`
     width:100%;
     padding:0;
-    margin:0;
+    margin:10px;
     height:30px;
-    margin-bottom:10px;
+    background: lightsteelblue;
 `
 
 const ButtonForm = styled.button`
     background: lightsteelblue;
-    border: 2px white solid;
-    color: white;
+    border: 2px black solid;
+    box-shadow:2px 2px 2px black;
 `
 
 export class Weather extends React.Component {
