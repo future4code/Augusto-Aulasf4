@@ -16,14 +16,14 @@ export const sendInputTaskNameToArray = taskList => {
 	};
   };
   
-//   export const checkTask = checkState => {
-// 	return {
-// 	  type: "CHECK_TASK",
-// 	  payload: {
-// 		taskCheckState: checkState
-// 	  }
-// 	};
-//   };
+  export const checkTask = checkState => {
+	return {
+	  type: "CHECK_TASK",
+	  payload: {
+		taskCheckState: checkState
+	  }
+	};
+  };
 
 //   export const changePlanetAction = planet => {
 // 	return {

@@ -8,7 +8,7 @@ import Select from '@material-ui/core/Select';
 import IndeterminateCheckBox from '@material-ui/icons/IndeterminateCheckBox';
 import Send from '@material-ui/icons/Send';
 import { connect } from "react-redux";
-import { inputTaskName } from "../actions/index";
+import { inputTaskName, sendInputTaskNameToArray, checkTask, checkAllTasks } from "../actions/index";
 
 
 const MainTask = styled.div`
@@ -99,15 +99,26 @@ const TitleTask = styled.h1`
 `
 
 export function Task(props) {
-	handleInput=(event)=>{
-		props.changeTaskName({taskName: event.target.value})
+
+	function handleInputName(event){
+		props.changeTaskName(event.target.value)
 	}
-	// markAllTasks = () =>{
-	// 	//vai pegar todos itens do array e passar o check para true
-	// 	tasks.forEach(task => {
-	// 		task.check = true
-	// 	});
-	// }
+
+	const addTaskToList = ()=>{
+		props.addTaskToList({name:props.taskName,check:false,id:Date.now()})
+	}
+
+	const changeCheckBoxStatus = (el)=>{
+		props.changeCheckBoxStatus(el)
+	}
+
+	const markAllTasks = () =>{
+		//vai pegar todos itens do array e passar o check para true
+			props.markAllTasks(true)
+		};
+
+
+	
 
 	// removeTask=(item)=>{
 	// 	const itemId = array.findIndex(item)
@@ -115,9 +126,7 @@ export function Task(props) {
 	// }
 
 
-	const tasks = [{ id: Date.now(), taskName: 'beba agua', check: false }, { id: Date.now(), taskName: 'coma coxinha', check: true }, { id: Date.now(), taskName: 'tome café', check: false }]
-
-	const filterTasks = tasks.filter((filteredTask) => {
+	const filterTasks = props.taskList.filter((filteredTask) => {
 		return (filteredTask.check === false) //filtrar pelo escolhido no select
 	})
 
@@ -125,16 +134,18 @@ export function Task(props) {
 		return (
 			<FlexDivText key={index}>
 				<FormControlLabel
+				
 					control={
 						<CheckBoxStyled
-							value="checked"
-							color="green[700]"
+							onClick={()=>changeCheckBoxStatus(taskItem)}
+							checked={taskItem.check}
+							color="green"
 						/>
 					}
-					label={taskItem.taskName}
+					label={taskItem.name}
 				/>
 				<IndeterminateCheckBoxStyled
-					//onClick={()=>removeTask(taskItem)} 
+					// onClick={()=>removeTask(taskItem)} 
 					color="secondary"
 				/>
 			</FlexDivText>
@@ -148,10 +159,10 @@ export function Task(props) {
 				<TaskHeader>
 					<TaskInput
 						value={props.taskName}
-						onChange={handleInput}
+						onChange={handleInputName}
 						placeholder="O que precisa fazer?"
 					/>
-					<SendStyled fontSize="large" color="action" />
+					<SendStyled onClick={addTaskToList} fontSize="large" color="action" />
 				</TaskHeader>
 				<TaskBody>
 					{listTasks}
@@ -159,11 +170,11 @@ export function Task(props) {
 
 				<TaskFooter>
 					<FormControlLabel
-						// onClick={markAllTasks}
+						onClick={markAllTasks}
 						control={
 							<CheckBoxStyled
 								value="checked"
-								color="green[700]"
+								color="green"
 							/>
 						}
 						label="Marcar Todas"
@@ -203,13 +214,17 @@ export function Task(props) {
 
 const mapStateToProps = state => {
 	return {
-		taskName: state.tasks.taskName
+		taskName: state.tasks.taskName,
+		taskList: state.tasks.listTasks
 	};
 };
 
 const mapDispatchToProps = dispatch => {
 	return {
-		changeTaskName: taskName => dispatch(inputTaskName(taskName))
+		changeTaskName: taskName => dispatch(inputTaskName(taskName)),
+		addTaskToList: taskName => dispatch(sendInputTaskNameToArray(taskName)),
+		changeCheckBoxStatus: taskName => dispatch(checkTask(taskName)),
+		markAllTasks: taskName => dispatch(checkAllTasks(taskName)),
 	};
 };
 
