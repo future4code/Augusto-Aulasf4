@@ -8,7 +8,9 @@ import Select from '@material-ui/core/Select';
 import IndeterminateCheckBox from '@material-ui/icons/IndeterminateCheckBox';
 import Send from '@material-ui/icons/Send';
 import { connect } from "react-redux";
-import { inputTaskName, sendInputTaskNameToArray, checkTask, checkAllTasks, filterTasks } from "../actions/index";
+import { inputTaskName, sendInputTaskNameToArray, checkTask, checkAllTasks, filterTasks, removeAllTasks, removeTask } from "../actions/index";
+import Button from '@material-ui/core/Button';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 
 const MainTask = styled.div`
@@ -118,16 +120,21 @@ export function Task(props) {
 
 	const markAllTasks = () =>{
 		//vai pegar todos itens do array e passar o check para true
-			props.markAllTasks(true)
-		};
+			props.markAllTasks(props.checkAllState)
+	};
+
+	const deleteAll = () =>{
+		//vai pegar todos itens do array e passar o check para true
+			props.deleteAllTasks([])
+	};
 
 
 	
 
-	// removeTask=(item)=>{
-	// 	const itemId = array.findIndex(item)
-	// 	tasks.splice(itemId,1)
-	// }
+	const removeTask=(item)=>{
+
+		props.removeTask(item)
+	}
 
 
 	const filterTasks = props.taskList.filter((filteredTask) => {
@@ -155,7 +162,7 @@ export function Task(props) {
 					label={taskItem.name}
 				/>
 				<IndeterminateCheckBoxStyled
-					// onClick={()=>removeTask(taskItem)} 
+					onClick={()=>removeTask(taskItem)} 
 					color="secondary"
 				/>
 			</FlexDivText>
@@ -180,14 +187,14 @@ export function Task(props) {
 
 				<TaskFooter>
 					<FormControlLabel
-						onClick={markAllTasks}
 						control={
 							<CheckBoxStyled
-								value="checked"
+								onClick={markAllTasks}
+								checked={props.checkAllState}
 								color="green"
 							/>
 						}
-						label="Marcar Todas"
+						label={props.checkAllState?"Desmarcar Todas":"Marcar Todas"}
 					/>
 
 					<FormControlStyled >
@@ -201,15 +208,10 @@ export function Task(props) {
 							<MenuItem value="pendentes">Pendentes</MenuItem>
 						</Select>
 					</FormControlStyled>
-					<FormControlLabel
-						control={
-							<CheckBoxStyled
-								value="checked"
-								color="green[700]"
-							/>
-						}
-						label="Remover Todas"
-					/>
+      					<Button onClick={deleteAll} variant="contained" color="secondary">
+      					  <DeleteIcon/>
+							Todas
+      					</Button>
 				</TaskFooter>
 			</TaskContainer>
 
@@ -222,6 +224,7 @@ const mapStateToProps = state => {
 		taskName: state.tasks.taskName,
 		taskList: state.tasks.listTasks,
 		taskFilter: state.tasks.taskFilter,
+		checkAllState: state.tasks.checkAll,
 	};
 };
 
@@ -232,6 +235,8 @@ const mapDispatchToProps = dispatch => {
 		addTaskToList: taskName => dispatch(sendInputTaskNameToArray(taskName)),
 		changeCheckBoxStatus: taskName => dispatch(checkTask(taskName)),
 		markAllTasks: taskName => dispatch(checkAllTasks(taskName)),
+		deleteAllTasks: taskName => dispatch(removeAllTasks(taskName)),
+		removeTask: taskName => dispatch(removeTask(taskName)),
 	};
 };
 

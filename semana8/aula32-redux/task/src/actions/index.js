@@ -25,14 +25,14 @@ export const sendInputTaskNameToArray = taskList => {
 	};
   };
 
-//   export const changePlanetAction = planet => {
-// 	return {
-// 	  type: "REMOVE_TASK",
-// 	  payload: {
-// 		planet: planet
-// 	  }
-// 	};
-//   };
+  export const removeTask = taskToRemove => {
+	return {
+	  type: "REMOVE_TASK",
+	  payload: {
+		taskToRemove: taskToRemove
+	  }
+	};
+  };
 
   export const removeAllTasks = removeAll => {
 	return {
