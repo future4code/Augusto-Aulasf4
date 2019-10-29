@@ -4,7 +4,9 @@ import { create } from 'jss'
 import { MuiThemeProvider, createGenerateClassName, jssPreset } from '@material-ui/core/styles'
 import { createMuiTheme } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
-import { AppContainer } from './components/AppContainer'
+import { AppContainer } from './containers/App/AppContainer'
+
+
 
 const generateClassName = createGenerateClassName()
 const jss = create({
