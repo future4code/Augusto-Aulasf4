@@ -9,7 +9,20 @@ import IndeterminateCheckBox from '@material-ui/icons/IndeterminateCheckBox';
 import Send from '@material-ui/icons/Send';
 import CheckBox from '@material-ui/icons/CheckBox';
 import { connect } from "react-redux";
-import { fetchTasks, inputTaskName, sendInputTaskNameToArray, checkTask, checkAllTasks, filterTasks, removeAllTasks, removeTask } from "../actions/index";
+import { 
+	toggleAll,
+	toggleToDo,
+	deleteToDo,
+	fetchTasks, 
+	inputTaskName, 
+	sendInputTaskNameToArray,
+	 checkTask, 
+	 checkAllTasks, 
+	 filterTasks, 
+	 removeAllTasks,
+	  removeTask, 
+	  createTask, 
+	  deleteAllToDo } from "../actions/index";
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 
@@ -114,44 +127,40 @@ export function Task(props) {
 
 	const addTaskToListEnter = (event) => {
 		if (event.key === "Enter" || event.click) {
-			props.addTaskToList({ name: props.taskName, check: false, id: Date.now() })
+			props.createTask(props.taskName)
 		}
 	}
 
 	const addTaskToList = (event) => {
-		props.addTaskToList({ name: props.taskName, check: false, id: Date.now() })
+		props.createTask(props.taskName)
 	}
 
 	const changeCheckBoxStatus = (el) => {
-		props.changeCheckBoxStatus(el)
+		props.toggleToDo(el)
 	}
 
 	const markAllTasks = () => {
 		//vai pegar todos itens do array e passar o check para true
-		props.markAllTasks(props.checkAllState)
+		props.toggleAll(props.checkAllState)
 	};
 
 	const deleteAll = () => {
 		//vai pegar todos itens do array e passar o check para true
-		props.deleteAllTasks([])
+		props.deleteAllToDo()
 	};
 
-
-
-
 	const removeTask = (item) => {
-
-		props.removeTask(item)
+		props.deleteToDo(item)
 	}
 
 	// props.fetchTasks()
 	const filterTasks = props.taskList.filter((filteredTask) => {
 		if (props.taskFilter === "todas") {
-			return (filteredTask.check === true || filteredTask.check === false)
+			return (filteredTask.done === true || filteredTask.done === false)
 		} else if (props.taskFilter === "pendentes") {
-			return (filteredTask.check === false)
+			return (filteredTask.done === false)
 		} else if (props.taskFilter === "marcadas") {
-			return (filteredTask.check === true)
+			return (filteredTask.done === true)
 		}
 	})
 
@@ -162,12 +171,12 @@ export function Task(props) {
 
 					control={
 						<CheckBoxStyled
-							onClick={() => changeCheckBoxStatus(taskItem)}
-							checked={taskItem.check}
+							onClick={() => changeCheckBoxStatus(taskItem.id)}
+							checked={taskItem.done}
 							color="green"
 						/>
 					}
-					label={taskItem.name}
+					label={taskItem.text}
 				/>
 				<IndeterminateCheckBoxStyled
 					onClick={() => removeTask(taskItem)}
@@ -248,6 +257,11 @@ const mapDispatchToProps = dispatch => {
 		deleteAllTasks: taskName => dispatch(removeAllTasks(taskName)),
 		removeTask: taskName => dispatch(removeTask(taskName)),
 		fetchTasks: taskName => dispatch(fetchTasks(taskName)),
+		createTask: taskName => dispatch(createTask(taskName)),
+		deleteAllToDo: taskName => dispatch(deleteAllToDo(taskName)),
+		deleteToDo: taskName => dispatch(deleteToDo(taskName)),
+		toggleToDo: taskName => dispatch(toggleToDo(taskName)),
+		toggleAll: taskName => dispatch(toggleAll(taskName)),
 	};
 };
 
