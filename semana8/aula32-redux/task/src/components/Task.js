@@ -7,6 +7,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import IndeterminateCheckBox from '@material-ui/icons/IndeterminateCheckBox';
 import Send from '@material-ui/icons/Send';
+import CheckBox from '@material-ui/icons/CheckBox';
 import { connect } from "react-redux";
 import { inputTaskName, sendInputTaskNameToArray, checkTask, checkAllTasks, filterTasks, removeAllTasks, removeTask } from "../actions/index";
 import Button from '@material-ui/core/Button';
@@ -211,6 +212,7 @@ export function Task(props) {
       					<Button onClick={deleteAll} variant="contained" color="secondary">
       					  <DeleteIcon/>
 							Todas
+							<CheckBox/>
       					</Button>
 				</TaskFooter>
 			</TaskContainer>

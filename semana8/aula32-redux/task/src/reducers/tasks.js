@@ -1,6 +1,6 @@
 const initialState = {
 	taskName: "",
-	listTasks:[{name:'Beber Cerveja', check:false, id:1}],
+	listTasks:[{name:'Beber Cerveja', check:false, id:0}],
 	taskFilter:'todas',
 	checkAll: false
   };
@@ -11,18 +11,24 @@ const initialState = {
 			return { ...state, taskName: action.payload.taskName };
 		case "REMOVE_ALL_TASKS":
 			const listTasksState = [...state.listTasks]
-			for(let element of listTasksState){
-				if(element.check){
-					const positionElement = listTasksState.findIndex((Item) => {
-						return element.id === Item.id
-					})
+
+			const onlyFalseInList = listTasksState.filter((filteredTasks) => {
+
+				return filteredTasks.check===false
+			})
+			//pq nao funcionou?
+			// for(let element of listTasksState){
+			// 	if(element.check === true){
 					
-					listTasksState.splice(positionElement,1)
+			// 		const positionElement = listTasksState.findIndex((Item) => {
+			// 			return element.id === Item.id
+			// 		})
 					
-				}
-				state.listTasks=listTasksState
-			};
-			return { ...state};
+					// listTasksState.splice(positionElement, 1)
+					
+					// state.listTasks=listTasksState
+
+			return { ...state,listTasks: onlyFalseInList};
 		case "FILTER_TASKS":
 			return { ...state, taskFilter: action.payload.taskFilter };
 		case "SEND_TASK_TO_ARRAY":
