@@ -2,14 +2,31 @@ import React from 'react'
 import Task from '../../components/Task'
 import { Provider } from 'react-redux'
 import AppBarComponent from '../AppBar/AppBar'
-
-import { createStore } from "redux";
+import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from "../../reducers";
+import { createStore, applyMiddleware, compose } from 'redux';
+import otherMiddleware from 'other-middleware';
+import thunk from 'redux-thunk';
+
+
+const middleware = [
+    thunk,
+];
 
 const devTools =
 	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
 
-const store = createStore(rootReducer, devTools);
+	export default (initialState) => {
+		const store = createStore(
+		  rootReducer,
+		  initialState,
+		  compose(
+			applyMiddleware(thunk, reduxImmutableStateInvariant()),
+			window.devToolsExtension ? window.devToolsExtension() : f => f
+		  )
+		);
+		return store;
+	  }
 
 export class AppContainer extends React.Component {
 	constructor(props) {

@@ -3,7 +3,7 @@ const initialState = {
 	listTasks: [{ name: 'Beber Cerveja', check: false, id: 0 }],
 	taskFilter: 'todas',
 	checkAll: false,
-	searchTaskName: "olaa"
+	searchTaskName: ""
 };
 
 const tasksReducer = (state = initialState, action) => {
@@ -17,18 +17,6 @@ const tasksReducer = (state = initialState, action) => {
 
 				return filteredTasks.check === false
 			})
-			//pq nao funcionou?
-			// for(let element of listTasksState){
-			// 	if(element.check === true){
-
-			// 		const positionElement = listTasksState.findIndex((Item) => {
-			// 			return element.id === Item.id
-			// 		})
-
-			// listTasksState.splice(positionElement, 1)
-
-			// state.listTasks=listTasksState
-
 			return { ...state, listTasks: onlyFalseInList };
 		case "FILTER_TASKS":
 			return { ...state, taskFilter: action.payload.taskFilter };
