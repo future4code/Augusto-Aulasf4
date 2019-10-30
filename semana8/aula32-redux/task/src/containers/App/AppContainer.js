@@ -1,7 +1,7 @@
 import React from 'react'
 import Task from '../../components/Task'
 import { Provider } from 'react-redux'
-import { AppBarComponent } from '../AppBar/AppBar'
+import AppBarComponent from '../AppBar/AppBar'
 
 import { createStore } from "redux";
 import rootReducer from "../../reducers";

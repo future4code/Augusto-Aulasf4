@@ -17,7 +17,7 @@ color:white;
 `
 export function AppBarComponent(props) {
 
-	function handleSearchTask(event){
+	function handleSearchTaskName(event){
 		props.handleSearchTask(event.target.value)
 	}
 	
@@ -30,8 +30,8 @@ export function AppBarComponent(props) {
 			<ToolbarStyled>
 				<SearchIcon />
 				<InputBaseStyled
-					value={props.searchTask}
-					onChange={handleSearchTask}
+					value={props.searchTaskNameInput}
+					onChange={handleSearchTaskName}
 					placeholder="Search…"
 				/>
 			</ToolbarStyled>
@@ -41,7 +41,7 @@ export function AppBarComponent(props) {
 }
 const mapStateToProps = state => {
 	return {
-		searchTask: state.tasks.searchTaskName,
+		searchTaskNameInput: state.tasks.searchTaskName,
 	};
 };
 
