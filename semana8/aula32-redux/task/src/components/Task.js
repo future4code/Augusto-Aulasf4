@@ -14,6 +14,7 @@ import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 
+
 const MainTask = styled.div`
 	min-height: 100vh;
 	display: flex;
@@ -103,47 +104,53 @@ const TitleTask = styled.h1`
 
 export function Task(props) {
 
-	function handleInputName(event){
+	function handleInputName(event) {
 		props.changeTaskName(event.target.value)
 	}
 
-	function ChangeFilter(event){
+	function ChangeFilter(event) {
 		props.changeTaskFilter(event.target.value)
 	}
 
-	const addTaskToList = ()=>{
-		props.addTaskToList({name:props.taskName,check:false,id:Date.now()})
+	const addTaskToListEnter = (event) => {
+		if (event.key === "Enter" || event.click) {
+			props.addTaskToList({ name: props.taskName, check: false, id: Date.now() })
+		}
 	}
 
-	const changeCheckBoxStatus = (el)=>{
+	const addTaskToList = (event) => {
+		props.addTaskToList({ name: props.taskName, check: false, id: Date.now() })
+	}
+
+	const changeCheckBoxStatus = (el) => {
 		props.changeCheckBoxStatus(el)
 	}
 
-	const markAllTasks = () =>{
+	const markAllTasks = () => {
 		//vai pegar todos itens do array e passar o check para true
-			props.markAllTasks(props.checkAllState)
+		props.markAllTasks(props.checkAllState)
 	};
 
-	const deleteAll = () =>{
+	const deleteAll = () => {
 		//vai pegar todos itens do array e passar o check para true
-			props.deleteAllTasks([])
+		props.deleteAllTasks([])
 	};
 
 
-	
 
-	const removeTask=(item)=>{
+
+	const removeTask = (item) => {
 
 		props.removeTask(item)
 	}
 
 
 	const filterTasks = props.taskList.filter((filteredTask) => {
-		if(props.taskFilter==="todas"){
+		if (props.taskFilter === "todas") {
 			return (filteredTask.check === true || filteredTask.check === false)
-		}else if(props.taskFilter==="pendentes"){
+		} else if (props.taskFilter === "pendentes") {
 			return (filteredTask.check === false)
-		}else if(props.taskFilter==="marcadas"){
+		} else if (props.taskFilter === "marcadas") {
 			return (filteredTask.check === true)
 		}
 	})
@@ -152,10 +159,10 @@ export function Task(props) {
 		return (
 			<FlexDivText key={index}>
 				<FormControlLabel
-				
+
 					control={
 						<CheckBoxStyled
-							onClick={()=>changeCheckBoxStatus(taskItem)}
+							onClick={() => changeCheckBoxStatus(taskItem)}
 							checked={taskItem.check}
 							color="green"
 						/>
@@ -163,13 +170,13 @@ export function Task(props) {
 					label={taskItem.name}
 				/>
 				<IndeterminateCheckBoxStyled
-					onClick={()=>removeTask(taskItem)} 
+					onClick={() => removeTask(taskItem)}
 					color="secondary"
 				/>
 			</FlexDivText>
 		)
 	})
-	
+
 	return (
 		<MainTask>
 			<TitleTask>Tasks 4U</TitleTask>
@@ -177,6 +184,7 @@ export function Task(props) {
 				<TaskHeader>
 					<TaskInput
 						value={props.taskName}
+						onKeyPress={addTaskToListEnter}
 						onChange={handleInputName}
 						placeholder="O que precisa fazer?"
 					/>
@@ -195,7 +203,7 @@ export function Task(props) {
 								color="green"
 							/>
 						}
-						label={props.checkAllState?"Desmarcar Todas":"Marcar Todas"}
+						label={props.checkAllState ? "Desmarcar Todas" : "Marcar Todas"}
 					/>
 
 					<FormControlStyled >
@@ -209,11 +217,11 @@ export function Task(props) {
 							<MenuItem value="pendentes">Pendentes</MenuItem>
 						</Select>
 					</FormControlStyled>
-      					<Button onClick={deleteAll} variant="contained" color="secondary">
-      					  <DeleteIcon/>
-							Todas
-							<CheckBox/>
-      					</Button>
+					<Button onClick={deleteAll} variant="contained" color="secondary">
+						<DeleteIcon />
+						Todas
+							<CheckBox />
+					</Button>
 				</TaskFooter>
 			</TaskContainer>
 

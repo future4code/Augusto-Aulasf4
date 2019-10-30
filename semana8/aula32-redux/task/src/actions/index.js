@@ -1,63 +1,71 @@
 export const inputTaskName = taskName => {
 	return {
-	  type: "CREATE_TASK_NAME",
-	  payload: {
-		taskName: taskName
-	  }
+		type: "CREATE_TASK_NAME",
+		payload: {
+			taskName: taskName
+		}
 	};
-  };
+};
+
+export const handleSearchTask = taskName => {
+	return {
+		type: "SEARCH_TASK",
+		payload: {
+			searchTask: taskName
+		}
+	};
+};
 
 export const sendInputTaskNameToArray = taskList => {
 	return {
-	  type: "SEND_TASK_TO_ARRAY",
-	  payload: {
-		listTasks: taskList
-	  }
+		type: "SEND_TASK_TO_ARRAY",
+		payload: {
+			listTasks: taskList
+		}
 	};
-  };
-  
-  export const checkTask = checkState => {
-	return {
-	  type: "CHECK_TASK",
-	  payload: {
-		taskCheckState: checkState
-	  }
-	};
-  };
+};
 
-  export const removeTask = taskToRemove => {
+export const checkTask = checkState => {
 	return {
-	  type: "REMOVE_TASK",
-	  payload: {
-		taskToRemove: taskToRemove
-	  }
+		type: "CHECK_TASK",
+		payload: {
+			taskCheckState: checkState
+		}
 	};
-  };
+};
 
-  export const removeAllTasks = removeAll => {
+export const removeTask = taskToRemove => {
 	return {
-	  type: "REMOVE_ALL_TASKS",
-	  payload: {
-		removeAll: removeAll
-	  }
+		type: "REMOVE_TASK",
+		payload: {
+			taskToRemove: taskToRemove
+		}
 	};
-  };
+};
 
-  export const checkAllTasks = markAll => {
+export const removeAllTasks = removeAll => {
 	return {
-	  type: "CHECK_ALL_TASKS",
-	  payload: {
-		markAll: markAll
-	  }
+		type: "REMOVE_ALL_TASKS",
+		payload: {
+			removeAll: removeAll
+		}
 	};
-  };
+};
 
-  export const filterTasks = taskFiltered => {
+export const checkAllTasks = markAll => {
 	return {
-	  type: "FILTER_TASKS",
-	  payload: {
-		taskFilter: taskFiltered
-	  }
+		type: "CHECK_ALL_TASKS",
+		payload: {
+			markAll: markAll
+		}
 	};
-  };
-  
+};
+
+export const filterTasks = taskFiltered => {
+	return {
+		type: "FILTER_TASKS",
+		payload: {
+			taskFilter: taskFiltered
+		}
+	};
+};
