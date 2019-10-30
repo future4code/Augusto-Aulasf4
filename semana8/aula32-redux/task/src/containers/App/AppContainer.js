@@ -18,11 +18,10 @@ export class AppContainer extends React.Component {
 		super(props)
 	}
 
-
 	render() {
 		return (
 			<Provider store={store}>
-				<AppBarComponent/>
+				<AppBarComponent />
 				<Task />
 			</Provider>
 		)

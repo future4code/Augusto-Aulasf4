@@ -14,9 +14,7 @@ const tasksReducer = (state = initialState, action) => {
 			return { ...state, listTasks: action.payload.tasksList };
 		case "REMOVE_ALL_TASKS":
 			const listTasksState = [...state.listTasks]
-
 			const onlyFalseInList = listTasksState.filter((filteredTasks) => {
-
 				return filteredTasks.done === false
 			})
 			return { ...state, listTasks: onlyFalseInList };
@@ -48,15 +46,12 @@ const tasksReducer = (state = initialState, action) => {
 			newListTasks.splice(positionTaskId, 1)
 			return { ...state, listTasks: newListTasks };
 		case "CHECK_ALL_TASKS":
-
 			const checkAllStatus = action.payload.markAll
 			const copyListTask = [...state.listTasks]
-
 			for (let task of copyListTask) {
 
 				task.done = !checkAllStatus
 			}
-
 			return { ...state, checkAll: !checkAllStatus, listTasks: copyListTask };
 
 		default:
