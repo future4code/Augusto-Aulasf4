@@ -10,6 +10,8 @@ const tasksReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case "CREATE_TASK_NAME":
 			return { ...state, taskName: action.payload.taskName };
+		case "SET_TASKS":
+			return { ...state, listTasks: action.payload.taskList };
 		case "REMOVE_ALL_TASKS":
 			const listTasksState = [...state.listTasks]
 

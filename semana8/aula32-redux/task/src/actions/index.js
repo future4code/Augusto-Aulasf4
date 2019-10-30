@@ -72,13 +72,22 @@ export const filterTasks = taskFiltered => {
 	};
 };
 
-export const fetchPosts = () => async (dispatch, getState) => {
+export const setTasks = taskList => {
+	return {
+	  type: "SET_TASKS",
+	  payload: {
+		taskList: taskList
+	  }
+	};
+  };
+
+export const fetchTasks = () => async (dispatch, getState) => {
 	const result = await axios.get(
 	  "https://us-central1-missao-newton.cloudfunctions.net/reduxTodo/augusto/todos"
 	);
   
-	console.log(result)
-	// dispatch(setPosts(result.data));
+	console.log(result.data.todos)
+	dispatch(setTasks(result.data.todos));
   };
   
 export const createTask = text => async (dispatch, getState) => {
@@ -100,7 +109,7 @@ export const createTask = text => async (dispatch, getState) => {
 
   export const toggleToDo = id => async (dispatch, getState) => {
 	const responseput = await axios.put(
-	  "https://us-central1-missao-newton.cloudfunctions.net/reduxTodo/augusto/todos/${id}/toggle");
+	  `https://us-central1-missao-newton.cloudfunctions.net/reduxTodo/augusto/todos/${id}/toggle`);
 
 	console.log(responseput)
 	// dispatch(
@@ -112,10 +121,20 @@ export const createTask = text => async (dispatch, getState) => {
 	// );
   };
 
-  export const deleteToDo = id => async (dispatch, getState) => {
-	const responseput = await axios.put(
-	  "https://us-central1-missao-newton.cloudfunctions.net/reduxTodo/augusto/todos/${id}/toggle");
+//   export const deleteToDo = idDel => async (dispatch, getState) => {
+// 	const responseput = await axios.delete(
+// 	  `https://us-central1-missao-newton.cloudfunctions.net/reduxTodo/augusto/todos/${idDel}`);
 
-	console.log(responseput)
-	};
+// 	console.log(responseput)
+// 	};
+
+
+//   export const deleteAllToDo = test => async (dispatch, getState) => {
+// 	const responseput = await axios.delete(
+// 	  `https://us-central1-missao-newton.cloudfunctions.net/reduxTodo/augusto/todos/delete-done`);
+
+// 	console.log(responseput)
+// 	};
+
+
 

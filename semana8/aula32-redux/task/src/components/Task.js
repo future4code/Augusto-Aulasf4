@@ -9,7 +9,7 @@ import IndeterminateCheckBox from '@material-ui/icons/IndeterminateCheckBox';
 import Send from '@material-ui/icons/Send';
 import CheckBox from '@material-ui/icons/CheckBox';
 import { connect } from "react-redux";
-import { inputTaskName, sendInputTaskNameToArray, checkTask, checkAllTasks, filterTasks, removeAllTasks, removeTask } from "../actions/index";
+import { fetchTasks, inputTaskName, sendInputTaskNameToArray, checkTask, checkAllTasks, filterTasks, removeAllTasks, removeTask } from "../actions/index";
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 
@@ -144,7 +144,7 @@ export function Task(props) {
 		props.removeTask(item)
 	}
 
-
+	// props.fetchTasks()
 	const filterTasks = props.taskList.filter((filteredTask) => {
 		if (props.taskFilter === "todas") {
 			return (filteredTask.check === true || filteredTask.check === false)
@@ -247,6 +247,7 @@ const mapDispatchToProps = dispatch => {
 		markAllTasks: taskName => dispatch(checkAllTasks(taskName)),
 		deleteAllTasks: taskName => dispatch(removeAllTasks(taskName)),
 		removeTask: taskName => dispatch(removeTask(taskName)),
+		fetchTasks: taskName => dispatch(fetchTasks(taskName)),
 	};
 };
 
