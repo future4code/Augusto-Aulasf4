@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, {keyframes} from 'styled-components'
 import Icon from '@mdi/react'
 
 export const OptionButton = styled.button`
@@ -46,10 +46,35 @@ export const ContentWrapper = styled.div`
 	justify-content: flex-end;
 `
 
+export const swipeRightToInit = keyframes`
+  from {
+    opacity: 0;
+	  transform:scale(0) translate(0) rotate(0);
+  }
+
+  to {
+    opacity: 1;
+	  transform: scale(1) translate(0) rotate(360deg);
+  }
+`;
+export const swipeLeftToClose = keyframes`
+  from {
+    opacity: 1;
+	  transform:scale(1) translate(0) rotate(0);
+  }
+
+  to {
+    opacity: 0;
+	  transform: scale(0) translate(0) rotate(-360deg);
+  }
+`;
+
+
 export const SwipeScreenWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	height: 100%;
+  animation: ${props => props.closeWindowWithAnimation} 0.6s ;
 `
 
 

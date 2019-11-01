@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import SwipeScreen from '../SwipeScreen'
 import MatchScreen from '../MatchScreen'
 import ProfileScreen from '../ProfileScreen'
+import styled from './styled'
 
 const Router = (props) => {
   switch(props.currentPage) {
