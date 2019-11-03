@@ -35,13 +35,12 @@ import {connect} from 'react-redux'
         const draggedOffset = monitor.getClientOffset();
         const draggedLeft = draggedOffset.x - targetSize.left
         
-        if (draggedLeft>targetCenter){
-          props.chooseProfile(props.userToSwipe.id, 'dislike')
-          props.saveFatherState(swipeLeft)
-        }else{
-          props.chooseProfile(props.userToSwipe.id, 'like')
+        if (draggedLeft<targetCenter){
+          props.chooseProfile(props.userToSwipe.id, false)
           props.saveFatherState(swipeRight)
-
+        }else{
+          props.chooseProfile(props.userToSwipe.id, true)
+          props.saveFatherState(swipeLeft)
         }
       }
     })
