@@ -35,6 +35,7 @@ export const UserCardWrapper = styled.div`
 	display: flex;
 	align-items: center;
 	cursor:grab;
+	opacity:1;
 
 	${props=>props.isDragging && css`
 border: 2px dashed rgba(0,0,0,0.2);

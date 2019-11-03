@@ -29,7 +29,7 @@ export const getMatches = () => async (dispatch, getState) => {
 }
 
 export const choosePerson = (id, op) => async (dispatch, getState) => {
-    console.log(op)
+    
     const data = {
         id:id,
         choice:op,

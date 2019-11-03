@@ -7,6 +7,7 @@ import styled, { createGlobalStyle } from 'styled-components'
 import ClearButton from './components/ClearButton'
 import { DndProvider } from 'react-dnd'
 import HTML5Backend from 'react-dnd-html5-backend'
+import TouchBackend from 'react-dnd-touch-backend'
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Montserrat|Roboto');
@@ -34,11 +35,20 @@ const MainContainer = styled.div`
   box-shadow: 0 0 5px #0000000F;
 `
 
+
+function isMobileDevice() {
+  return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+};
+
 const App = () => {
+
+const mobile = isMobileDevice()
+
   return (
-    <DndProvider backend={HTML5Backend}>
+    <DndProvider backend={mobile? TouchBackend : HTML5Backend}>
       <Provider store={store}>
         <GlobalStyle />
+        
         <MainContainer>
           <Router />
         </MainContainer>
