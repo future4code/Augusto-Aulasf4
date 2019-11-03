@@ -54,7 +54,7 @@ export const swipeRightToInit = keyframes`
 
   to {
     opacity: 1;
-	  transform: scale(1) translate(0) rotate(360deg);
+	  transform: scale(1) translate(0) rotate(-360deg);
   }
 `;
 export const swipeLeftToClose = keyframes`

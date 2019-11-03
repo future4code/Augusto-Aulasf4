@@ -1,10 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import store from './store'
-import {Provider} from 'react-redux'
+import { Provider } from 'react-redux'
 import Router from './containers/Router'
-import styled, {createGlobalStyle} from 'styled-components'
+import styled, { createGlobalStyle } from 'styled-components'
 import ClearButton from './components/ClearButton'
+import { DndProvider } from 'react-dnd'
+import HTML5Backend from 'react-dnd-html5-backend'
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Montserrat|Roboto');
@@ -33,16 +35,18 @@ const MainContainer = styled.div`
 `
 
 const App = () => {
-	return (
-		<Provider store={store}>
-			<GlobalStyle/>
-			<MainContainer>
-				<Router/>
-			</MainContainer>
-			<ClearButton/>
-		</Provider>
-	)
+  return (
+    <DndProvider backend={HTML5Backend}>
+      <Provider store={store}>
+        <GlobalStyle />
+        <MainContainer>
+          <Router />
+        </MainContainer>
+        <ClearButton />
+      </Provider>
+    </DndProvider>
+  )
 }
 
 const rootElement = document.getElementById('root')
-ReactDOM.render(<App/>, rootElement)
+ReactDOM.render(<App />, rootElement)

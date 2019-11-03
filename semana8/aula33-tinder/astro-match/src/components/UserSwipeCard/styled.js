@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components'
+import styled, { css, keyframes } from 'styled-components'
 
 // CSS Animations for the SwipeCard
 export const swipeRight = keyframes`
@@ -34,7 +34,26 @@ export const UserCardWrapper = styled.div`
 	animation: ${props => props.animation} 0.5s forwards;
 	display: flex;
 	align-items: center;
+	cursor:grab;
+
+	${props=>props.isDragging && css`
+border: 2px dashed rgba(0,0,0,0.2);
+padding-top: 11px;
+border-radius: 0;
+background: transparent;
+box-shadow: none;
+cursor: grabbing;
+
+	img, div{
+		opacity:0;
+	}
+`}
+	
 `
+
+
+
+
 
 export const BlurredBackground = styled.div`
 	${({photo}) => {
@@ -54,6 +73,8 @@ export const ProfilePicture = styled.img`
   display: block;
   z-index: 1;
 `
+
+
 
 export const InfoWrapper = styled.div`
 	height: 30%;

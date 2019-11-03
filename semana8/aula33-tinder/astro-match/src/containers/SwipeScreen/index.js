@@ -5,9 +5,11 @@ import {AppBar} from '../../components/AppBar'
 import {ButtonsWrapper, ContentWrapper, SwipeScreenWrapper, MatchIcon, OptionButton, swipeRightToInit, swipeLeftToClose} from './styled'
 import {connect} from 'react-redux'
 import {mdiAccountMultipleCheck, mdiBellSleep} from '@mdi/js'
-import {swipeLeft, swipeRight} from '../../components/UserSwipeCard/styled'
+import {swipeLeft, swipeRight, Liked} from '../../components/UserSwipeCard/styled'
 import {updateCurrentPage} from '../../actions/route'
 import {Loader} from '../../components/Loader'
+import {LikeZone} from '../../components/LikeZone/likeZone'
+import {DislikeZone} from '../../components/DislikeZone/dislikeZone'
 import {getProfiles, choosePerson} from '../../actions'
 import { timeout } from 'q'
 
@@ -54,6 +56,9 @@ export class SwipeScreen extends Component {
 			600
 		  );
 	}
+	saveFatherState=(orientation)=>{
+		this.setState({currentAnimation: orientation})
+	}
 
 
 	render() {
@@ -63,6 +68,7 @@ export class SwipeScreen extends Component {
 
 		return (
 			<SwipeScreenWrapper closeWindowWithAnimation={closeWindowAnimation}>
+				
 				<AppBar
 					rightAction={<MatchIcon
 						size={1.5}
@@ -70,9 +76,12 @@ export class SwipeScreen extends Component {
 						onClick={this.closeWindowAndChange}
 					/>}
 				/>
+				
 				<ContentWrapper>
 					{currentAnimation !== null && (<Loader/>)}
 					{profileToSwipe ? <UserSwipeCard
+						saveFatherState={this.saveFatherState}
+						swipeChoose = {this.onChooseOption}
 						userToSwipe={profileToSwipe}
 						animationDirection={currentAnimation}
 					/> : (<Loader/>)}
@@ -81,6 +90,8 @@ export class SwipeScreen extends Component {
 						<OptionButton onClick={this.onChooseOption('like')} option="like">♥️</OptionButton>
 					</ButtonsWrapper>
 				</ContentWrapper>
+				{/* <LikeZone wrapLike={this.onChooseOption('like')}/>
+				<DislikeZone wrapLike={this.onChooseOption}/> */}
 			</SwipeScreenWrapper>
 		)
 	}
