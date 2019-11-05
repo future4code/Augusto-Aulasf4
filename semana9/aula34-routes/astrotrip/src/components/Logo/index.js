@@ -8,7 +8,7 @@ import styled, {keyframes} from "styled-components";
 
 
 const LogoImg = styled.img`
-    width:5%;
+    width:80px;
     cursor:pointer;
     animation: ${props => props.animation} 1.5s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
     :active{

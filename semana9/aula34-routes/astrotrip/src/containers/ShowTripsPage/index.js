@@ -53,7 +53,7 @@ class ShowTrips extends Component {
           value={password}
         />
         <Button >Criar</Button>
-        <Button onClick={this.props.goToAdmScreen}>Voltar</Button>
+        <Button onClick={this.props.goToHomeScreen}>Voltar</Button>
       </LoginWrapper>
     );
   }
@@ -64,7 +64,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-	goToAdmScreen: () => dispatch(push(routes.admin)),
+	goToHomeScreen: () => dispatch(push(routes.home)),
 })
 
 export default connect(null, mapDispatchToProps)(ShowTrips)

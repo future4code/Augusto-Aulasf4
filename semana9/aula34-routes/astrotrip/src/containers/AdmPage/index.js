@@ -5,26 +5,18 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import styled from "styled-components";
 import { routes } from "../Router";
-import { getTrips } from "../../actions";
+import { getTrips, getTripDetail } from "../../actions";
 import Logo from "../../components/Logo";
+import Loader from "../../components/Loader/Loader";
+import { ButtonSpace } from "../HomePage/styled";
+import { AdmWrapper, ContentContainer, HeaderContent, BodyContent, MenuContent, ButtonMenu, MenuTitle, MenuItems } from "./styled";
+import TripDetail from "./TripDetail";
+import TripLoading from "./TripLoading";
 
-const LoginWrapper = styled.form`
-  display:flex;
-  flex-direction:column;
-  justify-content:space-evenly;
-  align-items:center;
-  width:100%;
-  height:100vh;
-  background:url('https://uploads-ssl.webflow.com/5d640f4558306be99cf47a0e/5d7ebf13cb34e44fada5540c_estrelas_fundo4.png'), linear-gradient(360deg, #3068d0, #692b90 50%, #120f33 80%, #050505);
-
-`;
-
-class LoginPage extends Component {
+class AdmPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: "",
-      password: ""
     };
   }
 
@@ -32,43 +24,43 @@ class LoginPage extends Component {
     this.props.getTrips()
   }
 
-  handleFieldChange = event => {
-    this.setState({
-      [event.target.name]: event.target.value
-    });
-  };
+  showTripDetail=(id)=>{
+    this.props.getTripDetail(id)
+  }
 
   render() {
 
-    const { email, password } = this.state;
+    const { allTrips, actualTrip } = this.props;
+
+    const listTrips = allTrips.map((trip,index)=>{
+      return (<MenuItems onClick={()=>this.showTripDetail(trip.id)} key={index}>{trip.name}</MenuItems>)
+    })
 
     return (
-      <LoginWrapper>
-        <Logo active={this.props.goToHomeScreen}/>
-        <TextField
-          onChange={this.handleFieldChange}
-          name="email"
-          type="email"
-          label="E-mail"
-          value={email}
-        />
-        <TextField
-          onChange={this.handleFieldChange}
-          name="password"
-          type="password"
-          label="Password"
-          value={password}
-        />
-        <Button onClick={this.props.goToHomeScreen}>Home</Button>
-        <Button onClick={this.props.goToCreateTripScreen}>Criar Viagem</Button>
-        <Button onClick={this.props.goToSubsScreen}>Inscritos</Button>
-      </LoginWrapper>
+      <AdmWrapper>
+        <ContentContainer>
+          <HeaderContent>
+            <Logo active={this.props.goToHomeScreen} />
+            <h1>Painel Administrativo</h1>
+            <span></span>
+          </HeaderContent>
+          <BodyContent>
+            <MenuContent>
+              <ButtonMenu onClick={this.props.goToCreateTripScreen}>Criar Viagem</ButtonMenu>
+              <MenuTitle>Sua Viagens</MenuTitle>
+              {allTrips===[] ? <Loader/> : listTrips}
+            </MenuContent>
+            {actualTrip ? <TripDetail/> : <TripLoading/>}
+          </BodyContent>
+        </ContentContainer>
+      </AdmWrapper>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  // matches: state.profiles.matches,
+  allTrips: state.trips.allTrips,
+  actualTrip: state.trips.actualTrip,
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -76,7 +68,8 @@ const mapDispatchToProps = dispatch => ({
   goToSubsScreen: () => dispatch(push(routes.subscribed)),
   goToHomeScreen: () => dispatch(push(routes.home)),
   getTrips: () => dispatch(getTrips()),
+  getTripDetail: (id) => dispatch(getTripDetail(id)),
 })
 
-export default connect(null, mapDispatchToProps)(LoginPage)
+export default connect(mapStateToProps, mapDispatchToProps)(AdmPage)
 

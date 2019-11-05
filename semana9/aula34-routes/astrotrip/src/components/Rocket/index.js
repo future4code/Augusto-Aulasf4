@@ -55,7 +55,7 @@ export const swipeToNot = keyframes`
 
 
 const Rocket = styled.img`
-    width:30%;
+    width:150px;
     animation: ${props => props.animation} forwards 1.5s  ;
 `
 

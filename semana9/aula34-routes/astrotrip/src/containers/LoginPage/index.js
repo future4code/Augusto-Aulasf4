@@ -61,11 +61,6 @@ class LoginPage extends Component {
           </ButtonArea>
         </TextArea>
       </ContentContainer>
-      <LoginWrapper>
-       
-        <Button onClick={this.props.goToAdmScreen}>Login</Button>
-        <Button onClick={this.props.goToHomeScreen}>Voltar</Button>
-      </LoginWrapper>
     </HomeContainer>
      
     );

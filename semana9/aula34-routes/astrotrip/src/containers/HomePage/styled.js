@@ -20,7 +20,8 @@ export const ButtonSpace = styled.button`
     border-radius:10px;
     border:3px solid black;
     cursor:pointer;
-
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    
     :focus{
         outline:none;
     }
