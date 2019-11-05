@@ -9,6 +9,7 @@ import { ButtonSpace } from "../HomePage/styled";
 import Logo from "../../components/Logo";
 import { SubscriberWrapper, ContentContainer, HeaderContent, BodyContent, CandidateContent, SettingContent, ButtonContent } from './styled'
 import CardCandites from '../../components/CandidateCard'
+import Loader from "../../components/Loader/Loader";
 
 class SubscribersPage extends Component {
   constructor(props) {
@@ -31,6 +32,7 @@ class SubscribersPage extends Component {
     if (this.props.subscribed.candidates !== undefined) {
       ListCandidates = this.props.subscribed.candidates.map((candidate, index) => {
         return <CardCandites 
+        nothing={true}
         key={index} 
         candidateName={candidate.name} 
         candidateAge={candidate.age} 
@@ -39,6 +41,12 @@ class SubscribersPage extends Component {
         candidateText={candidate.applicationText}
         />
       })
+    }else{
+      ListCandidates = 
+      <CardCandites
+      nothing={false}
+      candidateText= 'Nenhuma Viagem Selecionada.'
+      />
     }
     return (
       <SubscriberWrapper>
@@ -73,6 +81,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   goToAdmScreen: () => dispatch(push(routes.admin)),
+  goToHomeScreen: () => dispatch(push(routes.home)),
   getTripDetail: (id) => dispatch(getTripDetail(id)),
 })
 

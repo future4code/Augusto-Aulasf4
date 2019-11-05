@@ -9,7 +9,6 @@ export const SubscriberWrapper = styled.div`
     width:100%;
     min-height:100vh;
     background:url('https://uploads-ssl.webflow.com/5d640f4558306be99cf47a0e/5d7ebf13cb34e44fada5540c_estrelas_fundo4.png'), linear-gradient(360deg, #3068d0, #692b90 50%, #120f33 80%, #050505);
-
 `;
 
 export const HeaderContent = styled.div`

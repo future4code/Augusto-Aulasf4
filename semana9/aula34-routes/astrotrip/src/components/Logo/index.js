@@ -21,7 +21,7 @@ export function Logo(props) {
 
   return (
     <LogoImg onClick={props.active} src={require('../../assets/Logo.png')} alt="Logo Icon"/>
-  );
+  )
 }
 
 export default Logo
