@@ -29,16 +29,30 @@ export const BodyContent = styled.div`
     display:flex;
 `;
 
-export const MenuContent = styled.div`
+export const CandidateContent = styled.div`
     display:flex;
     flex-direction:column;
-    background:#7b1fa2;
     align-items:center;
-    width:30%;
+    justify-content:center;
+    width:50%;
     height:80vh;
-    border:2px solid black;
-    border-radius: 0 0 0 20px;
-    overflow-y:auto;
+    position: relative;
+`
+
+export const ButtonContent = styled.div`
+    display:flex;
+    justify-content:space-evenly;
+    width:100%;
+    margin:10%;
+`
+
+export const SettingContent = styled.div`
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-end;
+    width:50%;
+    height:80vh;
 `;
 
 export const MenuTitle = styled.h2`

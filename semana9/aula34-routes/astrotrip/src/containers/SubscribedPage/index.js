@@ -7,7 +7,8 @@ import { getTripDetail } from "../../actions";
 import { RocketIcon, swipeToNot, swipeToYes } from "../../components/Rocket";
 import { ButtonSpace } from "../HomePage/styled";
 import Logo from "../../components/Logo";
-import { SubscriberWrapper, ContentContainer } from './styled'
+import { SubscriberWrapper, ContentContainer, HeaderContent, BodyContent, CandidateContent, SettingContent, ButtonContent } from './styled'
+import CardCandites from '../../components/CandidateCard'
 
 class SubscribersPage extends Component {
   constructor(props) {
@@ -17,33 +18,49 @@ class SubscribersPage extends Component {
     };
   }
 
-  chooseOption=(op)=>{
+  chooseOption = (op) => {
     let doAnimation = op === 'like' ? swipeToYes : swipeToNot
-    this.setState({currentAnimation: doAnimation})
+    this.setState({ currentAnimation: doAnimation })
   }
 
   render() {
     console.log(this.props.subscribed.candidates)
     const { currentAnimation } = this.state;
-    
-    let ListCandidates
-    if (this.props.subscribed.candidates!==undefined) { 
-      ListCandidates = this.props.subscribed.candidates.map((candidate, index)=>{
-      return <p key={index}>{candidate.name}</p>
-    })
-   }else{
-      ListCandidates = null
-   }
 
+    let ListCandidates
+    if (this.props.subscribed.candidates !== undefined) {
+      ListCandidates = this.props.subscribed.candidates.map((candidate, index) => {
+        return <CardCandites 
+        key={index} 
+        candidateName={candidate.name} 
+        candidateAge={candidate.age} 
+        candidateCountry={candidate.country} 
+        candidateProdission={candidate.profession} 
+        candidateText={candidate.applicationText}
+        />
+      })
+    }
     return (
       <SubscriberWrapper>
         <ContentContainer>
-        <Logo active={this.props.goToHomeScreen} />
-        <RocketIcon animation={currentAnimation} src="https://cdn.pixabay.com/photo/2018/04/11/07/08/rocket-3309711_960_720.png" alt="" />
-        <ButtonSpace >Criar</ButtonSpace>
-        <ButtonSpace >Criar</ButtonSpace>
-        {ListCandidates}
-        <ButtonSpace onClick={this.props.goToAdmScreen}>Voltar</ButtonSpace>
+          <HeaderContent>
+            <Logo active={this.props.goToHomeScreen} />
+            <h1>Gerenciamento de Candidatos</h1>
+            <ButtonSpace onClick={this.props.goToAdmScreen}>Voltar</ButtonSpace>
+          </HeaderContent>
+          <BodyContent>
+            <CandidateContent>
+            
+              {ListCandidates}
+            </CandidateContent>
+            <SettingContent>
+              <RocketIcon animation={currentAnimation} src="https://cdn.pixabay.com/photo/2018/04/11/07/08/rocket-3309711_960_720.png" alt="" />
+              <ButtonContent>
+                <ButtonSpace onClick={() => this.chooseOption('dislike')}>Reprovar</ButtonSpace>
+                <ButtonSpace onClick={() => this.chooseOption('like')}>Aprovar</ButtonSpace>
+              </ButtonContent>
+            </SettingContent>
+          </BodyContent>
         </ContentContainer>
       </SubscriberWrapper>
     );
