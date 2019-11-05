@@ -5,16 +5,18 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import styled from "styled-components";
 import { routes } from "../Router";
-import { HomeContainer, ContentContainer, ImgLogo, TextArea, ButtonSpace, ButtonArea } from '../HomePage/styled'
-
+import { getTrips } from "../../actions";
+import Logo from "../../components/Logo";
 
 const LoginWrapper = styled.form`
-  width: 100%;
-  height: 100vh;
-  gap: 10px;
-  place-content: center;
-  justify-items: center;
-  display: grid;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-evenly;
+  align-items:center;
+  width:100%;
+  height:100vh;
+  background:url('https://uploads-ssl.webflow.com/5d640f4558306be99cf47a0e/5d7ebf13cb34e44fada5540c_estrelas_fundo4.png'), linear-gradient(360deg, #3068d0, #692b90 50%, #120f33 80%, #050505);
+
 `;
 
 class LoginPage extends Component {
@@ -26,6 +28,10 @@ class LoginPage extends Component {
     };
   }
 
+  componentDidMount() {
+    this.props.getTrips()
+  }
+
   handleFieldChange = event => {
     this.setState({
       [event.target.name]: event.target.value
@@ -33,14 +39,12 @@ class LoginPage extends Component {
   };
 
   render() {
-    
+
     const { email, password } = this.state;
 
     return (
-      <HomeContainer>
-      <ContentContainer>
-        <ImgLogo src={require('../../assets/Logo.png')} alt="logo" />
-        <TextArea>
+      <LoginWrapper>
+        <Logo active={this.props.goToHomeScreen}/>
         <TextField
           onChange={this.handleFieldChange}
           name="email"
@@ -55,30 +59,23 @@ class LoginPage extends Component {
           label="Password"
           value={password}
         />
-          <ButtonArea>
-            <ButtonSpace onClick={this.props.goToAdmScreen}>Login</ButtonSpace>
-            <ButtonSpace onClick={this.props.goToHomeScreen}>Voltar</ButtonSpace>
-          </ButtonArea>
-        </TextArea>
-      </ContentContainer>
-      <LoginWrapper>
-       
-        <Button onClick={this.props.goToAdmScreen}>Login</Button>
-        <Button onClick={this.props.goToHomeScreen}>Voltar</Button>
+        <Button onClick={this.props.goToHomeScreen}>Home</Button>
+        <Button onClick={this.props.goToCreateTripScreen}>Criar Viagem</Button>
+        <Button onClick={this.props.goToSubsScreen}>Inscritos</Button>
       </LoginWrapper>
-    </HomeContainer>
-     
     );
   }
 }
 
 const mapStateToProps = state => ({
-	// matches: state.profiles.matches,
+  // matches: state.profiles.matches,
 })
 
 const mapDispatchToProps = dispatch => ({
-	goToHomeScreen: () => dispatch(push(routes.home)),
-	goToAdmScreen: () => dispatch(push(routes.admin)),
+  goToCreateTripScreen: () => dispatch(push(routes.createTrips)),
+  goToSubsScreen: () => dispatch(push(routes.subscribed)),
+  goToHomeScreen: () => dispatch(push(routes.home)),
+  getTrips: () => dispatch(getTrips()),
 })
 
 export default connect(null, mapDispatchToProps)(LoginPage)

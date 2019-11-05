@@ -5,8 +5,6 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import styled from "styled-components";
 import { routes } from "../Router";
-import { HomeContainer, ContentContainer, ImgLogo, TextArea, ButtonSpace, ButtonArea } from '../HomePage/styled'
-
 
 const LoginWrapper = styled.form`
   width: 100%;
@@ -17,7 +15,7 @@ const LoginWrapper = styled.form`
   display: grid;
 `;
 
-class LoginPage extends Component {
+class ShowTrips extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -33,14 +31,13 @@ class LoginPage extends Component {
   };
 
   render() {
+
+    console.log(this.props.goToHomeScreen)
     
     const { email, password } = this.state;
 
     return (
-      <HomeContainer>
-      <ContentContainer>
-        <ImgLogo src={require('../../assets/Logo.png')} alt="logo" />
-        <TextArea>
+      <LoginWrapper>
         <TextField
           onChange={this.handleFieldChange}
           name="email"
@@ -55,19 +52,9 @@ class LoginPage extends Component {
           label="Password"
           value={password}
         />
-          <ButtonArea>
-            <ButtonSpace onClick={this.props.goToAdmScreen}>Login</ButtonSpace>
-            <ButtonSpace onClick={this.props.goToHomeScreen}>Voltar</ButtonSpace>
-          </ButtonArea>
-        </TextArea>
-      </ContentContainer>
-      <LoginWrapper>
-       
-        <Button onClick={this.props.goToAdmScreen}>Login</Button>
-        <Button onClick={this.props.goToHomeScreen}>Voltar</Button>
+        <Button >Criar</Button>
+        <Button onClick={this.props.goToAdmScreen}>Voltar</Button>
       </LoginWrapper>
-    </HomeContainer>
-     
     );
   }
 }
@@ -77,9 +64,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-	goToHomeScreen: () => dispatch(push(routes.home)),
 	goToAdmScreen: () => dispatch(push(routes.admin)),
 })
 
-export default connect(null, mapDispatchToProps)(LoginPage)
+export default connect(null, mapDispatchToProps)(ShowTrips)
 

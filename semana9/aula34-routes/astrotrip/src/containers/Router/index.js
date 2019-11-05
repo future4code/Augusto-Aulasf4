@@ -2,8 +2,13 @@ import React from "react";
 import { ConnectedRouter } from "connected-react-router";
 import { Switch, Route } from "react-router-dom";
 import LoginPage from "../LoginPage";
+import HomePage from "../HomePage";
+import AdmPage from "../AdmPage";
+import CreateTripPage from "../CreateTripPage";
+import SubscribedPage from "../SubscribedPage";
+import ShowTripsPage from "../ShowTripsPage";
 
-const routes = {
+export const routes = {
   home: "/",
   login: "/login",
   listTrips: "/application-form",
@@ -16,12 +21,12 @@ function Router(props) {
   return (
     <ConnectedRouter history={props.history}>
       <Switch>
-        <Route path={routes.home} component={LoginPage} />
         <Route path={routes.login} component={LoginPage} />
-        <Route path={routes.listTrips} component={LoginPage} />
-        <Route path={routes.createTrips} component={LoginPage} />
-        <Route path={routes.admin} component={LoginPage} />
-        <Route path={routes.subscribed} component={LoginPage} />
+        <Route path={routes.listTrips} component={ShowTripsPage} />
+        <Route path={routes.createTrips} component={CreateTripPage} />
+        <Route path={routes.admin} component={AdmPage} />
+        <Route path={routes.subscribed} component={SubscribedPage} />
+        <Route path={routes.home} component={HomePage} />
       </Switch>
     </ConnectedRouter>
   );
