@@ -42,10 +42,18 @@ export const createTrip = (name, planet, date, description,durationInDays) => as
 	// dispatch(setActualTrip(response.data.trip))
 }
 
-export const applyToTrip = (id) => async (dispatch) => {
-	const response = await axios.post(`${urlBase}/trip/${id}`)
-
-	dispatch(setActualTrip(response.data.trip))
+export const applyToTrip = (name, age, applicationText, profession, country, tripId) => async (dispatch) => {
+	
+	const data = {
+		name:name, 
+		age:age, 
+		applicationText:applicationText, 
+		profession:profession, 
+		country:country, 
+		tripId:tripId
+	}
+	
+	const response = await axios.post(`${urlBase}/trips/${tripId}/apply`, data)
 }
 
 export const deleteTrip = (id) => async (dispatch) => {

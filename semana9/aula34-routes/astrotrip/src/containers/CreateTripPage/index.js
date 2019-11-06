@@ -49,6 +49,13 @@ class CreateTrip extends Component {
 
   render() {
 
+    const todayDay = new Date().getDate()<10 ?"0" + new Date().getDate() : new Date().getDate()
+    const todayMonth = (Number(new Date().getMonth())+Number(1))
+    const todayYear= new Date().getFullYear()
+
+    const todayDate = todayYear + '-' + todayMonth + '-' + todayDay
+    console.log(todayDate)
+
     const { name, planet, date, description, durationInDays } = this.state;
 
     return (
@@ -65,7 +72,7 @@ class CreateTrip extends Component {
                   type="text"
                   label="Nome"
                   value={name}
-                  inputProps={{ title: "É necessário ter ao menos 5 letras", pattern: "[a-zA-Z]{5,}" }}
+                  inputProps={{ title: "É necessário ter ao menos 5 letras", pattern: "[a-zA-Z\s\\.,]{5,}" }}
                   required
                 />
                 
@@ -89,9 +96,9 @@ class CreateTrip extends Component {
                 <TextFieldStyled
                   onChange={this.handleFieldChange}
                   name="date"
-                  type="text"
-                  label="Data"
+                  type="date"
                   value={date}
+                  inputProps={{ min: todayDate}}
                   required
                 />
                 <TextFieldStyled
@@ -100,7 +107,7 @@ class CreateTrip extends Component {
                   type="text"
                   label="Descrição"
                   value={description}
-                  inputProps={{ title: "É necessário ter ao menos 30 letras", pattern: "[a-zA-Z]{30,}" }}
+                  inputProps={{ title: "É necessário ter ao menos 30 letras", minlength: "30" }}
                   required
                 />
                 

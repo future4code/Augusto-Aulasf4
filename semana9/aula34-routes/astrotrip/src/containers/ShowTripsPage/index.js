@@ -9,7 +9,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import { createTrip, getTrips } from "../../actions";
+import { createTrip, getTrips, applyToTrip } from "../../actions";
 import { SelectCountries } from "./countries";
 
 const TextFieldStyled = styled(TextField)`
@@ -32,11 +32,12 @@ class CreateTrip extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
-      planet: "Terra",
-      date: "",
-      description: "",
-      durationInDays: "",
+      name:"", 
+      age:"", 
+      applicationText:"", 
+      profession:"", 
+      country:"", 
+      tripId:""
     };
   }
 
@@ -53,14 +54,14 @@ class CreateTrip extends Component {
   submitForm = event => {
     event.preventDefault();
 
-    const { name, age, planet, date, description, durationInDays } = this.state;
+    const { name, age, applicationText, profession, country, tripId } = this.state;
 
-    this.props.createTrip(name, planet, date, description, durationInDays)
+    this.props.applyToTrip(name, age, applicationText, profession, country, tripId)
   }
 
   render() {
 console.log(SelectCountries)
-    const { name, planet, date, applicationText, profession, age, country, tripId } = this.state;
+    const { name, age, applicationText, profession, country, tripId } = this.state;
     const { allTrips } = this.props;
 
     const tripOptions = allTrips.map((trip, index) => {
@@ -105,7 +106,7 @@ console.log(SelectCountries)
                   type="text"
                   label="Motivo"
                   value={applicationText}
-                  inputProps={{ title: "É necessário ter ao menos 30 letras", pattern: "[a-zA-Z]{30,}" }}
+                  inputProps={{ title: "É necessário ter ao menos 30 letras", minlength: "30" }}
                   required
                 />
                 <TextFieldStyled
@@ -167,6 +168,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   goToHomeScreen: () => dispatch(push(routes.home)),
   createTrip: (name, planet, date, description, durationInDays) => dispatch(createTrip(name, planet, date, description, durationInDays)),
+  applyToTrip: (name, age, applicationText, profession, country, tripId) => dispatch(applyToTrip(name, age, applicationText, profession, country, tripId)),
   getTrips: () => dispatch(getTrips()),
 })
 
