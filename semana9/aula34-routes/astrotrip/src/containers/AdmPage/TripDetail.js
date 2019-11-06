@@ -34,7 +34,7 @@ class TripDetail extends Component {
 
     const { email, password } = this.state;
     const { idTrip, subscribed } = this.props;
-    console.log(subscribed.candidates)
+    
     return (
       <TripContent>
           <p>Titulo : {subscribed.name}</p>

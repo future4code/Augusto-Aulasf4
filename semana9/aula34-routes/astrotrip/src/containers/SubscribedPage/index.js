@@ -10,28 +10,38 @@ import Logo from "../../components/Logo";
 import { SubscriberWrapper, ContentContainer, HeaderContent, BodyContent, CandidateContent, SettingContent, ButtonContent } from './styled'
 import CardCandites from '../../components/CandidateCard'
 import Loader from "../../components/Loader/Loader";
+import {boardRocket} from "../../components/CandidateCard/index";
 
 class SubscribersPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentAnimation: null
+      currentAnimation: null,
+      cardAnimation:null,
     };
   }
 
+  // componentDidUpdate(prevProps, prevState){
+  //   if(prevState.cardAnimation !== this.state.cardAnimation){ precisa de trocar ao mudar o card
+  //     this.setState({ currentAnimation: null, cardAnimation: null })
+  //   }
+  // }
+
   chooseOption = (op) => {
     let doAnimation = op === 'like' ? swipeToYes : swipeToNot
-    this.setState({ currentAnimation: doAnimation })
+    if(this.state.cardAnimation=== null){
+      this.setState({ currentAnimation: doAnimation, cardAnimation: boardRocket })
+    }
   }
 
   render() {
-    console.log(this.props.subscribed.candidates)
-    const { currentAnimation } = this.state;
+    const { currentAnimation, cardAnimation } = this.state;
 
     let ListCandidates
     if (this.props.subscribed.candidates !== undefined) {
       ListCandidates = this.props.subscribed.candidates.map((candidate, index) => {
         return <CardCandites 
+        animation={cardAnimation}
         nothing={true}
         key={index} 
         candidateName={candidate.name} 
@@ -44,6 +54,7 @@ class SubscribersPage extends Component {
     }else{
       ListCandidates = 
       <CardCandites
+      animation={cardAnimation}
       nothing={false}
       candidateText= 'Nenhuma Viagem Selecionada.'
       />

@@ -5,13 +5,21 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import styled from "styled-components";
 import { routes } from "../Router";
-import { getTrips, getTripDetail } from "../../actions";
+import { getTrips, getTripDetail, deleteTrip } from "../../actions";
 import Logo from "../../components/Logo";
 import Loader from "../../components/Loader/Loader";
 import { ButtonSpace } from "../HomePage/styled";
-import { AdmWrapper, ContentContainer, HeaderContent, BodyContent, MenuContent, ButtonMenu, MenuTitle, MenuItems } from "./styled";
+import { AdmWrapper, ContentContainer, HeaderContent, BodyContent, MenuContent, ButtonMenu, MenuTitle, MenuItems, MenuItemsContent } from "./styled";
 import TripDetail from "./TripDetail";
 import TripLoading from "./TripLoading";
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+
+export const DeleteForeverIconStyled = styled(DeleteForeverIcon)`
+  cursor:pointer;
+  :hover{
+    color: red;
+  }
+`;
 
 class AdmPage extends Component {
   constructor(props) {
@@ -28,12 +36,16 @@ class AdmPage extends Component {
     this.props.getTripDetail(id)
   }
 
+  deleteThisTrip=(id)=>{
+    this.props.deleteTrip(id)
+  }
+
   render() {
 
-    const { allTrips, actualTrip } = this.props;
+    const { allTrips, actualTrip, deleteTrip } = this.props;
 
     const listTrips = allTrips.map((trip,index)=>{
-      return (<MenuItems onClick={()=>this.showTripDetail(trip.id)} key={index}>{trip.name}</MenuItems>)
+      return (<MenuItemsContent><MenuItems onClick={()=>this.showTripDetail(trip.id)} key={index}>{trip.name}</MenuItems> <DeleteForeverIconStyled onClick={()=>this.deleteThisTrip(trip.id)} /></MenuItemsContent>)
     })
 
     return (
@@ -47,7 +59,7 @@ class AdmPage extends Component {
           <BodyContent>
             <MenuContent>
               <ButtonMenu onClick={this.props.goToCreateTripScreen}>Criar Viagem</ButtonMenu>
-              <MenuTitle>Sua Viagens</MenuTitle>
+              <MenuTitle>Suas Viagens</MenuTitle>
               {allTrips===[] ? <Loader/> : listTrips}
             </MenuContent>
             {actualTrip ? <TripDetail/> : <TripLoading/>}
@@ -69,6 +81,7 @@ const mapDispatchToProps = dispatch => ({
   goToHomeScreen: () => dispatch(push(routes.home)),
   getTrips: () => dispatch(getTrips()),
   getTripDetail: (id) => dispatch(getTripDetail(id)),
+  deleteTrip: (id) => dispatch(deleteTrip(id)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdmPage)

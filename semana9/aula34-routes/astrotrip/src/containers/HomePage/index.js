@@ -18,7 +18,7 @@ export function HomePage(props) {
           <p>Faça parte das melhores viagens espaciais com a maior facilidade possível!</p>
           <ButtonArea>
             <ButtonSpace onClick={props.goToLoginScreen}>Login</ButtonSpace>
-            <ButtonSpace onClick={props.goToShowTripsScreen}>Viagens</ButtonSpace>
+            <ButtonSpace onClick={props.goToShowTripsScreen}>Candidatar</ButtonSpace>
           </ButtonArea>
         </TextArea>
       </ContentContainer>

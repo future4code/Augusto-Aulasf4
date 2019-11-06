@@ -2,26 +2,46 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { push } from "connected-react-router";
 import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
 import styled from "styled-components";
 import { routes } from "../Router";
+import { HomeContainer, ContentContainer, ImgLogo, TextArea, ButtonSpace, ButtonArea } from '../HomePage/styled'
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import { createTrip, getTrips } from "../../actions";
+import { SelectCountries } from "./countries";
 
-const LoginWrapper = styled.form`
-  width: 100%;
-  height: 100vh;
-  gap: 10px;
-  place-content: center;
-  justify-items: center;
-  display: grid;
-`;
+const TextFieldStyled = styled(TextField)`
+div{
+  margin-bottom:5%;
+}
+`
 
-class ShowTrips extends Component {
+const SelectStyled = styled(Select)`
+div{
+  margin-bottom:5%;
+}
+`
+const InputLabelStyled = styled(InputLabel)`
+  margin-right:5%;
+  width:100%;
+`
+
+class CreateTrip extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: "",
-      password: ""
+      name: "",
+      planet: "Terra",
+      date: "",
+      description: "",
+      durationInDays: "",
     };
+  }
+
+  componentDidMount() {
+    this.props.getTrips()
   }
 
   handleFieldChange = event => {
@@ -30,42 +50,124 @@ class ShowTrips extends Component {
     });
   };
 
-  render() {
+  submitForm = event => {
+    event.preventDefault();
 
-    console.log(this.props.goToHomeScreen)
-    
-    const { email, password } = this.state;
+    const { name, age, planet, date, description, durationInDays } = this.state;
+
+    this.props.createTrip(name, planet, date, description, durationInDays)
+  }
+
+  render() {
+console.log(SelectCountries)
+    const { name, planet, date, applicationText, profession, age, country, tripId } = this.state;
+    const { allTrips } = this.props;
+
+    const tripOptions = allTrips.map((trip, index) => {
+      return <MenuItem value={trip.id}>{trip.name} - {trip.planet}</MenuItem>
+    })
+
+
+    let countryOptions = SelectCountries.map((country, index) => {
+      return <MenuItem key={index} value={country.nome}>{country.nome}</MenuItem>
+    })
+  
 
     return (
-      <LoginWrapper>
-        <TextField
-          onChange={this.handleFieldChange}
-          name="email"
-          type="email"
-          label="E-mail"
-          value={email}
-        />
-        <TextField
-          onChange={this.handleFieldChange}
-          name="password"
-          type="password"
-          label="Password"
-          value={password}
-        />
-        <Button >Criar</Button>
-        <Button onClick={this.props.goToHomeScreen}>Voltar</Button>
-      </LoginWrapper>
+      <HomeContainer>
+        <ContentContainer>
+          <ImgLogo src={require('../../assets/Logo.png')} alt="logo" />
+          <TextArea>
+            <h2>Dados do Candidato:</h2>
+            <form onSubmit={this.submitForm} autoComplete="off">
+              <FormControl>
+                <TextFieldStyled
+                  onChange={this.handleFieldChange}
+                  name="name"
+                  type="text"
+                  label="Nome"
+                  value={name}
+                  inputProps={{ title: "É necessário ter ao menos 3 letras", pattern: "[a-zA-Z]{3,}" }}
+                  required
+                />
+                <TextFieldStyled
+                  onChange={this.handleFieldChange}
+                  name="age"
+                  type="text"
+                  label="Idade"
+                  value={age}
+                  inputProps={{ min: "18" }}
+                  required
+                />
+                <TextFieldStyled
+                  onChange={this.handleFieldChange}
+                  name="applicationText"
+                  type="text"
+                  label="Motivo"
+                  value={applicationText}
+                  inputProps={{ title: "É necessário ter ao menos 30 letras", pattern: "[a-zA-Z]{30,}" }}
+                  required
+                />
+                <TextFieldStyled
+                  onChange={this.handleFieldChange}
+                  name="profession"
+                  type="text"
+                  label="Profissão"
+                  value={profession}
+                  inputProps={{ title: "É necessário ter ao menos 10 letras", pattern: "[a-zA-Z]{10,}" }}
+                  required
+                />
+                <FormControl>
+                  <InputLabel htmlFor="country">Seu País</InputLabel>
+                  <SelectStyled
+                    value={country}
+                    onChange={this.handleFieldChange}
+                    inputProps={{
+                      name: 'country',
+                      id: 'country'
+                    }}
+                    required
+                  >
+                    {countryOptions}
+                  </SelectStyled>
+                </FormControl>
+                <FormControl>
+                  <InputLabel htmlFor="country">Viagem</InputLabel>
+                  <SelectStyled
+                    value={tripId}
+                    onChange={this.handleFieldChange}
+                    inputProps={{
+                      name: 'tripId',
+                      id: 'country'
+                    }}
+                    required
+                  >
+                    {tripOptions}
+
+                  </SelectStyled>
+                </FormControl>
+                <ButtonArea>
+                  <ButtonSpace onClick={this.props.goToHomeScreen}>Voltar</ButtonSpace>
+                  <ButtonSpace type="submit" >Candidatar</ButtonSpace>
+                </ButtonArea>
+              </FormControl>
+            </form>
+          </TextArea>
+        </ContentContainer>
+      </HomeContainer>
+
     );
   }
 }
 
 const mapStateToProps = state => ({
-	// matches: state.profiles.matches,
+  allTrips: state.trips.allTrips,
 })
 
 const mapDispatchToProps = dispatch => ({
-	goToHomeScreen: () => dispatch(push(routes.home)),
+  goToHomeScreen: () => dispatch(push(routes.home)),
+  createTrip: (name, planet, date, description, durationInDays) => dispatch(createTrip(name, planet, date, description, durationInDays)),
+  getTrips: () => dispatch(getTrips()),
 })
 
-export default connect(null, mapDispatchToProps)(ShowTrips)
-
+export default connect(mapStateToProps, mapDispatchToProps)(CreateTrip)

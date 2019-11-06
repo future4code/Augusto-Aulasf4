@@ -60,6 +60,14 @@ export const MenuItems = styled.p`
     padding:5px;
     margin:0;
     cursor:pointer;
+`;
+
+export const MenuItemsContent = styled.p`
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    width:100%;
+    color:white;
     border-bottom:1px solid white;
 `;
 

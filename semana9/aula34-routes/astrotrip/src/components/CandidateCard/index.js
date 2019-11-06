@@ -6,6 +6,21 @@ import Button from "@material-ui/core/Button";
 import styled, { keyframes } from "styled-components";
 import Loader from "../Loader/Loader";
 
+export const boardRocket = keyframes`
+0%{
+    transform: translate(1);
+}
+25%{
+    transform: translate(50vw);
+}
+50%{
+    transform: translate(50vw) scale(1);
+}
+100%{
+    transform: translate(50vw) scale(0) rotate(180deg);
+}
+`
+
 const Card = styled.div`
     position:absolute;
     width:70%;
@@ -15,8 +30,10 @@ const Card = styled.div`
     background:#7b1fa2;
     align-items:center;
     justify-content:space-evenly;
-    border:2px solid black;
+    border:3px solid black;
     border-radius: 20px;
+    box-shadow:2px 2px 8px rgba(0,0,0,0.8);
+    animation: ${props=>props.animation} 0.8s;
 `
 
 const InCard = styled.div`
@@ -31,7 +48,6 @@ const InCard = styled.div`
 `
 
 export function CardCandites(props) {
-
     let LoadingTrue
     
     if(props.nothing){
@@ -46,7 +62,7 @@ export function CardCandites(props) {
 
 
     return (
-        <Card>
+        <Card animation={props.animation}>
             {LoadingTrue}
         </Card>
     )
