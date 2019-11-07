@@ -42,6 +42,7 @@ class TripDetail extends Component {
           <p>Planeta : {subscribed.planet}</p>
           <p> Duração : {subscribed.durationInDays} dias</p>
           <p>Data : {subscribed.date}</p>
+          <p>Aprovados : {subscribed.approved? subscribed.approved.length : 0}</p>
           <p>Inscritos : {subscribed.candidates? subscribed.candidates.length : 0}</p>
                  {subscribed.candidates.length>0? <ButtonSpace onClick={this.props.goToSubsScreen}>Ver Inscritos</ButtonSpace> : null}
       </TripContent>

@@ -34,6 +34,8 @@ const Card = styled.div`
     border-radius: 20px;
     box-shadow:2px 2px 8px rgba(0,0,0,0.8);
     animation: ${props=>props.animation} 0.8s;
+    z-index:${props=>props.zIndex};
+    overflow:hidden;
 `
 
 const InCard = styled.div`
@@ -62,7 +64,7 @@ export function CardCandites(props) {
 
 
     return (
-        <Card animation={props.animation}>
+        <Card zIndex={props.zIndex} animation={props.animation}>
             {LoadingTrue}
         </Card>
     )

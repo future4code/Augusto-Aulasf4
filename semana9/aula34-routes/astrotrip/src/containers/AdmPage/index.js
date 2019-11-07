@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { push } from "connected-react-router";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
 import styled from "styled-components";
 import { routes } from "../Router";
 import { getTrips, getTripDetail, deleteTrip } from "../../actions";
+import { setErrorMsg } from "../../actions/auth";
 import Logo from "../../components/Logo";
 import Loader from "../../components/Loader/Loader";
 import { ButtonSpace } from "../HomePage/styled";
@@ -30,6 +29,13 @@ class AdmPage extends Component {
 
   componentDidMount() {
     this.props.getTrips()
+
+    const token = window.localStorage.getItem("token");
+
+    if (!token) {
+      this.props.setErrorMsg('errorToken')
+      this.props.goToLoginScreen();
+    }
   }
 
   showTripDetail=(id)=>{
@@ -42,7 +48,7 @@ class AdmPage extends Component {
 
   render() {
 
-    const { allTrips, actualTrip, deleteTrip } = this.props;
+    const { allTrips, actualTrip, deleteTrip, goToSignUpScreen, goToCreateTripScreen, goToHomeScreen } = this.props;
 
     const listTrips = allTrips.map((trip,index)=>{
       return (<MenuItemsContent><MenuItems onClick={()=>this.showTripDetail(trip.id)} key={index}>{trip.name}</MenuItems> <DeleteForeverIconStyled onClick={()=>this.deleteThisTrip(trip.id)} /></MenuItemsContent>)
@@ -52,13 +58,13 @@ class AdmPage extends Component {
       <AdmWrapper>
         <ContentContainer>
           <HeaderContent>
-            <Logo active={this.props.goToHomeScreen} />
+            <Logo active={goToHomeScreen} />
             <h1>Painel Administrativo</h1>
-            <span></span>
+            <ButtonSpace onClick={goToSignUpScreen}>Novo Admin</ButtonSpace>
           </HeaderContent>
           <BodyContent>
             <MenuContent>
-              <ButtonMenu onClick={this.props.goToCreateTripScreen}>Criar Viagem</ButtonMenu>
+              <ButtonMenu onClick={goToCreateTripScreen}>Criar Viagem</ButtonMenu>
               <MenuTitle>Suas Viagens</MenuTitle>
               {allTrips===[] ? <Loader/> : listTrips}
             </MenuContent>
@@ -79,9 +85,12 @@ const mapDispatchToProps = dispatch => ({
   goToCreateTripScreen: () => dispatch(push(routes.createTrips)),
   goToSubsScreen: () => dispatch(push(routes.subscribed)),
   goToHomeScreen: () => dispatch(push(routes.home)),
+  goToLoginScreen: () => dispatch(push(routes.login)),
+  goToSignUpScreen: () => dispatch(push(routes.signup)),
   getTrips: () => dispatch(getTrips()),
   getTripDetail: (id) => dispatch(getTripDetail(id)),
   deleteTrip: (id) => dispatch(deleteTrip(id)),
+  setErrorMsg: (errorMsg) => dispatch(setErrorMsg(errorMsg)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdmPage)

@@ -23,40 +23,69 @@ export const getTrips = () => async (dispatch) => {
 }
 
 export const getTripDetail = (id) => async (dispatch) => {
-	const response = await axios.get(`${urlBase}/trip/${id}`)
 
+	const token = window.localStorage.getItem("token");
+
+	const response = await axios.get(`${urlBase}/trip/${id}`,
+		{
+			headers: {
+				auth: token
+			}
+		})
+		console.log(response.data.trip)
 	dispatch(setActualTrip(response.data.trip))
 }
 
-export const createTrip = (name, planet, date, description,durationInDays) => async (dispatch) => {
+export const createTrip = (name, planet, date, description, durationInDays) => async (dispatch) => {
+
+	const token = window.localStorage.getItem("token");
 
 	const data = {
-		name:name,
-		planet:planet,
-		date:date,
-		description:description,
-		durationInDays:durationInDays,
+		name: name,
+		planet: planet,
+		date: date,
+		description: description,
+		durationInDays: durationInDays,
 	}
 
-	const response = await axios.post(`${urlBase}/trips`, data)
-	// dispatch(setActualTrip(response.data.trip))
+	const response = await axios.post(`${urlBase}/trips`, data, {
+		headers: {
+			auth: token
+		}
+	})
 }
 
 export const applyToTrip = (name, age, applicationText, profession, country, tripId) => async (dispatch) => {
-	
+
 	const data = {
-		name:name, 
-		age:age, 
-		applicationText:applicationText, 
-		profession:profession, 
-		country:country, 
-		tripId:tripId
+		name: name,
+		age: age,
+		applicationText: applicationText,
+		profession: profession,
+		country: country,
+		tripId: tripId
 	}
-	
+
 	const response = await axios.post(`${urlBase}/trips/${tripId}/apply`, data)
 }
 
 export const deleteTrip = (id) => async (dispatch) => {
 	const response = await axios.delete(`${urlBase}/trips/${id}`)
 	dispatch(getTrips())
+}
+
+export const decideCandidate=(tripId, candidateId, approve)=> async(dispatch)=>{
+
+	const token = window.localStorage.getItem("token");
+
+	const body = {
+		approve: approve
+	}
+
+	const response = await axios.put(`${urlBase}/trips/${tripId}/candidates/${candidateId}/decide`,body,{
+		headers:{
+			auth: token
+		}
+	})
+	
 }

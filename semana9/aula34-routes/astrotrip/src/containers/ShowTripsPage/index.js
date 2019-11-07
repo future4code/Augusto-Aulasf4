@@ -11,6 +11,8 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { createTrip, getTrips, applyToTrip } from "../../actions";
 import { SelectCountries } from "./countries";
+import Snackbar from '@material-ui/core/Snackbar';
+import Fade from '@material-ui/core/Fade';
 
 const TextFieldStyled = styled(TextField)`
 div{
@@ -23,6 +25,11 @@ div{
   margin-bottom:5%;
 }
 `
+
+const SnackbarSuccess = styled(Snackbar)`
+  background:green;
+`
+
 const InputLabelStyled = styled(InputLabel)`
   margin-right:5%;
   width:100%;
@@ -32,12 +39,12 @@ class CreateTrip extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name:"", 
-      age:"", 
-      applicationText:"", 
-      profession:"", 
-      country:"", 
-      tripId:""
+      name: "",
+      age: "",
+      applicationText: "",
+      profession: "",
+      country: "",
+      tripId: ""
     };
   }
 
@@ -57,10 +64,24 @@ class CreateTrip extends Component {
     const { name, age, applicationText, profession, country, tripId } = this.state;
 
     this.props.applyToTrip(name, age, applicationText, profession, country, tripId)
+
+    this.setState({
+      name: "",
+      age: "",
+      applicationText: "",
+      profession: "",
+      country: "",
+      tripId: "",
+      open: true
+    })
   }
 
+  handleClose = () => {
+    this.setState({ open: false });
+  };
+
   render() {
-console.log(SelectCountries)
+    console.log(SelectCountries)
     const { name, age, applicationText, profession, country, tripId } = this.state;
     const { allTrips } = this.props;
 
@@ -72,7 +93,7 @@ console.log(SelectCountries)
     let countryOptions = SelectCountries.map((country, index) => {
       return <MenuItem key={index} value={country.nome}>{country.nome}</MenuItem>
     })
-  
+
 
     return (
       <HomeContainer>
@@ -147,6 +168,15 @@ console.log(SelectCountries)
 
                   </SelectStyled>
                 </FormControl>
+                <SnackbarSuccess
+                  open={this.state.open}
+                  onClose={this.handleClose}
+                  TransitionComponent={Fade}
+                  ContentProps={{
+                    'aria-describedby': 'message-id',
+                  }}
+                  message={<span id="message-id">Cadastrado com sucesso!</span>}
+                />
                 <ButtonArea>
                   <ButtonSpace onClick={this.props.goToHomeScreen}>Voltar</ButtonSpace>
                   <ButtonSpace type="submit" >Candidatar</ButtonSpace>

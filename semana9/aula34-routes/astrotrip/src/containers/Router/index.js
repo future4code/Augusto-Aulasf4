@@ -7,6 +7,7 @@ import AdmPage from "../AdmPage";
 import CreateTripPage from "../CreateTripPage";
 import SubscribedPage from "../SubscribedPage";
 import ShowTripsPage from "../ShowTripsPage";
+import SignUpPage from "../SignUpPage";
 
 export const routes = {
   home: "/",
@@ -14,7 +15,8 @@ export const routes = {
   listTrips: "/application-form",
   createTrips: "/trips/create",
   admin: "/trips/list",
-  subscribed: "/trips/details"
+  subscribed: "/trips/details",
+  signup: "/signup"
 };
 
 function Router(props) {
@@ -26,6 +28,7 @@ function Router(props) {
         <Route path={routes.createTrips} component={CreateTripPage} />
         <Route path={routes.admin} component={AdmPage} />
         <Route path={routes.subscribed} component={SubscribedPage} />
+        <Route path={routes.signup} component={SignUpPage} />
         <Route path={routes.home} component={HomePage} />
       </Switch>
     </ConnectedRouter>

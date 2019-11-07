@@ -5,8 +5,15 @@ import TextField from "@material-ui/core/TextField";
 import styled from "styled-components";
 import { routes } from "../Router";
 import { HomeContainer, ContentContainer, ImgLogo, TextArea, ButtonSpace, ButtonArea } from '../HomePage/styled'
-import { login } from '../../actions/auth'
+import { signUp , setErrorAdminMsg } from '../../actions/auth'
 
+
+const SuccessMsg = styled.p`
+  width: 100%;
+  background:lightgreen;
+  color:white;
+  text-align:center;
+`
 
 const ErrorMsg = styled.p`
   width: 100%;
@@ -19,7 +26,7 @@ const ButtonAreaStyled = styled(ButtonArea)`
   margin-top:10%;
 `;
 
-class LoginPage extends Component {
+class SignUpPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -28,16 +35,27 @@ class LoginPage extends Component {
     };
   }
 
+  componentDidMount(){
+    const token = window.localStorage.getItem("token");
+
+    if (!token) {
+      this.props.setErrorMsg('errorToken')
+      this.props.goToLoginScreen();
+    }
+  }
+
   handleFieldChange = event => {
     this.setState({
       [event.target.name]: event.target.value
     });
   };
 
-  onClickLogin = event => {
+  onClickRegister = event => {
     event.preventDefault()
     const { email, password } = this.state;
-    this.props.doThisLogin(email, password)
+    this.props.signUp(email, password)
+    this.setState({email: "",
+    password: ""})
   }
 
 
@@ -45,10 +63,10 @@ class LoginPage extends Component {
   render() {
 
     let msgError
-    if (this.props.setErrorMsg === 'errorToken') {
-      msgError = <ErrorMsg>Usuário não autenticado.</ErrorMsg>
-    } else if (this.props.setErrorMsg === 'errorLogin') {
-      msgError = <ErrorMsg>Usuário ou senha incorretos.</ErrorMsg>
+    if (this.props.setErrorMsg === 'successRegister') {
+      msgError = <SuccessMsg>Admin Cadastrado.</SuccessMsg>
+    } else if (this.props.setErrorMsg === 'errorRegister') {
+      msgError = <ErrorMsg>Admin não cadastrado.</ErrorMsg>
     } else {
       msgError = null
     }
@@ -59,10 +77,10 @@ class LoginPage extends Component {
         <ContentContainer>
           <ImgLogo src={require('../../assets/Logo.png')} alt="logo" />
           <TextArea>
-            <h2>Dados para login:</h2>
+            <h2>Registrar novo Admin:</h2>
             {msgError}
 
-            <form onSubmit={this.onClickLogin} >
+            <form onSubmit={this.onClickRegister} >
               <TextField
                 onChange={this.handleFieldChange}
                 name="email"
@@ -78,8 +96,8 @@ class LoginPage extends Component {
                 value={password}
               />
               <ButtonAreaStyled>
-                <ButtonSpace>Login</ButtonSpace>
-                <ButtonSpace onClick={this.props.goToHomeScreen}>Voltar</ButtonSpace>
+                <ButtonSpace>Criar</ButtonSpace>
+                <ButtonSpace onClick={this.props.goToAdmScreen}>Voltar</ButtonSpace>
               </ButtonAreaStyled>
             </form>
           </TextArea>
@@ -92,14 +110,14 @@ class LoginPage extends Component {
 }
 
 const mapStateToProps = state => ({
-  setErrorMsg: state.auth.errorMsg,
+  setErrorMsg: state.auth.errorAdminMsg,
 })
 
 const mapDispatchToProps = dispatch => ({
   goToHomeScreen: () => dispatch(push(routes.home)),
   goToAdmScreen: () => dispatch(push(routes.admin)),
-  doThisLogin: (email, password) => dispatch(login(email, password)),
+  signUp: (email, password) => dispatch(signUp(email, password)),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginPage)
+export default connect(mapStateToProps, mapDispatchToProps)(SignUpPage)
 

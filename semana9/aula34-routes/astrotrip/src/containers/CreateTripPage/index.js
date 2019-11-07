@@ -10,15 +10,16 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { createTrip } from "../../actions";
+import Snackbar from '@material-ui/core/Snackbar';
+import Fade from '@material-ui/core/Fade';
 
 const TextFieldStyled = styled(TextField)`
 div{
   margin-bottom:5%;
 }
 `
-const InputLabelStyled = styled(InputLabel)`
-  margin-right:5%;
-  width:100%;
+const SnackbarSuccess = styled(Snackbar)`
+  background:green;
 `
 
 class CreateTrip extends Component {
@@ -30,7 +31,17 @@ class CreateTrip extends Component {
       date: "",
       description: "",
       durationInDays: "",
+      open: ""
     };
+  }
+
+  componentDidMount(){
+    const token = window.localStorage.getItem("token");
+
+    if (!token) {
+      this.props.setErrorMsg('errorToken')
+      this.props.goToLoginScreen();
+    }
   }
 
   handleFieldChange = event => {
@@ -45,16 +56,28 @@ class CreateTrip extends Component {
     const { name, planet, date, description, durationInDays } = this.state;
 
     this.props.createTrip(name, planet, date, description, durationInDays)
+
+    this.setState({
+      name: "",
+      planet: "Terra",
+      date: "",
+      description: "",
+      durationInDays: "",
+      open: true
+    })
   }
+
+  handleClose = () => {
+    this.setState({ open: false });
+  };
 
   render() {
 
-    const todayDay = new Date().getDate()<10 ?"0" + new Date().getDate() : new Date().getDate()
-    const todayMonth = (Number(new Date().getMonth())+Number(1))
-    const todayYear= new Date().getFullYear()
+    const todayDay = new Date().getDate() < 10 ? "0" + (Number(new Date().getDate()) + Number(1)) : (Number(new Date().getDate()) + Number(1))
+    const todayMonth = (Number(new Date().getMonth()) + Number(1))
+    const todayYear = new Date().getFullYear()
 
     const todayDate = todayYear + '-' + todayMonth + '-' + todayDay
-    console.log(todayDate)
 
     const { name, planet, date, description, durationInDays } = this.state;
 
@@ -72,10 +95,10 @@ class CreateTrip extends Component {
                   type="text"
                   label="Nome"
                   value={name}
-                  inputProps={{ title: "É necessário ter ao menos 5 letras", pattern: "[a-zA-Z\s\\.,]{5,}" }}
+                  inputProps={{ title: "É necessário ter ao menos 5 letras", minlength: "5" }}
                   required
                 />
-                
+
                 <Select
                   value={planet}
                   onChange={this.handleFieldChange}
@@ -98,7 +121,7 @@ class CreateTrip extends Component {
                   name="date"
                   type="date"
                   value={date}
-                  inputProps={{ min: todayDate}}
+                  inputProps={{ min: todayDate }}
                   required
                 />
                 <TextFieldStyled
@@ -110,7 +133,7 @@ class CreateTrip extends Component {
                   inputProps={{ title: "É necessário ter ao menos 30 letras", minlength: "30" }}
                   required
                 />
-                
+
                 <TextFieldStyled
                   onChange={this.handleFieldChange}
                   name="durationInDays"
@@ -119,6 +142,15 @@ class CreateTrip extends Component {
                   value={durationInDays}
                   inputProps={{ min: "50" }}
                   required
+                />
+                <SnackbarSuccess
+                  open={this.state.open}
+                  onClose={this.handleClose}
+                  TransitionComponent={Fade}
+                  ContentProps={{
+                    'aria-describedby': 'message-id',
+                  }}
+                  message={<span id="message-id">Cadastrado com sucesso!</span>}
                 />
                 <ButtonArea>
                   <ButtonSpace onClick={this.props.goToAdmScreen}>Voltar</ButtonSpace>

@@ -4,6 +4,7 @@ import { push } from "connected-react-router";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import styled, {keyframes} from "styled-components";
+import { rocketAnimationDuration } from "../../constants";
 
 export const swipeToYes = keyframes`
   0% {
@@ -56,7 +57,7 @@ export const swipeToNot = keyframes`
 
 const Rocket = styled.img`
     width:150px;
-    animation: ${props => props.animation} forwards 1.5s  ;
+animation: ${props => props.animation} forwards ${rocketAnimationDuration}ms ;
 `
 
 export function RocketIcon(props) {
