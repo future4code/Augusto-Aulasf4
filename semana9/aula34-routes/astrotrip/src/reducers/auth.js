@@ -1,6 +1,7 @@
 const initialState = {
     errorMsg: false,
-    errorAdminMsg: false
+    errorAdminMsg: false,
+    errorNotAdminMsg: false
   }
   
   const auth = (state = initialState, action) => {
@@ -11,6 +12,9 @@ const initialState = {
       case "SET_ERROR_ADMIN":
         const errorAdminMsg = action.payload.errorAdminMsg
       return {...state,errorAdminMsg: errorAdminMsg}
+      case "SET_ERROR_NOT_ADMIN":
+        const errorNotAdminMsg = action.payload.errorNotAdminMsg
+      return {...state,errorNotAdminMsg: errorNotAdminMsg}
       default:
         return state
     }

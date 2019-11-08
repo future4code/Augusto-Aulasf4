@@ -49,7 +49,7 @@ class SubscribersPage extends Component {
 
 		const newCardList = [...cardList]
 
-		if (subscribed && newCardList) {
+		if (subscribed.id!==undefined || newCardList.id!==undefined) {
 			if (op === 'like') {
 				decideCandidate(subscribed.id, newCardList[0].id, true)
 			} else {

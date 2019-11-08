@@ -18,6 +18,13 @@ export const setErrorAdminMsg = (errorAdminMsg) => ({
 	}
 })
 
+export const setErrorIfNotAdminMsg = (errorNotAdminMsg) => ({
+	type: 'SET_ERROR_NOT_ADMIN',
+	payload: {
+		errorNotAdminMsg: errorNotAdminMsg
+	}
+})
+
 export const login = (email, password) => async dispatch => {
   try {
 
@@ -30,8 +37,9 @@ export const login = (email, password) => async dispatch => {
       }
     );
     console.log(response.data)
-    // window.localStorage.setItem("token", response.data.token);
-    // dispatch(push(routes.admin));
+    window.localStorage.setItem("admin", response.data.user.admin);
+    window.localStorage.setItem("token", response.data.token);
+    dispatch(push(routes.admin));
   } catch (e) {
     dispatch(setErrorMsg('errorLogin'))
   }

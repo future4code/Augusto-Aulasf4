@@ -23,6 +23,16 @@ flex-direction:column;
 justify-content:space-evenly;
 `
 
+const ButtonContent = styled.div`
+background:white;
+margin:5%;
+border-radius:20px;
+width:100%;
+display:flex;
+align-items:center;
+justify-content:space-evenly;
+`
+
 class TripDetail extends Component {
   constructor(props) {
     super(props);
@@ -30,22 +40,27 @@ class TripDetail extends Component {
     }
   }
 
+  componentDidMount(){
+    this.props.getTripDetail(this.props.subscribed.id)
+  }
+
   render() {
 
-    const { email, password } = this.state;
     const { idTrip, subscribed } = this.props;
-    
+
     return (
       <TripContent>
-          <p>Titulo : {subscribed.name}</p>
-          <p>Descrição : {subscribed.description}</p>
-          <p>Planeta : {subscribed.planet}</p>
-          <p> Duração : {subscribed.durationInDays} dias</p>
-          <p>Data : {subscribed.date}</p>
-          <p>Aprovados : {subscribed.approved? subscribed.approved.length : 0}</p>
-          <p>Inscritos : {subscribed.candidates? subscribed.candidates.length : 0}</p>
-                 {subscribed.candidates.length>0? <ButtonSpace onClick={this.props.goToSubsScreen}>Ver Inscritos</ButtonSpace> : null}
-                 {subscribed.approved.length>0? <ButtonSpace onClick={this.props.goToApprovedScreen}>Ver Aprovados</ButtonSpace> : null}
+        <p>Titulo : {subscribed.name}</p>
+        <p>Descrição : {subscribed.description}</p>
+        <p>Planeta : {subscribed.planet}</p>
+        <p> Duração : {subscribed.durationInDays} dias</p>
+        <p>Data : {subscribed.date}</p>
+        <p>Aprovados : {subscribed.approved ? subscribed.approved.length : 0}</p>
+        <p>Inscritos : {subscribed.candidates ? subscribed.candidates.length : 0}</p>
+        <ButtonContent>
+          {subscribed.candidates.length > 0 ? <ButtonSpace onClick={this.props.goToSubsScreen}>Ver Inscritos</ButtonSpace> : null}
+          {subscribed.approved.length > 0 ? <ButtonSpace onClick={this.props.goToApprovedScreen}>Ver Aprovados</ButtonSpace> : null}
+        </ButtonContent>
       </TripContent>
     );
   }

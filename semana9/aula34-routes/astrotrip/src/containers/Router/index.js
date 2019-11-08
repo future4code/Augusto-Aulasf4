@@ -8,7 +8,7 @@ import CreateTripPage from "../CreateTripPage";
 import SubscribedPage from "../SubscribedPage";
 import ShowTripsPage from "../ShowTripsPage";
 import SignUpPage from "../SignUpPage";
-import { PrivateRoute } from "../../constants";
+import { PrivateRoute, PrivateRouteAdm } from "../../constants";
 import ApprovedCandidate from "../ApprovedPage";
 
 export const routes = {
@@ -28,10 +28,10 @@ function Router(props) {
       <Switch>
         <Route path={routes.login} component={LoginPage} />
         <Route path={routes.listTrips} component={ShowTripsPage} />
-        <PrivateRoute path={routes.createTrips} component={CreateTripPage} />
+        <PrivateRouteAdm path={routes.createTrips} component={CreateTripPage} />
         <PrivateRoute path={routes.admin} component={AdmPage} />
-        <PrivateRoute path={routes.subscribed} component={SubscribedPage} />
-        <PrivateRoute path={routes.signup} component={SignUpPage} />
+        <PrivateRouteAdm path={routes.subscribed} component={SubscribedPage} />
+        <PrivateRouteAdm path={routes.signup} component={SignUpPage} />
         <PrivateRoute path={routes.approved} component={ApprovedCandidate} />
         <Route path={routes.home} component={HomePage} />
       </Switch>

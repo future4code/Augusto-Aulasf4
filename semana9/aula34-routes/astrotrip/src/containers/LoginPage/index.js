@@ -13,11 +13,11 @@ const ErrorMsg = styled.p`
   background:lightcoral;
   color:white;
   text-align:center;
-`;
+`
 
 const ButtonAreaStyled = styled(ButtonArea)`
   margin-top:10%;
-`;
+`
 
 class LoginPage extends Component {
   constructor(props) {
@@ -61,7 +61,6 @@ class LoginPage extends Component {
           <TextArea>
             <h2>Dados para login:</h2>
             {msgError}
-
             <form onSubmit={this.onClickLogin} >
               <TextField
                 onChange={this.handleFieldChange}
@@ -102,4 +101,3 @@ const mapDispatchToProps = dispatch => ({
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPage)
-

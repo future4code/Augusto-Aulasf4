@@ -81,7 +81,6 @@ class CreateTrip extends Component {
   };
 
   render() {
-    console.log(SelectCountries)
     const { name, age, applicationText, profession, country, tripId } = this.state;
     const { allTrips } = this.props;
 
