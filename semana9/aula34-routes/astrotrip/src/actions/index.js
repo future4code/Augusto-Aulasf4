@@ -73,7 +73,7 @@ export const deleteTrip = (id) => async (dispatch) => {
 	dispatch(getTrips())
 }
 
-export const decideCandidate=(tripId, candidateId, approve)=> async(dispatch)=>{
+export const decideCandidate = (tripId, candidateId, approve) => async (dispatch) => {
 
 	const token = window.localStorage.getItem("token");
 
@@ -81,10 +81,10 @@ export const decideCandidate=(tripId, candidateId, approve)=> async(dispatch)=>{
 		approve: approve
 	}
 
-	const response = await axios.put(`${urlBase}/trips/${tripId}/candidates/${candidateId}/decide`,body,{
-		headers:{
+	const response = await axios.put(`${urlBase}/trips/${tripId}/candidates/${candidateId}/decide`, body, {
+		headers: {
 			auth: token
 		}
 	})
-	
+
 }

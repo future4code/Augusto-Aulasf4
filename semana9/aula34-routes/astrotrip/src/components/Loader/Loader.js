@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { push } from "connected-react-router";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import styled, {keyframes} from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 export const spin = keyframes`
   0% {
@@ -34,7 +34,7 @@ height:70px;
 export function Loader(props) {
 
   return (
-    <Loading src={require('../../assets/Logo.png')} alt="Loader Icon"/>
+    <Loading src={require('../../assets/Logo.png')} alt="Loader Icon" />
   );
 }
 

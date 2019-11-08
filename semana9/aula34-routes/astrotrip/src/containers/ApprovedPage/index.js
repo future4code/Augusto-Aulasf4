@@ -30,8 +30,8 @@ class ApprovedCandidate extends Component {
 		}
 	}
 
-	restartList=()=>{
-		if(this.props.subscribed.approved){
+	restartList = () => {
+		if (this.props.subscribed.approved) {
 			this.setState({ cardList: this.props.subscribed.approved })
 		}
 	}

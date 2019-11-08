@@ -5,7 +5,7 @@ import TextField from "@material-ui/core/TextField";
 import styled from "styled-components";
 import { routes } from "../Router";
 import { HomeContainer, ContentContainer, ImgLogo, TextArea, ButtonSpace, ButtonArea } from '../HomePage/styled'
-import { signUp , setErrorAdminMsg } from '../../actions/auth'
+import { signUp, setErrorAdminMsg } from '../../actions/auth'
 
 
 const SuccessMsg = styled.p`
@@ -45,11 +45,11 @@ class SignUpPage extends Component {
     event.preventDefault()
     const { email, password } = this.state;
     this.props.signUp(email, password)
-    this.setState({email: "",
-    password: ""})
+    this.setState({
+      email: "",
+      password: ""
+    })
   }
-
-
 
   render() {
 

@@ -45,7 +45,7 @@ class CreateTrip extends Component {
 
     const { name, planet, date, description, durationInDays } = this.state;
 
-    const dateToBack =  (new Date(date).getDate()+1) +'/'+ (new Date(date).getMonth()+1)+'/'+(new Date(date).getFullYear())
+    const dateToBack = (new Date(date).getDate() + 1) + '/' + (new Date(date).getMonth() + 1) + '/' + (new Date(date).getFullYear())
 
     this.props.createTrip(name, planet, dateToBack, description, durationInDays)
 

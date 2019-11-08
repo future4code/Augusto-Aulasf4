@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { push } from "connected-react-router";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import styled, {keyframes} from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 
 
@@ -20,7 +20,7 @@ const LogoImg = styled.img`
 export function Logo(props) {
 
   return (
-    <LogoImg onClick={props.active} src={require('../../assets/Logo.png')} alt="Logo Icon"/>
+    <LogoImg onClick={props.active} src={require('../../assets/Logo.png')} alt="Logo Icon" />
   )
 }
 
