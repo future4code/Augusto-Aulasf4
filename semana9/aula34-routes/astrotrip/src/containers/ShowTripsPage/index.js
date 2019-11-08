@@ -117,7 +117,7 @@ class CreateTrip extends Component {
                   type="text"
                   label="Idade"
                   value={age}
-                  inputProps={{ min: "18" }}
+                  inputProps={{ title: "É necessário ter ao menos 18 anos", min: "18" }}
                   required
                 />
                 <TextFieldStyled
