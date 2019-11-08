@@ -136,7 +136,7 @@ class CreateTrip extends Component {
                   type="text"
                   label="Profissão"
                   value={profession}
-                  inputProps={{ title: "É necessário ter ao menos 10 letras", pattern: "[a-zA-Z]{10,}" }}
+                  inputProps={{ title: "É necessário ter ao menos 10 letras", minlength: "10" }}
                   required
                 />
                 <FormControl>

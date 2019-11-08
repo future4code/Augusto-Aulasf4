@@ -29,13 +29,6 @@ class AdmPage extends Component {
 
   componentDidMount() {
     this.props.getTrips()
-
-    const token = window.localStorage.getItem("token");
-
-    if (!token) {
-      this.props.setErrorMsg('errorToken')
-      this.props.goToLoginScreen();
-    }
   }
 
   showTripDetail=(id)=>{

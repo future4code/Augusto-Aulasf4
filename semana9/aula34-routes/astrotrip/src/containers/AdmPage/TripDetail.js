@@ -45,6 +45,7 @@ class TripDetail extends Component {
           <p>Aprovados : {subscribed.approved? subscribed.approved.length : 0}</p>
           <p>Inscritos : {subscribed.candidates? subscribed.candidates.length : 0}</p>
                  {subscribed.candidates.length>0? <ButtonSpace onClick={this.props.goToSubsScreen}>Ver Inscritos</ButtonSpace> : null}
+                 {subscribed.approved.length>0? <ButtonSpace onClick={this.props.goToApprovedScreen}>Ver Aprovados</ButtonSpace> : null}
       </TripContent>
     );
   }
@@ -58,6 +59,7 @@ const mapDispatchToProps = dispatch => ({
   goToCreateTripScreen: () => dispatch(push(routes.createTrips)),
   goToSubsScreen: () => dispatch(push(routes.subscribed)),
   goToHomeScreen: () => dispatch(push(routes.home)),
+  goToApprovedScreen: () => dispatch(push(routes.approved)),
   getTrips: () => dispatch(getTrips()),
   getTripDetail: (id) => dispatch(getTripDetail(id)),
 })

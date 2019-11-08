@@ -35,15 +35,6 @@ class SignUpPage extends Component {
     };
   }
 
-  componentDidMount(){
-    const token = window.localStorage.getItem("token");
-
-    if (!token) {
-      this.props.setErrorMsg('errorToken')
-      this.props.goToLoginScreen();
-    }
-  }
-
   handleFieldChange = event => {
     this.setState({
       [event.target.name]: event.target.value

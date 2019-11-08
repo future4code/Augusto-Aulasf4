@@ -32,7 +32,6 @@ export const getTripDetail = (id) => async (dispatch) => {
 				auth: token
 			}
 		})
-		console.log(response.data.trip)
 	dispatch(setActualTrip(response.data.trip))
 }
 

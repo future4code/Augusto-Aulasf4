@@ -29,8 +29,9 @@ export const login = (email, password) => async dispatch => {
         password
       }
     );
-    window.localStorage.setItem("token", response.data.token);
-    dispatch(push(routes.admin));
+    console.log(response.data)
+    // window.localStorage.setItem("token", response.data.token);
+    // dispatch(push(routes.admin));
   } catch (e) {
     dispatch(setErrorMsg('errorLogin'))
   }

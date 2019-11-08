@@ -26,6 +26,7 @@ export const swipeToYes = keyframes`
     transform: scale(1) translate(100px,-100vh);
   }
 `
+
 export const swipeToNot = keyframes`
   0% {
     transform: scale(1);
@@ -52,8 +53,6 @@ export const swipeToNot = keyframes`
     transform: scale(1) translate(0,50px) rotate(105deg);
   }
 `
-
-
 
 const Rocket = styled.img`
     width:150px;

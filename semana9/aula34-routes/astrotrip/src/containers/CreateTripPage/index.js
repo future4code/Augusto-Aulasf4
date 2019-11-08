@@ -5,7 +5,6 @@ import TextField from "@material-ui/core/TextField";
 import styled from "styled-components";
 import { routes } from "../Router";
 import { HomeContainer, ContentContainer, ImgLogo, TextArea, ButtonSpace, ButtonArea } from '../HomePage/styled'
-import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
@@ -35,15 +34,6 @@ class CreateTrip extends Component {
     };
   }
 
-  componentDidMount(){
-    const token = window.localStorage.getItem("token");
-
-    if (!token) {
-      this.props.setErrorMsg('errorToken')
-      this.props.goToLoginScreen();
-    }
-  }
-
   handleFieldChange = event => {
     this.setState({
       [event.target.name]: event.target.value
@@ -55,7 +45,9 @@ class CreateTrip extends Component {
 
     const { name, planet, date, description, durationInDays } = this.state;
 
-    this.props.createTrip(name, planet, date, description, durationInDays)
+    const dateToBack =  (new Date(date).getDate()+1) +'/'+ (new Date(date).getMonth()+1)+'/'+(new Date(date).getFullYear())
+
+    this.props.createTrip(name, planet, dateToBack, description, durationInDays)
 
     this.setState({
       name: "",
@@ -165,10 +157,6 @@ class CreateTrip extends Component {
     );
   }
 }
-
-const mapStateToProps = state => ({
-  // matches: state.profiles.matches,
-})
 
 const mapDispatchToProps = dispatch => ({
   goToAdmScreen: () => dispatch(push(routes.admin)),

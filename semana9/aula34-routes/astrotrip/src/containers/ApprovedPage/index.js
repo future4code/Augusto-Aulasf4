@@ -12,7 +12,7 @@ import Loader from '../../components/Loader/Loader'
 import { boardRocket } from '../../components/CandidateCard/index'
 import { rocketAnimationDuration } from '../../constants'
 
-class SubscribersPage extends Component {
+class ApprovedCandidate extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
@@ -26,7 +26,13 @@ class SubscribersPage extends Component {
 		const { setErrorMsg, goToLoginScreen, subscribed } = this.props
 
 		if (subscribed.candidates) {
-			this.setState({ cardList: subscribed.candidates })
+			this.setState({ cardList: subscribed.approved })
+		}
+	}
+
+	restartList=()=>{
+		if(this.props.subscribed.approved){
+			this.setState({ cardList: this.props.subscribed.approved })
 		}
 	}
 
@@ -38,24 +44,13 @@ class SubscribersPage extends Component {
 
 	chooseOption = (op) => {
 
-		const { subscribed, decideCandidate } = this.props
 		const { cardList, cardAnimation } = this.state
 
-		let doAnimation = op === 'like' ? swipeToYes : swipeToNot
-
 		if (cardAnimation === null) {
-			this.setState({ currentAnimation: doAnimation, cardAnimation: boardRocket })
+			this.setState({ currentAnimation: swipeToYes, cardAnimation: boardRocket })
 		}
 
 		const newCardList = [...cardList]
-
-		if (subscribed && newCardList) {
-			if (op === 'like') {
-				decideCandidate(subscribed.id, newCardList[0].id, true)
-			} else {
-				decideCandidate(subscribed.id, newCardList[0].id, false)
-			}
-		}
 
 		newCardList.splice(0, 1)
 
@@ -67,7 +62,7 @@ class SubscribersPage extends Component {
 	render() {
 		const { currentAnimation, cardAnimation, cardList } = this.state
 		let ListCandidates
-		if (this.props.subscribed.candidates !== undefined) {
+		if (this.props.subscribed.approved !== undefined) {
 
 			ListCandidates = cardList.map((candidate, index) => {
 				return <CardCandites
@@ -95,7 +90,7 @@ class SubscribersPage extends Component {
 				<ContentContainer>
 					<HeaderContent>
 						<Logo active={this.props.goToHomeScreen} />
-						<h1>Gerenciamento de Candidatos</h1>
+						<h1>Lista dos Aprovados</h1>
 						<ButtonSpace onClick={this.props.goToAdmScreen}>Voltar</ButtonSpace>
 					</HeaderContent>
 					<BodyContent>
@@ -105,8 +100,8 @@ class SubscribersPage extends Component {
 						<SettingContent>
 							<RocketIcon animation={currentAnimation} src="https://cdn.pixabay.com/photo/2018/04/11/07/08/rocket-3309711_960_720.png" alt="" />
 							<ButtonContent>
-								<ButtonSpace onClick={() => this.chooseOption('dislike')}>Reprovar</ButtonSpace>
-								<ButtonSpace onClick={() => this.chooseOption('like')}>Aprovar</ButtonSpace>
+								<ButtonSpace onClick={() => this.restartList()}>Reiniciar Lista</ButtonSpace>
+								<ButtonSpace onClick={() => this.chooseOption('like')}>Próximo</ButtonSpace>
 							</ButtonContent>
 						</SettingContent>
 					</BodyContent>
@@ -127,4 +122,4 @@ const mapDispatchToProps = dispatch => ({
 	decideCandidate: (tripId, candidateId, approve) => dispatch(decideCandidate(tripId, candidateId, approve)),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(SubscribersPage)
+export default connect(mapStateToProps, mapDispatchToProps)(ApprovedCandidate)
