@@ -1,0 +1,259 @@
+{
+	"info": {
+		"_postman_id": "6db47f80-7479-4540-b8ff-00f4cbcfc74a",
+		"name": "Ex da tarde",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Playlist",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "auth",
+						"value": "4a8d7ba3173a0beb026be31b82b0f2f4",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Passa Nada\" \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://us-central1-spotif4.cloudfunctions.net/api/playlists/createPlaylist",
+					"protocol": "https",
+					"host": [
+						"us-central1-spotif4",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"api",
+						"playlists",
+						"createPlaylist"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllPlaylists",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "auth",
+						"value": "4a8d7ba3173a0beb026be31b82b0f2f4",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-spotif4.cloudfunctions.net/api/playlists/getAllPlaylists",
+					"protocol": "https",
+					"host": [
+						"us-central1-spotif4",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"api",
+						"playlists",
+						"getAllPlaylists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addMusicToPlaylist",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "auth",
+						"value": "4a8d7ba3173a0beb026be31b82b0f2f4",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"playlistId\": \"b5a84ded-e707-44bb-a78c-82b130f65355\", \r\n    \"music\": { \r\n        \"name\": \"Era uma Vez\", \r\n        \"artist\": \"Cabelin\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://us-central1-spotif4.cloudfunctions.net/api/playlists/addMusicToPlaylist",
+					"protocol": "https",
+					"host": [
+						"us-central1-spotif4",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"api",
+						"playlists",
+						"addMusicToPlaylist"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getPlaylistMusics",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "auth",
+						"value": "c4b47402-51c9-430d-8995-e69a3d6e04bc",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-spotif4.cloudfunctions.net/api/playlists/getPlaylistMusics/f376bf8c-4809-47bd-97d4-a062c806c432",
+					"protocol": "https",
+					"host": [
+						"us-central1-spotif4",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"api",
+						"playlists",
+						"getPlaylistMusics",
+						"f376bf8c-4809-47bd-97d4-a062c806c432"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "removeMusicFromPlaylist",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "auth",
+						"value": "4a8d7ba3173a0beb026be31b82b0f2f4",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-spotif4.cloudfunctions.net/api/playlists/removeMusicFromPlaylist?playlistId=f376bf8c-4809-47bd-97d4-a062c806c432&musicId=afd8f1da-03fc-41af-a857-d47cf396beef",
+					"protocol": "https",
+					"host": [
+						"us-central1-spotif4",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"api",
+						"playlists",
+						"removeMusicFromPlaylist"
+					],
+					"query": [
+						{
+							"key": "playlistId",
+							"value": "f376bf8c-4809-47bd-97d4-a062c806c432"
+						},
+						{
+							"key": "musicId",
+							"value": "afd8f1da-03fc-41af-a857-d47cf396beef"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deletePlaylist",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "auth",
+						"value": "4a8d7ba3173a0beb026be31b82b0f2f4",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-spotif4.cloudfunctions.net/api/playlists/deletePlaylist?playlistId=db6698e9-a247-4f47-a176-a96c075483ef",
+					"protocol": "https",
+					"host": [
+						"us-central1-spotif4",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"api",
+						"playlists",
+						"deletePlaylist"
+					],
+					"query": [
+						{
+							"key": "playlistId",
+							"value": "db6698e9-a247-4f47-a176-a96c075483ef"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "searchPlaylist",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "auth",
+						"value": "4a8d7ba3173a0beb026be31b82b0f2f4",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-spotif4.cloudfunctions.net/api/playlists/searchPlaylist?playlistName=klouca",
+					"protocol": "https",
+					"host": [
+						"us-central1-spotif4",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"api",
+						"playlists",
+						"searchPlaylist"
+					],
+					"query": [
+						{
+							"key": "playlistName",
+							"value": "klouca"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

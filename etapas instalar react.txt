@@ -1,0 +1,26 @@
+1. Criar um app react
+create-react-app <nome-do-projeto>
+
+2. Rodar um projeto localmente
+npm run start
+
+3. Criar um link do Surge
+npm run build
+surge ./build
+
+4. Instalação das libs que já estão no projeto
+npm install
+
+5. Intalação do prop-types
+npm install prop-types
+
+6. Instalação da styled-components
+npm install styled-components
+
+-------------------------------------
+
+1. Instalar React
+npm install -g create-react-app
+
+2. Instalar Surge
+npm install -g surge

@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Styleds Activity 1`] = `
+<span
+  className="sc-EHOje cDmsmP"
+/>
+`;
+
+exports[`Styleds Day 1`] = `
+<h3
+  className="sc-ifAKCX gDVnEe"
+/>
+`;
+
+exports[`Styleds IncludeButton 1`] = `
+<button
+  className="sc-bwzfXH bUFgUO"
+/>
+`;
+
+exports[`Styleds InputsContainer 1`] = `
+<div
+  className="sc-htpNat jnQSKU"
+/>
+`;
+
+exports[`Styleds PlannerContainer 1`] = `
+<div
+  className="sc-bdVaJa bjTQrD"
+/>
+`;
+
+exports[`Styleds Title 1`] = `
+<h3
+  className="sc-bxivhb kirffd"
+/>
+`;
